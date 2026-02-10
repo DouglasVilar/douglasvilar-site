@@ -1,152 +1,3552 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Douglas Vilar Sociedade de Advogados</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:system-ui,-apple-system,sans-serif;line-height:1.6;color:#333}
-header{background:#0b3b5c;color:#fff;padding:1rem 2rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-.header-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:1.5rem;font-weight:700}
-nav a{color:#fff;text-decoration:none;margin-left:2rem;transition:.3s}
-nav a:hover{color:#4a9fd8}
-.hero{background:linear-gradient(135deg,#0b3b5c,#1a5a7f);color:#fff;padding:4rem 2rem;text-align:center}
-.hero h1{font-size:2.5rem;margin-bottom:1rem}
-.hero p{font-size:1.2rem;opacity:.9}
-.container{max-width:1200px;margin:0 auto;padding:3rem 2rem}
-section{margin-bottom:4rem}
-.section-title{font-size:2rem;color:#0b3b5c;margin-bottom:2rem;text-align:center}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
-.card{background:#fff;border-radius:10px;padding:2rem;box-shadow:0 4px 15px rgba(0,0,0,.1);transition:.3s}
-.card:hover{transform:translateY(-5px);box-shadow:0 6px 20px rgba(0,0,0,.15)}
-.card h3{color:#0b3b5c;margin-bottom:1rem;font-size:1.5rem}
-.brand-section{background:#f8f9fa;padding:3rem 2rem}
-.brand-card{background:#fff;border-radius:15px;padding:2.5rem;margin-bottom:2rem;box-shadow:0 4px 15px rgba(0,0,0,.1)}
-.brand-card h3{color:#0b3b5c;font-size:1.8rem;margin-bottom:1rem}
-.brand-card .subtitle{color:#666;font-size:1.1rem;margin-bottom:1.5rem}
-.brand-card .description{line-height:1.8;margin-bottom:1.5rem}
-.brand-card .social{margin-top:1.5rem;padding-top:1.5rem;border-top:2px solid #e9ecef}
-.brand-card .social a{color:#0b3b5c;text-decoration:none;font-weight:500}
-.brand-card .social a:hover{color:#4a9fd8}
-.contact-info{background:#0b3b5c;color:#fff;padding:3rem 2rem;text-align:center}
-.contact-info h2{margin-bottom:2rem}
-.contact-info p{font-size:1.1rem;margin:0.5rem 0}
-.contact-info a{color:#4a9fd8;text-decoration:none}
-.contact-info a:hover{text-decoration:underline}
-footer{background:#000;color:#fff;text-align:center;padding:2rem}
-@media(max-width:768px){nav a{margin-left:1rem}.hero h1{font-size:2rem}.cards{grid-template-columns:1fr}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Douglas Vilar - Advogado especialista em Direito Imobiliário, Empresarial e Condominial. OAB/PR 47.278. Mais de 16.000 contratos analisados e 3.000 audiências realizadas.">
+    <meta name="keywords" content="advogado, direito imobiliário, Douglas Vilar, OAB PR, Curitiba, advocacia empresarial, Built to Suit">
+    <meta name="author" content="Douglas Vilar">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://douglasvilar.adv.br/">
+    <meta property="og:title" content="Douglas Vilar - Advogado & Empresário">
+    <meta property="og:description" content="Especialista em Direito Imobiliário, Empresarial e Condominial. +16.000 contratos analisados.">
+    <meta property="og:image" content="https://douglasvilar.adv.br/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://douglasvilar.adv.br/">
+    <meta property="twitter:title" content="Douglas Vilar - Advogado & Empresário">
+    <meta property="twitter:description" content="Especialista em Direito Imobiliário, Empresarial e Condominial. +16.000 contratos analisados.">
+    <meta property="twitter:image" content="https://douglasvilar.adv.br/assets/og-image.jpg">
+
+    <title>Douglas Vilar - Advogado & Empresário | Direito Imobiliário</title>
+    
+    <style>
+/* ==========================================
+   DOUGLAS VILAR - SITE PESSOAL/INSTITUCIONAL
+   Design Premium com Dark Mode
+   ========================================== */
+
+/* ==========================================
+   VARIABLES & RESET
+   ========================================== */
+
+:root {
+    /* Colors - Light Theme */
+    --color-primary: #c9a961;
+    --color-primary-dark: #a8884a;
+    --color-primary-light: #d4b878;
+    --color-secondary: #1a1a1a;
+    --color-accent: #8b7355;
+    
+    --color-bg: #ffffff;
+    --color-bg-alt: #f8f8f8;
+    --color-bg-dark: #0a0a0a;
+    --color-surface: #ffffff;
+    --color-surface-alt: #f5f5f5;
+    
+    --color-text: #1a1a1a;
+    --color-text-light: #666666;
+    --color-text-lighter: #999999;
+    --color-border: #e0e0e0;
+    
+    /* Typography */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.2);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --color-bg: #0a0a0a;
+    --color-bg-alt: #151515;
+    --color-bg-dark: #000000;
+    --color-surface: #1a1a1a;
+    --color-surface-alt: #252525;
+    
+    --color-text: #ffffff;
+    --color-text-light: #b0b0b0;
+    --color-text-lighter: #808080;
+    --color-border: #333333;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* ==========================================
+   PRELOADER
+   ========================================== */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.logo-animation {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+    margin-top: var(--spacing-sm);
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInOut 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* ==========================================
+   DARK MODE TOGGLE
+   ========================================== */
+
+.dark-mode-toggle {
+    position: fixed;
+    top: 100px;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-md);
+}
+
+.dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.dark-mode-toggle .sun-icon,
+.dark-mode-toggle .moon-icon {
+    font-size: 1.5rem;
+    transition: opacity var(--transition-fast);
+}
+
+.dark-mode-toggle .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .dark-mode-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .dark-mode-toggle .moon-icon {
+    display: block;
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h4 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* ==========================================
+   UTILITIES
+   ========================================== */
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-label {
+    font-size: 0.875rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-title {
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-description {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+/* Animations */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-animate].animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 1000;
+    transition: all var(--transition-medium);
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="dark"] .header.scrolled {
+    background: rgba(26, 26, 26, 0.95);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.logo-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: #fff;
+    border-radius: 50%;
+    font-size: 1.25rem;
+}
+
+.nav-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition-medium);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--color-text);
+    transition: all var(--transition-medium);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: var(--header-height);
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    z-index: -1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(201, 169, 97, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.1) 0%, transparent 50%);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 1;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: rgba(201, 169, 97, 0.1);
+    border: 1px solid var(--color-primary);
+    border-radius: 50px;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-title {
+    margin-bottom: var(--spacing-sm);
+}
+
+.hero-greeting {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--color-text-light);
+    margin-bottom: 0.5rem;
+}
+
+.hero-name {
+    display: block;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-description {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+    line-height: 1.8;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 50%;
+    color: var(--color-primary);
+    transition: all var(--transition-medium);
+}
+
+.social-link:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: bounce 2s infinite;
+}
+
+.mouse {
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--color-primary);
+    border-radius: 12px;
+    position: relative;
+}
+
+.wheel {
+    width: 3px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll 1.5s infinite;
+}
+
+.arrow {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.arrow span {
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    transform: rotate(-45deg);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes scroll {
+    0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    100% { transform: translateX(-50%) translateY(16px); opacity: 0; }
+}
+
+/* ==========================================
+   STATS SECTION
+   ========================================== */
+
+.stats {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.stat-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==========================================
+   ABOUT SECTION
+   ========================================== */
+
+.about {
+    padding: var(--spacing-xl) 0;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+}
+
+.image-placeholder {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+    color: #fff;
+}
+
+.badge-number {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.about-text {
+    /* Text content styles */
+}
+
+.about-description {
+    margin-bottom: var(--spacing-md);
+}
+
+.about-description p {
+    color: var(--color-text-light);
+    line-height: 1.8;
+}
+
+.about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.highlight-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-primary);
+}
+
+.highlight-icon {
+    font-size: 2rem;
+}
+
+.highlight-content h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.highlight-content p {
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* ==========================================
+   OAB COMMISSIONS
+   ========================================== */
+
+.oab-commissions {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.commissions-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.commissions-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.commission-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.commission-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: all var(--transition-medium);
+}
+
+.commission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.commission-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.commission-card h4 {
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.commission-card p {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.commission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.commission-item {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+}
+
+.commission-bullet {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+}
+
+.sindimoveis-badge {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: var(--radius-lg);
+    color: #fff;
+}
+
+.badge-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.badge-icon {
+    font-size: 4rem;
+}
+
+.badge-text h4 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.badge-text p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* ==========================================
+   PRACTICE AREAS
+   ========================================== */
+
+.practice-areas {
+    padding: var(--spacing-xl) 0;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.area-card {
+    padding: 2.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    border-top: 4px solid transparent;
+}
+
+.area-card:hover {
+    border-top-color: var(--color-primary);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.area-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.area-title {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.area-description {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+}
+
+.area-features {
+    list-style: none;
+}
+
+.area-features li {
+    padding: 0.5rem 0;
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.area-features li:last-child {
+    border-bottom: none;
+}
+
+.area-features li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+}
+
+/* ==========================================
+   COMPANIES SECTION
+   ========================================== */
+
+.companies {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.companies-tabs {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-medium);
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: width var(--transition-medium);
+}
+
+.tab-btn.active {
+    color: var(--color-primary);
+}
+
+.tab-btn.active::after {
+    width: 100%;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.company-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.company-image {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.company-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.company-logo-placeholder {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.company-info h3 {
+    margin-bottom: 0.5rem;
+}
+
+.company-tagline {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.company-description {
+    margin-bottom: 2rem;
+}
+
+.company-description p {
+    color: var(--color-text-light);
+}
+
+.company-services h4 {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+}
+
+.company-services ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.company-services li {
+    padding: 0.75rem 0;
+    color: var(--color-text-light);
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.company-services li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.company-social {
+    margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ==========================================
+   PODCASTS SECTION
+   ========================================== */
+
+.podcasts {
+    padding: var(--spacing-xl) 0;
+}
+
+.podcasts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.podcast-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+.podcast-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.podcast-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+}
+
+.podcast-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.podcast-card:hover .podcast-image img {
+    transform: scale(1.1);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.podcast-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-button {
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform var(--transition-medium);
+}
+
+.podcast-card:hover .play-button {
+    transform: scale(1.1);
+}
+
+.podcast-content {
+    padding: 2rem;
+}
+
+.podcast-content h3 {
+    margin-bottom: 1rem;
+}
+
+.podcast-content p {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.podcast-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-lighter);
+}
+
+.podcast-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 600;
+    transition: transform var(--transition-fast);
+}
+
+.podcast-link:hover {
+    transform: translateX(5px);
+}
+
+.podcast-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: var(--radius-lg);
+    color: #fff;
+    text-align: center;
+}
+
+.stat-number-big {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label-big {
+    display: block;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ==========================================
+   LECTURES SECTION
+   ========================================== */
+
+.lectures {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    border: 3px solid var(--color-bg-alt);
+}
+
+.timeline-content {
+    padding: 2rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateX(10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.timeline-content h3 {
+    margin-bottom: 0.5rem;
+}
+
+.timeline-venue {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+.lectures-cta {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    justify-content: center;
+}
+
+.cta-box {
+    max-width: 600px;
+    padding: 3rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.cta-box h3 {
+    margin-bottom: 1rem;
+}
+
+.cta-box p {
+    color: var(--color-text-light);
+    margin-bottom: 2rem;
+}
+
+/* ==========================================
+   TESTIMONIALS
+   ========================================== */
+
+.testimonials {
+    padding: var(--spacing-xl) 0;
+}
+
+.testimonials-slider {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    padding: 2.5rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.testimonial-stars {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-text {
+    color: var(--color-text-light);
+    font-style: italic;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.author-info h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.author-info p {
+    font-size: 0.875rem;
+    color: var(--color-text-lighter);
+    margin: 0;
+}
+
+/* ==========================================
+   BLOG SECTION
+   ========================================== */
+
+.blog {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-alt);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.blog-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+}
+
+.blog-card.featured {
+    grid-column: 1 / -1;
+}
+
+.blog-card.featured .blog-content {
+    padding: 3rem;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.blog-image {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.blog-card.featured .blog-image {
+    aspect-ratio: 21/9;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blog-content {
+    padding: 2rem;
+}
+
+.blog-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--color-text-lighter);
+}
+
+.blog-content h3 {
+    margin-bottom: 1rem;
+}
+
+.blog-content p {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+}
+
+.blog-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 600;
+    transition: transform var(--transition-fast);
+}
+
+.blog-link:hover {
+    transform: translateX(5px);
+}
+
+.blog-cta {
+    text-align: center;
+}
+
+/* ==========================================
+   CONTACT SECTION
+   ========================================== */
+
+.contact {
+    padding: var(--spacing-xl) 0;
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+}
+
+.contact-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-icon {
+    font-size: 2rem;
+}
+
+.contact-details h4 {
+    margin-bottom: 0.5rem;
+}
+
+.contact-details p,
+.contact-details a {
+    color: var(--color-text-light);
+}
+
+.contact-social h4 {
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-surface-alt);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: all var(--transition-medium);
+}
+
+.social-btn:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.contact-map {
+    margin-top: 2rem;
+}
+
+.contact-form {
+    background: var(--color-surface);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.btn-submit {
+    width: 100%;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+    padding: var(--spacing-lg) 0 var(--spacing-md);
+    background: var(--color-bg-dark);
+    color: var(--color-text-light);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.footer-description {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.footer-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(201, 169, 97, 0.1);
+    border: 1px solid var(--color-primary);
+    border-radius: 50px;
+    color: var(--color-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.footer-col h4 {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-col ul li a {
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+}
+
+.footer-col ul li a:hover {
+    color: var(--color-primary);
+}
+
+.footer-bottom {
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+}
+
+/* ==========================================
+   FLOATING BUTTONS
+   ========================================== */
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-xl);
+    z-index: 999;
+    transition: all var(--transition-medium);
+    animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+@keyframes pulse-whatsapp {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    50% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-medium);
+    z-index: 999;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--color-primary);
+    color: #fff;
+    transform: translateY(-5px);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .about-content,
+    .contact-content,
+    .company-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+    }
+    
+    .nav {
+        position: fixed;
+        top: var(--header-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--header-height));
+        background: var(--color-bg);
+        padding: 2rem;
+        transition: left var(--transition-medium);
+    }
+    
+    .nav.active {
+        left: 0;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .areas-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs-nav {
+        flex-direction: column;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .dark-mode-toggle {
+        top: 85px;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .whatsapp-float {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 50px;
+        height: 50px;
+    }
+    
+    .back-to-top {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .social-links {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+    .header,
+    .dark-mode-toggle,
+    .whatsapp-float,
+    .back-to-top,
+    .scroll-indicator {
+        display: none !important;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
 </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Attorney",
+      "name": "Douglas Vilar",
+      "description": "Advogado especialista em Direito Imobiliário, Empresarial e Condominial",
+      "url": "https://douglasvilar.adv.br",
+      "telephone": "+55-41-98421-6639",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Presidente Faria, 421",
+        "addressLocality": "Curitiba",
+        "addressRegion": "PR",
+        "addressCountry": "BR"
+      },
+      "areaServed": "BR",
+      "priceRange": "$$"
+    }
+    </script>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="logo-animation">DV</div>
+            <div class="loading-text">Carregando</div>
+        </div>
+    </div>
 
-<header>
-<div class="header-content">
-<div class="logo">Douglas Vilar Sociedade de Advogados</div>
-<nav>
-<a href="#inicio">Início</a>
-<a href="#douglas">Douglas Vilar</a>
-<a href="#lupy">LUPY</a>
-<a href="#terrenos">Terrenos Inteligentes</a>
-<a href="#contato">Contato</a>
-</nav>
-</div>
-</header>
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Alternar modo escuro">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
 
-<section class="hero" id="inicio">
-<h1>Estratégia jurídica e gestão de ativos para negócios que crescem</h1>
-<p class="subtitle">Direito Empresarial, Trabalhista, Tributário e Imobiliário com excelência</p>
-</section>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#home" class="logo">
+                    <span class="logo-initial">D</span>
+                    <span class="logo-text">ouglas Vilar</span>
+                </a>
+                
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Início</a></li>
+                        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                        <li><a href="#areas" class="nav-link">Áreas de Atuação</a></li>
+                        <li><a href="#empresas" class="nav-link">Empresas</a></li>
+                        <li><a href="#podcasts" class="nav-link">Podcasts</a></li>
+                        <li><a href="#palestras" class="nav-link">Palestras</a></li>
+                        <li><a href="#blog" class="nav-link">Blog</a></li>
+                        <li><a href="#contato" class="nav-link">Contato</a></li>
+                    </ul>
+                </nav>
 
-<div class="container">
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-<section id="douglas">
-<h2 class="section-title">Douglas Vilar Sociedade de Advogados</h2>
-<p style="text-align:center;max-width:800px;margin:0 auto 3rem;font-size:1.1rem;line-height:1.8">
-Atuamos com foco em soluções jurídicas estratégicas para empresas e pessoas físicas, combinando expertise técnica com atendimento personalizado. Nossa missão é proteger seus direitos e impulsionar seus resultados.
-</p>
-<div class="cards">
-<div class="card">
-<h3>⚖️ Direito Empresarial</h3>
-<p>Constituição de empresas, contratos comerciais, recuperação judicial, fusões e aquisições.</p>
-</div>
-<div class="card">
-<h3>👔 Direito Trabalhista</h3>
-<p>Assessoria preventiva, defesa em ações trabalhistas, compliance trabalhista e gestão de passivos.</p>
-</div>
-<div class="card">
-<h3>💰 Direito Tributário</h3>
-<p>Planejamento tributário, defesas administrativas, recuperação de créditos e revisões fiscais.</p>
-</div>
-<div class="card">
-<h3>🏢 Direito Imobiliário</h3>
-<p>Compra e venda de imóveis, regularização fundiária, locações e incorporações imobiliárias.</p>
-</div>
-</div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">OAB/PR 47.278</div>
+                <h1 class="hero-title">
+                    <span class="hero-greeting">Olá, sou</span>
+                    <span class="hero-name">Douglas Vilar</span>
+                </h1>
+                <p class="hero-subtitle">Advogado & Empresário</p>
+                <p class="hero-description">
+                    Especialista em Direito Imobiliário, Empresarial e Condominial.<br>
+                    Transformando desafios jurídicos em soluções inteligentes desde 1999.
+                </p>
+                <div class="hero-cta">
+                    <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" target="_blank" rel="noopener" class="btn btn-primary">Agendar Consulta</a>
+                    <a href="#sobre" class="btn btn-secondary">Conheça Mais</a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://www.instagram.com/douglasvilar/" target="_blank" rel="noopener" class="social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/douglas-vilar-2445a53b/" target="_blank" rel="noopener" class="social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" rel="noopener" class="social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                        </svg>
+                    </a>
+                    <a href="https://open.spotify.com/show/1KxZhkjF2AaHIfluzQi5sD" target="_blank" rel="noopener" class="social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
 
-</div>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" data-animate>
+                    <div class="stat-icon">📄</div>
+                    <div class="stat-number" data-target="16000">0</div>
+                    <div class="stat-label">Contratos Analisados</div>
+                </div>
+                <div class="stat-item" data-animate>
+                    <div class="stat-icon">⚖️</div>
+                    <div class="stat-number" data-target="3000">0</div>
+                    <div class="stat-label">Audiências Realizadas</div>
+                </div>
+                <div class="stat-item" data-animate>
+                    <div class="stat-icon">🤝</div>
+                    <div class="stat-number" data-target="2500">0</div>
+                    <div class="stat-label">Corretores Atendidos</div>
+                </div>
+                <div class="stat-item" data-animate>
+                    <div class="stat-icon">🎙️</div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Palestras & Podcasts</div>
+                </div>
+                <div class="stat-item" data-animate>
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-number" data-target="500000">0</div>
+                    <div class="stat-label">Visualizações nos Podcasts</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section class="brand-section" id="lupy">
-<div class="container">
-<h2 class="section-title">LUPY - Administração de Condomínios</h2>
-<div class="brand-card">
-<h3>🏘️ Gestão profissional de condomínios</h3>
-<p class="subtitle">Tecnologia, transparência e eficiência na administração condominial</p>
-<p class="description">
-A LUPY oferece serviços completos de administração de condomínios com foco em gestão moderna, transparente e eficiente. Utilizamos as melhores ferramentas tecnológicas para garantir controle financeiro, jurídico e operacional do seu condomínio.
-</p>
-<p class="description">
-✓ Gestão financeira completa<br>
-✓ Assessoria jurídica especializada<br>
-✓ Portal do condômino online<br>
-✓ Manutenção preventiva e corretiva<br>
-✓ Relatórios gerenciais detalhados
-</p>
-<div class="social">
-<strong>Siga-nos no Instagram:</strong> <a href="https://instagram.com/lupyadm" target="_blank">@lupyadm</a>
-</div>
-</div>
-</div>
-</section>
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image" data-animate>
+                    <div class="image-placeholder">
+                        <img src="https://via.placeholder.com/600x800/1a1a1a/c9a961?text=Douglas+Vilar" alt="Douglas Vilar">
+                    </div>
+                    <div class="experience-badge">
+                        <span class="badge-number">25+</span>
+                        <span class="badge-text">Anos de<br>Experiência</span>
+                    </div>
+                </div>
+                <div class="about-text" data-animate>
+                    <div class="section-label">Sobre Mim</div>
+                    <h2 class="section-title">Uma Trajetória de Excelência Jurídica</h2>
+                    <div class="about-description">
+                        <p>Desde 1999 atuando na área jurídica, sou advogado inscrito na OAB/PR sob o número 47.278 desde 2008. Minha jornada começou na graduação em Direito pela PUC-PR (2001-2006) e evoluiu através de especializações de alto nível.</p>
+                        
+                        <p>Recentemente, concluí pós-graduação em Direito Imobiliário pela renomada Escola Paulista de Direito (EPD) e extensão em Compliance Empresarial e Anticorrupção, além de formação em Advocacia 4.0, posicionando-me na vanguarda da advocacia moderna.</p>
 
-<section class="brand-section" id="terrenos">
-<div class="container">
-<h2 class="section-title">Terrenos Inteligentes</h2>
-<div class="brand-card">
-<h3>🌳 Investimentos imobiliários estratégicos</h3>
-<p class="subtitle">Oportunidades exclusivas em terrenos e loteamentos</p>
-<p class="description">
-Terrenos Inteligentes é a sua porta de entrada para investimentos imobiliários de alto potencial. Trabalhamos com terrenos cuidadosamente selecionados em regiões de valorização, oferecendo as melhores oportunidades para investidores e famílias que buscam seu espaço ideal.
-</p>
-<p class="description">
-✓ Terrenos em regiões de alta valorização<br>
-✓ Assessoria completa na compra<br>
-✓ Análise de viabilidade e potencial<br>
-✓ Documentação regularizada<br>
-✓ Consultoria jurídica incluída
-</p>
-<div class="social">
-<strong>Siga-nos no Instagram:</strong> <a href="https://instagram.com/terrenosinteligentes" target="_blank">@terrenosinteligentes</a>
-</div>
-</div>
-</div>
-</section>
+                        <p>Com mais de <strong>16.000 contratos analisados</strong>, <strong>3.000 audiências realizadas</strong> e <strong>2.500 corretores atendidos</strong>, construí uma carreira sólida baseada em resultados concretos e relacionamentos duradouros.</p>
+                    </div>
 
-<section class="contact-info" id="contato">
-<div class="container">
-<h2>Entre em Contato</h2>
-<p><strong>OAB/PR 47.278</strong></p>
-<p>📱 WhatsApp: <a href="https://wa.me/5541984216639" target="_blank">(41) 98421-6639</a></p>
-<p>📧 Email: <a href="mailto:douglas@vilar.adv.br">douglas@vilar.adv.br</a></p>
-<p>📍 Curitiba - PR</p>
-</div>
-</section>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🎯</div>
+                            <div class="highlight-content">
+                                <h4>Missão</h4>
+                                <p>Oferecer soluções jurídicas inovadoras e estratégicas, aliando tradição e tecnologia.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">💎</div>
+                            <div class="highlight-content">
+                                <h4>Valores</h4>
+                                <p>Ética, excelência, inovação e compromisso com resultados mensuráveis.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🚀</div>
+                            <div class="highlight-content">
+                                <h4>Diferenciais</h4>
+                                <p>Expertise técnica aliada à visão empresarial e domínio de tecnologia jurídica.</p>
+                            </div>
+                        </div>
+                    </div>
 
-<footer>
-<p>&copy; 2026 Douglas Vilar Sociedade de Advogados. Todos os direitos reservados.</p>
-</footer>
+                    <div class="about-cta">
+                        <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" target="_blank" rel="noopener" class="btn btn-primary">Entre em Contato</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- OAB Commissions -->
+    <section class="oab-commissions">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Participação Institucional</div>
+                <h2 class="section-title">Comissões OAB/PR</h2>
+                <p class="section-description">Atuação ativa nas principais comissões da Ordem dos Advogados do Brasil - Seção Paraná</p>
+            </div>
+
+            <div class="commissions-content">
+                <div class="commissions-current" data-animate>
+                    <h3 class="commissions-subtitle">Comissões Atuais (2025)</h3>
+                    <div class="commission-cards">
+                        <div class="commission-card">
+                            <div class="commission-icon">🤖</div>
+                            <h4>Comissão de Inteligência Artificial</h4>
+                            <p>Desde março/2025</p>
+                        </div>
+                        <div class="commission-card">
+                            <div class="commission-icon">🏗️</div>
+                            <h4>Comissão de Direito Imobiliário e da Construção Civil</h4>
+                            <p>Desde março/2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commissions-previous" data-animate>
+                    <h3 class="commissions-subtitle">Comissões Anteriores (2022-2025)</h3>
+                    <div class="commission-list">
+                        <div class="commission-item">
+                            <span class="commission-bullet">•</span>
+                            <span>Comissão de Direito Empresarial</span>
+                        </div>
+                        <div class="commission-item">
+                            <span class="commission-bullet">•</span>
+                            <span>Comissão de Direito dos Juizados Especiais</span>
+                        </div>
+                        <div class="commission-item">
+                            <span class="commission-bullet">•</span>
+                            <span>Comissão de Direito Imobiliário</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sindimoveis-badge" data-animate>
+                    <div class="badge-content">
+                        <div class="badge-icon">🏢</div>
+                        <div class="badge-text">
+                            <h4>Advogado do SINDIMOVEIS-PR</h4>
+                            <p>Sindicato dos Corretores de Imóveis do Paraná • Desde Junho/2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas -->
+    <section class="practice-areas" id="areas">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Especialidades</div>
+                <h2 class="section-title">Áreas de Atuação</h2>
+                <p class="section-description">Experiência multidisciplinar para atender todas as suas necessidades jurídicas</p>
+            </div>
+
+            <div class="areas-grid">
+                <div class="area-card" data-animate>
+                    <div class="area-icon">🏠</div>
+                    <h3 class="area-title">Direito Imobiliário</h3>
+                    <p class="area-description">Compra e venda, locação, usucapião, incorporação, Built to Suit, loteamentos e regularização fundiária.</p>
+                    <ul class="area-features">
+                        <li>Due Diligence Imobiliária</li>
+                        <li>Contratos de Locação e Venda</li>
+                        <li>Built to Suit</li>
+                        <li>Regularização Fundiária</li>
+                    </ul>
+                </div>
+
+                <div class="area-card" data-animate>
+                    <div class="area-icon">💼</div>
+                    <h3 class="area-title">Direito Empresarial</h3>
+                    <p class="area-description">Compliance, M&A, due diligence, contratos empresariais e consultoria estratégica para seu negócio.</p>
+                    <ul class="area-features">
+                        <li>Compliance e Anticorrupção</li>
+                        <li>Fusões e Aquisições</li>
+                        <li>Contratos Empresariais</li>
+                        <li>Consultoria Estratégica</li>
+                    </ul>
+                </div>
+
+                <div class="area-card" data-animate>
+                    <div class="area-icon">🏢</div>
+                    <h3 class="area-title">Direito Condominial</h3>
+                    <p class="area-description">Convenções, assembleias, assessoria a síndicos e gestão jurídica completa de condomínios.</p>
+                    <ul class="area-features">
+                        <li>Assessoria a Síndicos</li>
+                        <li>Convenções e Regimentos</li>
+                        <li>Assembleias</li>
+                        <li>Consultoria Condominial</li>
+                    </ul>
+                </div>
+
+                <div class="area-card" data-animate>
+                    <div class="area-icon">⚖️</div>
+                    <h3 class="area-title">Direito Trabalhista</h3>
+                    <p class="area-description">Consultoria preventiva, elaboração de contratos e defesa em processos trabalhistas.</p>
+                    <ul class="area-features">
+                        <li>Consultoria Preventiva</li>
+                        <li>Contratos de Trabalho</li>
+                        <li>Processos Trabalhistas</li>
+                        <li>Compliance Trabalhista</li>
+                    </ul>
+                </div>
+
+                <div class="area-card" data-animate>
+                    <div class="area-icon">💰</div>
+                    <h3 class="area-title">Direito Tributário</h3>
+                    <p class="area-description">Planejamento tributário, reforma tributária, ITBI, IPTU e otimização fiscal empresarial.</p>
+                    <ul class="area-features">
+                        <li>Reforma Tributária 2025</li>
+                        <li>Planejamento Tributário</li>
+                        <li>ITBI e IPTU</li>
+                        <li>Otimização Fiscal</li>
+                    </ul>
+                </div>
+
+                <div class="area-card" data-animate>
+                    <div class="area-icon">📋</div>
+                    <h3 class="area-title">Direito Civil</h3>
+                    <p class="area-description">Responsabilidade civil, contratos em geral e consultoria jurídica personalizada.</p>
+                    <ul class="area-features">
+                        <li>Responsabilidade Civil</li>
+                        <li>Contratos em Geral</li>
+                        <li>Pareceres Jurídicos</li>
+                        <li>Consultoria Civil</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies" id="empresas">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Ecossistema Empresarial</div>
+                <h2 class="section-title">Minhas Empresas</h2>
+                <p class="section-description">Um portfólio diversificado de negócios no setor jurídico e imobiliário</p>
+            </div>
+
+            <div class="companies-tabs">
+                <div class="tabs-nav" data-animate>
+                    <button class="tab-btn active" data-tab="douglas-vilar">Douglas Vilar Advogado</button>
+                    <button class="tab-btn" data-tab="lupy">Lupy Administradora</button>
+                    <button class="tab-btn" data-tab="citty">Citty Imóveis</button>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="douglas-vilar" data-animate>
+                        <div class="company-content">
+                            <div class="company-image">
+                                <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=Douglas+Vilar+Advogado" alt="Douglas Vilar Advogado">
+                            </div>
+                            <div class="company-info">
+                                <div class="company-logo-placeholder">DV</div>
+                                <h3>Douglas Vilar Advogado</h3>
+                                <p class="company-tagline">Escritório de advocacia com atuação nacional</p>
+                                <div class="company-description">
+                                    <p>Escritório full-service especializado em Direito Imobiliário, Empresarial, Trabalhista, Condominial e Tributário. Oferecemos soluções jurídicas completas para pessoas físicas e jurídicas.</p>
+                                </div>
+                                <div class="company-services">
+                                    <h4>Principais Serviços:</h4>
+                                    <ul>
+                                        <li>Consultoria Jurídica Empresarial</li>
+                                        <li>Análise e Elaboração de Contratos</li>
+                                        <li>Pareceres Jurídicos Especializados</li>
+                                        <li>Due Diligence Imobiliária</li>
+                                        <li>Regularização Fundiária e Usucapião</li>
+                                        <li>Contratos de Locação e Built to Suit</li>
+                                        <li>Assessoria a Incorporadoras e Construtoras</li>
+                                    </ul>
+                                </div>
+                                <div class="company-cta">
+                                    <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" target="_blank" rel="noopener" class="btn btn-primary">Solicitar Consultoria</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="lupy" data-animate>
+                        <div class="company-content">
+                            <div class="company-image">
+                                <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=Lupy+Administradora" alt="Lupy Administradora">
+                            </div>
+                            <div class="company-info">
+                                <div class="company-logo-placeholder">LA</div>
+                                <h3>Lupy Administradora de Condomínios</h3>
+                                <p class="company-tagline">Gestão condominial profissional e especializada</p>
+                                <div class="company-description">
+                                    <p>A Lupy Administradora oferece gestão completa de condomínios com foco em transparência, eficiência e assessoria jurídica especializada. Tecnologia e experiência para o seu condomínio.</p>
+                                </div>
+                                <div class="company-services">
+                                    <h4>Serviços Oferecidos:</h4>
+                                    <ul>
+                                        <li>Administração Condominial Completa</li>
+                                        <li>Gestão Financeira Transparente</li>
+                                        <li>Assessoria Jurídica Especializada</li>
+                                        <li>Suporte a Síndicos e Subsíndicos</li>
+                                        <li>Organização de Assembleias</li>
+                                        <li>Gestão de Fornecedores</li>
+                                        <li>Plataforma Digital para Condôminos</li>
+                                    </ul>
+                                </div>
+                                <div class="company-social">
+                                    <p><strong>Instagram:</strong> <a href="https://instagram.com/lupyadm" target="_blank">@lupyadm</a></p>
+                                </div>
+                                <div class="company-cta">
+                                    <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" target="_blank" rel="noopener" class="btn btn-primary">Conhecer a Lupy</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="citty" data-animate>
+                        <div class="company-content">
+                            <div class="company-image">
+                                <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=Citty+Imoveis" alt="Citty Imóveis">
+                            </div>
+                            <div class="company-info">
+                                <div class="company-logo-placeholder">CI</div>
+                                <h3>Citty Imóveis</h3>
+                                <p class="company-tagline">Especialistas em negócios imobiliários</p>
+                                <div class="company-description">
+                                    <p>Imobiliária credenciada no CRECI sob número 8768J. Especializada em compra, venda e locação de imóveis residenciais e comerciais, com assessoria jurídica integrada.</p>
+                                </div>
+                                <div class="company-services">
+                                    <h4>Nossos Diferenciais:</h4>
+                                    <ul>
+                                        <li>CRECI 8768J - Credenciamento Oficial</li>
+                                        <li>Compra e Venda de Imóveis</li>
+                                        <li>Locação Residencial e Comercial</li>
+                                        <li>Assessoria Jurídica Integrada</li>
+                                        <li>Análise Documental Completa</li>
+                                        <li>Consultoria Imobiliária</li>
+                                        <li>Atendimento Personalizado</li>
+                                    </ul>
+                                </div>
+                                <div class="company-cta">
+                                    <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" target="_blank" rel="noopener" class="btn btn-primary">Falar com Corretor</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Podcasts Section -->
+    <section class="podcasts" id="podcasts">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Conteúdo Digital</div>
+                <h2 class="section-title">Meus Podcasts</h2>
+                <p class="section-description">Mais de 500 mil visualizações compartilhando conhecimento e experiências</p>
+            </div>
+
+            <div class="podcasts-grid">
+                <div class="podcast-card" data-animate>
+                    <div class="podcast-image">
+                        <img src="https://via.placeholder.com/400x400/1a1a1a/c9a961?text=PODSTART" alt="Podstart">
+                        <div class="play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    <div class="podcast-content">
+                        <h3>PODSTART</h3>
+                        <p>Podcast sobre startups, inovação e mercado imobiliário. Entrevistas com empreendedores e especialistas do setor.</p>
+                        <div class="podcast-meta">
+                            <span class="podcast-episodes">🔴 AO VIVO</span>
+                            <span class="podcast-platform">Terças 9h-12h</span>
+                        </div>
+                        <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="podcast-link">
+                            Assistir no YouTube →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="podcast-card" data-animate>
+                    <div class="podcast-image">
+                        <img src="https://via.placeholder.com/400x400/1a1a1a/c9a961?text=PODCONFRA%27S" alt="Podconfra's">
+                        <div class="play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    <div class="podcast-content">
+                        <h3>PODCONFRA'S</h3>
+                        <p>Entrevistas e conversas descontraídas sobre direito, empreendedorismo e tendências do mercado jurídico.</p>
+                        <div class="podcast-meta">
+                            <span class="podcast-episodes">🔴 AO VIVO</span>
+                            <span class="podcast-platform">Terças 9h-12h</span>
+                        </div>
+                        <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="podcast-link">
+                            Assistir no YouTube →
+                        </a>
+                    </div>
+                </div>
+
+                <div class="podcast-card" data-animate>
+                    <div class="podcast-image">
+                        <img src="https://via.placeholder.com/400x400/1a1a1a/c9a961?text=PODMI" alt="Podmi">
+                        <div class="play-overlay">
+                            <div class="play-button">▶</div>
+                        </div>
+                    </div>
+                    <div class="podcast-content">
+                        <h3>PODMI</h3>
+                        <p>Podcast do Mercado Imobiliário. Análises, tendências e insights sobre o setor imobiliário brasileiro.</p>
+                        <div class="podcast-meta">
+                            <span class="podcast-episodes">🔴 AO VIVO</span>
+                            <span class="podcast-platform">Terças 9h-12h</span>
+                        </div>
+                        <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="podcast-link">
+                            Assistir no YouTube →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="podcast-highlight" data-animate style="background: linear-gradient(135deg, #c9a961, #a8884a); padding: 2rem; border-radius: 16px; text-align: center; margin-bottom: 3rem; color: white;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🎙️ 📺</div>
+                <h3 style="color: white; margin-bottom: 1rem;">AO VIVO toda terça-feira das 9h às 12h</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Acompanhe nossos podcasts ao vivo no YouTube com debates, entrevistas e muito conteúdo sobre direito e mercado imobiliário!</p>
+                <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="btn" style="background: white; color: #c9a961; font-weight: 700;">
+                    ▶ Assistir no YouTube
+                </a>
+            </div>
+
+            <div class="podcast-stats" data-animate>
+                <div class="stat-highlight">
+                    <span class="stat-number-big">500K+</span>
+                    <span class="stat-label-big">Visualizações Totais</span>
+                </div>
+                <div class="podcast-cta">
+                    <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="btn btn-primary">
+                        Inscreva-se no Canal
+                    </a>
+                    <a href="https://open.spotify.com/show/1KxZhkjF2AaHIfluzQi5sD" target="_blank" class="btn btn-secondary" style="margin-left: 1rem;">
+                        Ouvir no Spotify
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lectures Section -->
+    <section class="lectures" id="palestras">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Conhecimento Compartilhado</div>
+                <h2 class="section-title">Palestras & Eventos</h2>
+                <p class="section-description">Participação ativa em eventos do setor jurídico e imobiliário</p>
+            </div>
+
+            <!-- Próximo Evento em Destaque -->
+            <div class="next-event-highlight" data-animate style="background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 3rem; border-radius: 16px; margin-bottom: 4rem; text-align: center; border: 2px solid var(--color-primary);">
+                <div style="display: inline-block; padding: 0.5rem 1.5rem; background: var(--color-primary); color: white; border-radius: 50px; font-weight: 700; margin-bottom: 1.5rem;">🔥 PRÓXIMO EVENTO</div>
+                <h3 style="color: var(--color-primary); font-size: 2rem; margin-bottom: 1rem;">Pare de Usar IA Como os Maias!</h3>
+                <p style="color: #ffffff; font-size: 1.25rem; margin-bottom: 1rem;">(Gemini, NotebookLM, Perplexity)</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; color: #b0b0b0;">
+                    <div><strong style="color: var(--color-primary);">📅 Data:</strong> 11/02/2026</div>
+                    <div><strong style="color: var(--color-primary);">🕐 Horário:</strong> 20h</div>
+                    <div><strong style="color: var(--color-primary);">📍 Local:</strong> Via Google Meet</div>
+                    <div><strong style="color: var(--color-primary);">💰 Investimento:</strong> GRATUITO</div>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc048pJ3oQtXJY32TaYs3OLdmTbp3ZVAzsEfu-q1Z41JrcuvA/viewform" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.25rem; padding: 1.5rem 3rem; animation: pulse 2s infinite;">
+                    🎓 INSCREVA-SE GRATUITAMENTE
+                </a>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3>Reforma Tributária 2025: Impactos no Mercado Imobiliário</h3>
+                        <p class="timeline-venue">Pan News Curitiba</p>
+                        <p>Palestra sobre os impactos da nova reforma tributária no setor imobiliário, com análise detalhada das mudanças e estratégias de adaptação.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>Responsabilidade Civil do Corretor de Imóveis</h3>
+                        <p class="timeline-venue">TV CRECI - Quarta Nobre</p>
+                        <p>Programa especial sobre os aspectos jurídicos da atuação do corretor de imóveis, abordando responsabilidades e melhores práticas.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>Built to Suit e Locações Não Residenciais</h3>
+                        <p class="timeline-venue">CRECI-PR & SINDIMOVEIS-PR</p>
+                        <p>Workshop especializado sobre contratos Built to Suit, aspectos jurídicos e oportunidades no mercado de locações comerciais.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3>MB Summit Brazil</h3>
+                        <p class="timeline-venue">Evento Nacional</p>
+                        <p>Participação no maior evento de inovação imobiliária do Brasil, com networking e atualização sobre tendências do setor.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023-2024</div>
+                        <h3>Inovação Imobiliária e Tecnologia</h3>
+                        <p class="timeline-venue">CRECI-PR, SINDIMOVEIS-PR e Eventos do Setor</p>
+                        <p>Série de palestras sobre transformação digital no mercado imobiliário, Proptech e Advocacia 4.0.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lectures-cta" data-animate>
+                <div class="cta-box">
+                    <h3>Convide-me para seu evento</h3>
+                    <p>Interessado em ter uma palestra sobre Direito Imobiliário, Inovação ou Mercado Imobiliário? Solicite uma proposta!</p>
+                    <a href="https://docs.google.com/forms/d/1HhtRfA61fhRWylTfq4Qe3XUpWK26uI2YWr7XY1MgADI/viewform" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.125rem; padding: 1.25rem 2.5rem;">🎤 SOLICITAR PALESTRA / TREINAMENTO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">O que dizem sobre mim</div>
+                <h2 class="section-title">Avaliações dos Clientes</h2>
+            </div>
+
+            <!-- Google Reviews Highlight -->
+            <div class="google-reviews-highlight" data-animate style="background: var(--color-surface); padding: 3rem; border-radius: 16px; margin-bottom: 3rem; text-align: center; box-shadow: var(--shadow-lg);">
+                <div style="font-size: 4rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                <h3 style="color: var(--color-text); margin-bottom: 0.5rem; font-size: 2rem;">5.0 estrelas no Google</h3>
+                <p style="color: var(--color-text-light); font-size: 1.25rem; margin-bottom: 2rem;">47 avaliações de clientes satisfeitos</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://g.page/r/Cf_7oQgBBKqGEBM/review" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 1.125rem;">
+                        ⭐ DEIXE SUA AVALIAÇÃO
+                    </a>
+                    <a href="https://g.page/r/Cf_7oQgBBKqGEBM/review" target="_blank" rel="noopener" class="btn btn-secondary" style="font-size: 1.125rem;">
+                        👁️ VER AVALIAÇÕES
+                    </a>
+                </div>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Profissional extremamente competente e atencioso. Resolveu uma questão imobiliária complexa com maestria. Recomendo!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JC</div>
+                        <div class="author-info">
+                            <h4>João Carlos Silva</h4>
+                            <p>Empresário - Curitiba/PR</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Excelente assessoria jurídica para nossa incorporadora. Douglas domina como poucos o Direito Imobiliário."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MS</div>
+                        <div class="author-info">
+                            <h4>Maria Santos</h4>
+                            <p>Diretora de Incorporadora</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"A Lupy Administradora trouxe profissionalismo e transparência para nosso condomínio. Serviço excepcional!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RF</div>
+                        <div class="author-info">
+                            <h4>Ricardo Fernandes</h4>
+                            <p>Síndico - Edifício Central Park</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hire Section -->
+    <section class="hire-section" style="padding: 6rem 0; background: var(--color-bg-alt);">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Trabalhe Comigo</div>
+                <h2 class="section-title">Contrate</h2>
+                <p class="section-description">Escolha a melhor forma de trabalharmos juntos</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="hire-card" data-animate style="background: var(--color-surface); padding: 3rem 2rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                    <div style="font-size: 4rem; margin-bottom: 1.5rem;">⚖️</div>
+                    <h3 style="color: var(--color-text); margin-bottom: 1rem;">Contratar como Advogado</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.8;">Consultoria jurídica, análise de contratos, pareceres e representação legal em Direito Imobiliário, Empresarial e mais.</p>
+                    <a href="https://api.whatsapp.com/send?phone=5541984216639" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
+                        💬 Falar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="hire-card" data-animate style="background: var(--color-surface); padding: 3rem 2rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                    <div style="font-size: 4rem; margin-bottom: 1.5rem;">🎤</div>
+                    <h3 style="color: var(--color-text); margin-bottom: 1rem;">Contratar Palestra</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.8;">Palestras, treinamentos e workshops sobre Direito Imobiliário, Inovação, IA e Mercado Imobiliário para sua empresa ou evento.</p>
+                    <a href="https://docs.google.com/forms/d/1HhtRfA61fhRWylTfq4Qe3XUpWK26uI2YWr7XY1MgADI/viewform" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
+                        📋 Solicitar Proposta
+                    </a>
+                </div>
+
+                <div class="hire-card" data-animate style="background: var(--color-surface); padding: 3rem 2rem; border-radius: 16px; text-align: center; box-shadow: var(--shadow-md); transition: all 0.3s ease;">
+                    <div style="font-size: 4rem; margin-bottom: 1.5rem;">🎙️</div>
+                    <h3 style="color: var(--color-text); margin-bottom: 1rem;">Participar do Podcast</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.8;">Seja convidado dos podcasts PodStart, PodConfra's ou PodMI. Compartilhe sua história e conhecimento!</p>
+                    <a href="https://forms.gle/ceiu2hYHSPFFZ6dL6" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
+                        ✉️ Candidatar-se
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Conhecimento Jurídico</div>
+                <h2 class="section-title">Blog & Artigos</h2>
+                <p class="section-description">Análises, insights e atualizações sobre o mundo jurídico</p>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card featured" data-animate>
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/800x500/1a1a1a/c9a961?text=Reforma+Tributaria" alt="Reforma Tributária">
+                        <div class="blog-category">Direito Tributário</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Fevereiro 2025</span>
+                            <span class="blog-read">8 min de leitura</span>
+                        </div>
+                        <h3>Reforma Tributária 2025: Guia Completo para o Mercado Imobiliário</h3>
+                        <p>Análise detalhada das mudanças na legislação tributária e seus impactos diretos no setor imobiliário. O que você precisa saber para se preparar.</p>
+                        <a href="#" class="blog-link">Ler artigo completo →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-animate>
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=Built+to+Suit" alt="Built to Suit">
+                        <div class="blog-category">Direito Imobiliário</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Janeiro 2025</span>
+                            <span class="blog-read">6 min de leitura</span>
+                        </div>
+                        <h3>Built to Suit: Oportunidades e Cuidados Jurídicos</h3>
+                        <p>Entenda as vantagens e os aspectos legais dos contratos Built to Suit no mercado brasileiro.</p>
+                        <a href="#" class="blog-link">Ler artigo completo →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-animate>
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=IA+Advocacia" alt="IA na Advocacia">
+                        <div class="blog-category">Advocacia 4.0</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Dezembro 2024</span>
+                            <span class="blog-read">5 min de leitura</span>
+                        </div>
+                        <h3>Inteligência Artificial na Advocacia: O Futuro é Agora</h3>
+                        <p>Como a IA está transformando a prática jurídica e o que os advogados precisam saber.</p>
+                        <a href="#" class="blog-link">Ler artigo completo →</a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-animate>
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/600x400/1a1a1a/c9a961?text=Usucapiao" alt="Usucapião">
+                        <div class="blog-category">Direito Imobiliário</div>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Novembro 2024</span>
+                            <span class="blog-read">7 min de leitura</span>
+                        </div>
+                        <h3>Usucapião: Requisitos e Procedimentos Atualizados</h3>
+                        <p>Tudo o que você precisa saber sobre usucapião extrajudicial e judicial em 2024.</p>
+                        <a href="#" class="blog-link">Ler artigo completo →</a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="blog-cta" data-animate>
+                <a href="#" class="btn btn-secondary">Ver Todos os Artigos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <div class="section-label">Vamos Conversar</div>
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-description">Estou à disposição para ajudar com suas questões jurídicas</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info" data-animate>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Endereço</h4>
+                            <p>Avenida Getúlio Vargas, 1928<br>Água Verde - Curitiba/PR<br>CEP 82240-040</p>
+                            <a href="https://waze.com/ul?ll=-25.4520,-49.2897&navigate=yes&z=17" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; color: var(--color-primary); font-weight: 600; transition: transform 0.2s ease;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.99 0C8.139 0 5 3.139 5 6.99c0 5.28 6.99 14.26 6.99 14.26s6.99-8.98 6.99-14.26C18.98 3.139 15.841 0 11.99 0zm0 9.5c-1.381 0-2.5-1.119-2.5-2.5s1.119-2.5 2.5-2.5 2.5 1.119 2.5 2.5-1.119 2.5-2.5 2.5z"/>
+                                </svg>
+                                Abrir no Waze
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h4>Telefone</h4>
+                            <p><a href="tel:+5541984216639">(41) 98421-6639</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>E-mail</h4>
+                            <p><a href="mailto:douglas@vilar.adv.br">douglas@vilar.adv.br</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-social">
+                        <h4>Redes Sociais</h4>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/douglasvilar/" target="_blank" class="social-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                                Instagram
+                            </a>
+                            <a href="https://www.linkedin.com/in/douglas-vilar-2445a53b/" target="_blank" class="social-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                </svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://www.youtube.com/@douglasvilaradv" target="_blank" class="social-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                                </svg>
+                                YouTube
+                            </a>
+                            <a href="https://linktr.ee/dvilar" target="_blank" class="social-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M13.736 5.853L12 4.236 10.264 5.853 7.368 8.749 2.107 14.01l1.657 1.657L12 7.433l8.236 8.234 1.657-1.657-5.261-5.261zM6.294 11.835l1.657-1.657L12 14.227l4.049-4.049 1.657 1.657L12 17.582z"/>
+                                </svg>
+                                Linktree
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.5199!2d-49.2919!3d-25.4520!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDI3JzA3LjIiUyA0OcKwMTcnMjcuMSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890" width="100%" height="300" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <div class="contact-form" data-animate>
+                    <div style="text-align: center; padding: 3rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--color-text);">Formulário de Novo Cliente</h3>
+                        <p style="color: var(--color-text-light); margin-bottom: 2rem; line-height: 1.8;">
+                            Para iniciar seu atendimento, preencha nosso formulário completo de novo cliente. 
+                            Suas informações serão tratadas com total confidencialidade.
+                        </p>
+                        <a href="https://docs.google.com/forms/d/16ZfvqPBQpy_qYX-cXzAFPhGzmgxtuF4abt_MGGk0xX8/viewform" 
+                           target="_blank" 
+                           rel="noopener"
+                           class="btn btn-primary"
+                           style="display: inline-block; font-size: 1.125rem; padding: 1.5rem 3rem;">
+                            📋 PREENCHER FORMULÁRIO DE NOVO CLIENTE
+                        </a>
+                        <p style="color: var(--color-text-lighter); font-size: 0.875rem; margin-top: 1.5rem;">
+                            O formulário abrirá em uma nova aba
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-initial">D</span>
+                        <span class="logo-text">ouglas Vilar</span>
+                    </div>
+                    <p class="footer-description">Advogado especialista em Direito Imobiliário, Empresarial e Condominial. Soluções jurídicas inteligentes para pessoas e empresas.</p>
+                    <div class="footer-badge">OAB/PR 47.278</div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Áreas de Atuação</h4>
+                    <ul>
+                        <li><a href="#areas">Direito Imobiliário</a></li>
+                        <li><a href="#areas">Direito Empresarial</a></li>
+                        <li><a href="#areas">Direito Condominial</a></li>
+                        <li><a href="#areas">Direito Trabalhista</a></li>
+                        <li><a href="#areas">Direito Tributário</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Empresas</h4>
+                    <ul>
+                        <li><a href="#empresas">Douglas Vilar Advogado</a></li>
+                        <li><a href="#empresas">Lupy Administradora</a></li>
+                        <li><a href="#empresas">Citty Imóveis</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#podcasts">Podcasts</a></li>
+                        <li><a href="#palestras">Palestras</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Douglas Vilar. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=5541984216639" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="white">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.742 5.49 2.037 7.813L.054 31.962l8.366-2.064A15.94 15.94 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.44c-2.434 0-4.758-.653-6.763-1.839l-.484-.29-5.013 1.238 1.265-4.895-.318-.502A13.38 13.38 0 0 1 2.56 16c0-7.397 6.043-13.44 13.44-13.44S29.44 8.603 29.44 16 23.397 29.44 16 29.44zm7.352-9.984c-.403-.201-2.382-1.176-2.752-1.31-.37-.134-.64-.201-.909.201-.268.403-1.041 1.31-1.276 1.579-.235.268-.47.302-.873.101-.403-.201-1.701-.627-3.241-2.001-1.198-1.069-2.007-2.389-2.242-2.792-.235-.403-.025-.621.176-.822.181-.18.403-.47.604-.705.201-.235.268-.403.403-.671.134-.268.067-.503-.034-.705-.101-.201-.909-2.189-1.246-2.998-.328-.788-.662-.681-.909-.694-.235-.012-.503-.015-.771-.015s-.705.101-1.075.503c-.37.403-1.411 1.378-1.411 3.361s1.444 3.898 1.646 4.166c.201.268 2.842 4.336 6.883 6.082.962.415 1.713.663 2.298.848.966.307 1.845.264 2.541.16.775-.116 2.382-.974 2.718-1.914.336-.94.336-1.746.235-1.914-.101-.168-.37-.268-.773-.47z"/>
+        </svg>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+/* ==========================================
+   DOUGLAS VILAR - SITE PESSOAL/INSTITUCIONAL
+   JavaScript Interactions & Animations
+   ========================================== */
+
+// ==========================================
+// DOM ELEMENTS
+// ==========================================
+
+const preloader = document.getElementById('preloader');
+const darkModeToggle = document.getElementById('darkModeToggle');
+const header = document.getElementById('header');
+const menuToggle = document.getElementById('menuToggle');
+const nav = document.getElementById('nav');
+const backToTop = document.getElementById('backToTop');
+
+// ==========================================
+// PRELOADER
+// ==========================================
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }, 1000);
+});
+
+// ==========================================
+// DARK MODE
+// ==========================================
+
+function initDarkMode() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+}
+
+darkModeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+
+initDarkMode();
+
+// ==========================================
+// HEADER SCROLL EFFECT
+// ==========================================
+
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Add scrolled class
+    if (currentScroll > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+    
+    // Back to top button
+    if (currentScroll > 500) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// ==========================================
+// MOBILE MENU
+// ==========================================
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    nav.classList.toggle('active');
+    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+});
+
+// Close menu when clicking on a link
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+});
+
+// ==========================================
+// SMOOTH SCROLL
+// ==========================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        
+        if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Back to top button
+backToTop.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// ==========================================
+// ANIMATED COUNTERS
+// ==========================================
+
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-target'));
+    const duration = 2000; // 2 seconds
+    const increment = target / (duration / 16); // 60fps
+    let current = 0;
+    
+    const updateCounter = () => {
+        current += increment;
+        
+        if (current < target) {
+            element.textContent = Math.floor(current).toLocaleString('pt-BR');
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target.toLocaleString('pt-BR');
+        }
+    };
+    
+    updateCounter();
+}
+
+// ==========================================
+// INTERSECTION OBSERVER FOR ANIMATIONS
+// ==========================================
+
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animated');
+            
+            // Animate counters
+            if (entry.target.classList.contains('stat-item')) {
+                const counter = entry.target.querySelector('.stat-number');
+                if (counter && !counter.classList.contains('counted')) {
+                    counter.classList.add('counted');
+                    animateCounter(counter);
+                }
+            }
+            
+            // Unobserve after animation
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all animated elements
+document.querySelectorAll('[data-animate]').forEach(el => {
+    observer.observe(el);
+});
+
+// ==========================================
+// TABS FUNCTIONALITY
+// ==========================================
+
+const tabButtons = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const targetTab = button.getAttribute('data-tab');
+        
+        // Remove active class from all buttons and panels
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding panel
+        button.classList.add('active');
+        document.getElementById(targetTab).classList.add('active');
+    });
+});
+
+// ==========================================
+// CONTACT FORM HANDLING (REMOVED - Using Google Forms)
+// ==========================================
+
+// Form handling removed - now using external Google Forms
+
+// ==========================================
+// NOTIFICATION SYSTEM
+// ==========================================
+
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    
+    // Style the notification
+    Object.assign(notification.style, {
+        position: 'fixed',
+        top: '100px',
+        right: '20px',
+        padding: '1rem 1.5rem',
+        background: type === 'success' ? '#4CAF50' : '#2196F3',
+        color: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+        zIndex: '10000',
+        animation: 'slideInRight 0.3s ease',
+        maxWidth: '400px'
+    });
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 5 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 5000);
+}
+
+// Add keyframe animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// ==========================================
+// LAZY LOADING IMAGES
+// ==========================================
+
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ==========================================
+// ACTIVE NAV LINK ON SCROLL
+// ==========================================
+
+const sections = document.querySelectorAll('section[id]');
+
+function highlightNavOnScroll() {
+    const scrollY = window.pageYOffset;
+    
+    sections.forEach(section => {
+        const sectionHeight = section.offsetHeight;
+        const sectionTop = section.offsetTop - 100;
+        const sectionId = section.getAttribute('id');
+        const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+        
+        if (navLink && scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            navLink.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', highlightNavOnScroll);
+
+// ==========================================
+// PARALLAX EFFECT
+// ==========================================
+
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('.hero-bg');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.5;
+            element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+    });
+}
+
+initParallax();
+
+// ==========================================
+// PHONE MASK (REMOVED - No longer needed)
+// ==========================================
+
+// Phone mask removed - using external Google Forms
+
+// ==========================================
+// TESTIMONIALS SLIDER
+// ==========================================
+
+function initTestimonialsSlider() {
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    let currentIndex = 0;
+    
+    // Add animation delay to testimonials
+    testimonials.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+}
+
+initTestimonialsSlider();
+
+// ==========================================
+// CURSOR ANIMATION (for desktop)
+// ==========================================
+
+if (window.innerWidth > 768) {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    
+    Object.assign(cursor.style, {
+        width: '20px',
+        height: '20px',
+        border: '2px solid var(--color-primary)',
+        borderRadius: '50%',
+        position: 'fixed',
+        pointerEvents: 'none',
+        zIndex: '9999',
+        transition: 'transform 0.2s ease, opacity 0.2s ease',
+        opacity: '0'
+    });
+    
+    document.body.appendChild(cursor);
+    
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX - 10 + 'px';
+        cursor.style.top = e.clientY - 10 + 'px';
+        cursor.style.opacity = '1';
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+    });
+    
+    // Expand cursor on clickable elements
+    const clickableElements = document.querySelectorAll('a, button, input, textarea, select');
+    
+    clickableElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(1.5)';
+            cursor.style.background = 'rgba(201, 169, 97, 0.2)';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.background = 'transparent';
+        });
+    });
+}
+
+// ==========================================
+// TYPING EFFECT FOR HERO
+// ==========================================
+
+function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.textContent = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// Uncomment to activate typing effect
+// window.addEventListener('load', () => {
+//     const heroName = document.querySelector('.hero-name');
+//     if (heroName) {
+//         const originalText = heroName.textContent;
+//         typeWriter(heroName, originalText, 100);
+//     }
+// });
+
+// ==========================================
+// PODCAST CARDS INTERACTION
+// ==========================================
+
+const podcastCards = document.querySelectorAll('.podcast-card');
+
+podcastCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        // Pause other playing audio/video if needed
+        // Add visual feedback
+        card.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+    });
+});
+
+// ==========================================
+// AREA CARDS HOVER EFFECT
+// ==========================================
+
+const areaCards = document.querySelectorAll('.area-card');
+
+areaCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) rotate(1deg)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotate(0deg)';
+    });
+});
+
+// ==========================================
+// PERFORMANCE OPTIMIZATION
+// ==========================================
+
+// Debounce function for scroll events
+function debounce(func, wait = 10, immediate = true) {
+    let timeout;
+    return function() {
+        const context = this, args = arguments;
+        const later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
+// Apply debounce to scroll-heavy functions
+window.addEventListener('scroll', debounce(highlightNavOnScroll, 10));
+
+// ==========================================
+// ACCESSIBILITY IMPROVEMENTS
+// ==========================================
+
+// Trap focus in mobile menu
+function trapFocus(element) {
+    const focusableElements = element.querySelectorAll(
+        'a[href], button, textarea, input, select'
+    );
+    
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    element.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        
+        if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
+        }
+    });
+}
+
+if (nav) {
+    trapFocus(nav);
+}
+
+// ESC key to close mobile menu
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+        menuToggle.classList.remove('active');
+        nav.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// ==========================================
+// PRINT OPTIMIZATION
+// ==========================================
+
+window.addEventListener('beforeprint', () => {
+    // Expand all collapsed sections before printing
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.style.display = 'block';
+    });
+});
+
+window.addEventListener('afterprint', () => {
+    // Restore original state
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+        if (!panel.classList.contains('active')) {
+            panel.style.display = 'none';
+        }
+    });
+});
+
+// ==========================================
+// ERROR HANDLING
+// ==========================================
+
+window.addEventListener('error', (e) => {
+    console.error('Global error:', e.error);
+});
+
+// ==========================================
+// ANALYTICS (Placeholder)
+// ==========================================
+
+// Track important user interactions
+function trackEvent(category, action, label) {
+    // Implement your analytics tracking here
+    console.log('Event tracked:', { category, action, label });
+}
+
+// Example: Track button clicks
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        trackEvent('Button', 'Click', btn.textContent);
+    });
+});
+
+// ==========================================
+// SERVICE WORKER REGISTRATION (PWA)
+// ==========================================
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        // Uncomment when you have a service worker file
+        // navigator.serviceWorker.register('/sw.js')
+        //     .then(reg => console.log('Service Worker registered'))
+        //     .catch(err => console.log('Service Worker registration failed'));
+    });
+}
+
+// ==========================================
+// CONSOLE MESSAGE
+// ==========================================
+
+console.log(
+    '%c Douglas Vilar - Site Pessoal ',
+    'background: linear-gradient(135deg, #c9a961, #a8884a); color: white; padding: 10px 20px; font-size: 16px; font-weight: bold;'
+);
+
+console.log(
+    '%c Desenvolvido com atenção aos detalhes ',
+    'color: #c9a961; font-size: 12px;'
+);
+
+// ==========================================
+// READY STATE
+// ==========================================
+
+console.log('✓ JavaScript loaded and initialized successfully');
+</script>
 </body>
 </html>
