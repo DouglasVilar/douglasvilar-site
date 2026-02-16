@@ -409,7 +409,7 @@ a:hover { color:var(--color-primary-dark); }
             </div>
         </div>
         <div class="hero-image">
-            <img src="20250410_181859(0).jpg" alt="Douglas Vilar no estúdio PodStart" loading="eager">
+            <img src="IMG-20250829-WA0004.jpg" alt="Douglas Vilar no estúdio PodConfra's" loading="eager">
             <div class="hero-image-badge">
                 <span class="badge-number">25+</span>
                 <span class="badge-text">Anos de<br>Experiência</span>
@@ -472,13 +472,13 @@ a:hover { color:var(--color-primary-dark); }
             <p class="section-description">Palestras, eventos e encontros marcantes da minha trajetória</p>
         </div>
         <div class="gallery-grid" data-animate>
-            <div class="gallery-item wide" onclick="openLightbox(0)"><img src="20250410_181859(0).jpg" alt="Estúdio PodStart" loading="lazy"><div class="gallery-overlay"><span>Estúdio PodStart - Ideias & Negócios</span></div></div>
+            <div class="gallery-item wide" onclick="openLightbox(0)"><img src="IMG-20250829-WA0004.jpg" alt="Estúdio PodConfra's" loading="lazy"><div class="gallery-overlay"><span>Estúdio PodConfra's - Imóveis & Negócios</span></div></div>
             <div class="gallery-item" onclick="openLightbox(1)"><img src="20241001_212757.jpg" alt="Palestra com turma" loading="lazy"><div class="gallery-overlay"><span>Palestra para corretores</span></div></div>
-            <div class="gallery-item" onclick="openLightbox(2)"><img src="20241029_210722.jpg" alt="Evento com público" loading="lazy"><div class="gallery-overlay"><span>Workshop Imobiliário</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(2)"><img src="20241029_210722.jpg" alt="Evento com público" loading="lazy"><div class="gallery-overlay"><span>Treinamento Imobiliário</span></div></div>
             <div class="gallery-item" onclick="openLightbox(3)"><img src="20230803_140747.jpg" alt="Palestra apresentação" loading="lazy"><div class="gallery-overlay"><span>Palestra - Direito Imobiliário</span></div></div>
-            <div class="gallery-item" onclick="openLightbox(4)"><img src="20241205_204727.jpg" alt="Evento grupo" loading="lazy"><div class="gallery-overlay"><span>Evento com profissionais</span></div></div>
-            <div class="gallery-item wide" onclick="openLightbox(5)"><img src="20220720_185959.jpg" alt="Evento networking" loading="lazy"><div class="gallery-overlay"><span>Networking e palestras</span></div></div>
-            <div class="gallery-item" onclick="openLightbox(6)"><img src="20250311_200603(0).jpg" alt="Encontro profissional" loading="lazy"><div class="gallery-overlay"><span>Encontro profissional</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(4)"><img src="20241205_204727.jpg" alt="Evento grupo" loading="lazy"><div class="gallery-overlay"><span>Treinamento para profissionais</span></div></div>
+            <div class="gallery-item wide" onclick="openLightbox(5)"><img src="20220720_185959.jpg" alt="Evento networking" loading="lazy"><div class="gallery-overlay"><span>Palestras e Treinamentos</span></div></div>
+            <div class="gallery-item" onclick="openLightbox(6)"><img src="20250311_200603(0).jpg" alt="Capacitação profissional" loading="lazy"><div class="gallery-overlay"><span>Capacitação profissional</span></div></div>
         </div>
     </div>
 </section>
@@ -645,7 +645,7 @@ document.querySelectorAll('[data-animate]').forEach(el=>observer.observe(el));
 // Tabs
 document.querySelectorAll('.tab-btn').forEach(btn=>{btn.addEventListener('click',()=>{const tab=btn.getAttribute('data-tab');document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById(tab).classList.add('active');});});
 // Lightbox
-const galleryImages=['20250410_181859(0).jpg','20241001_212757.jpg','20241029_210722.jpg','20230803_140747.jpg','20241205_204727.jpg','20220720_185959.jpg','20250311_200603(0).jpg'];
+const galleryImages=['IMG-20250829-WA0004.jpg','20241001_212757.jpg','20241029_210722.jpg','20230803_140747.jpg','20241205_204727.jpg','20220720_185959.jpg','20250311_200603(0).jpg'];
 let currentImg=0;
 function openLightbox(i){currentImg=i;document.getElementById('lightbox-img').src=galleryImages[i];document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='auto';}
