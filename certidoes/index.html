@@ -9,7 +9,7 @@
 <!-- Firebase -->
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
-  import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+  import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
   // =====================================================
   // SUBSTITUA AQUI COM SUAS CREDENCIAIS DO FIREBASE
@@ -30,9 +30,9 @@
 
   window._fbAuth = auth;
   window._fbProvider = provider;
-  window._fbSignInWithPopup = signInWithPopup;
+  window._fbSignInWithRedirect = signInWithRedirect; window._fbGetRedirectResult = getRedirectResult;
   window._fbSignOut = signOut;
-  window._fbOnAuthStateChanged = onAuthStateChanged;
+  window._fbOnAuthStateChanged = onAuthStateChanged; getRedirectResult(auth).catch(e => console.log('No redirect result'));
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -846,7 +846,7 @@ document.getElementById('btn-login-google').addEventListener('click', async () =
       showToast('⚠️ Configure o Firebase antes de usar o login.', 5000);
       return;
     }
-    await window._fbSignInWithPopup(window._fbAuth, window._fbProvider);
+    await window._fbSignInWithRedirect(window._fbAuth, window._fbProvider);
   } catch(err) {
     console.error(err);
     showToast('Erro no login: ' + (err.message || 'Tente novamente'), 4000);
