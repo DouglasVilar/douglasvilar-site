@@ -272,7 +272,7 @@ CERTIDOES.forEach(c=>{
 const div=document.createElement('div');div.className='cert-item';
 const tipoClass=c.tipo==='gratuita'?'type-gratuita':'type-manual';
 const tipoLabel=c.tipo==='gratuita'?'GRATUITA':'MANUAL/PAGA';
-div.innerHTML='<div class="cert-info"><input type="checkbox" class="cert-check" value="'+c.id+'" '+(c.tipo==='gratuita'?'checked':'')+' id="chk-'+c.id+'"><div><span class="cert-name">'+c.nome+'</span><br><small style="color:#888">'+c.desc+'</small></div></div><span class="cert-type '+tipoClass+'">'+tipoLabel+'</span><span class="status-badge status-pending" id="st-'+c.id+'">Pendente</span>';
+div.innerHTML='<div class="cert-info"><input type="checkbox" class="cert-check" value="'+c.id+'" '+(c.tipo==='gratuita'?'checked':'')+' id="chk-'+c.id+'"><div><span class="cert-name">'+c.nome+'</span><br><small style="color:#888">'+c.desc+'</small></div></div><span class="cert-type '+tipoClass+'">'+tipoLabel+'</span><span class="status-badge status-pending" id="st-'+c.id+'">Pendente</span><a href="'+c.url+'" target="_blank" class="cert-link" style="margin-left:8px">Abrir</a>';
 list.appendChild(div);
 });
 }
@@ -292,7 +292,7 @@ const cert=CERTIDOES.find(c=>c.id===cid);
 const pct=Math.round(((i+1)/selecionadas.length)*100);
 pf.style.width=pct+'%';
 pt.textContent='Abrindo: '+cert.nome+' ('+(i+1)+'/'+selecionadas.length+')';
-window.open(cert.url,'_blank');
+try{window.open(cert.url,'_blank')}catch(e){}
 const stEl=document.getElementById('st-'+cid);
 if(cert.tipo==='gratuita'){
 stEl.className='status-badge status-ok';stEl.textContent='Aberto';
@@ -305,7 +305,7 @@ pl.innerHTML+='<div style="color:#f0a030;font-size:0.85em">&#9889; '+cert.nome+'
 }
 await new Promise(r=>setTimeout(r,1500));
 }
-pt.textContent='Concluido! Verifique as abas abertas no navegador.';
+pt.textContent='Concluido! Se alguma aba foi bloqueada, clique em Abrir ao lado de cada certidao.';
 pf.style.width='100%';
 // Checklist
 const rs=document.getElementById('resultadoSection');rs.style.display='block';
@@ -317,7 +317,7 @@ const txt=r.status==='aberto'?'Site aberto - emita com CPF/CNPJ':'Link aberto - 
 if(r.status==='aberto')gratCount++;else manCount++;
 cl.innerHTML+='<div class="checklist-item"><span>'+icon+'</span><span>'+r.cert.nome+'</span><small style="color:#aaa"> - '+txt+'</small></div>';
 });
-document.getElementById('resultadoResumo').textContent=gratCount+' certidoes gratuitas abertas, '+manCount+' manuais/pagas abertas. Verifique cada aba!';
+document.getElementById('resultadoResumo').textContent=gratCount+' certidoes gratuitas abertas, '+manCount+' manuais/pagas abertas. Use os botoes Abrir se popups foram bloqueados.';
 btn.disabled=false;btn.textContent='Abrir Certidoes nos Sites Oficiais';
 window._lastResultados=resultados;
 }
