@@ -785,7 +785,7 @@ function getEndpointFromProcessNumber(numero) {
 
 /* ========== API CALL (via proxy) ========== */
 async function queryDataJud(endpoint, body) {
-  const url = `https://proxy.corsfix.com/?${DATAJUD_BASE}/${endpoint}/_search`;
+  const url = `${DATAJUD_BASE}/${endpoint}/_search`;
   const resp = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
