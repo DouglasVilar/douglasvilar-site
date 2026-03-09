@@ -9,611 +9,101 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <style>
-/* ========== RESET & BASE ========== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: #f5f5f5;
-  color: #1a1a2e;
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ========== DESIGN TOKENS ========== */
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #f5f5f5; color: #1a1a2e; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
 :root {
-  --navy: #1a237e;
-  --navy-dark: #0d1452;
-  --navy-light: #283593;
-  --gold: #c9a84c;
-  --gold-light: #dfc06a;
-  --gold-dark: #a88a32;
-  --white: #ffffff;
-  --bg: #f5f5f5;
-  --bg-card: #ffffff;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a6a;
-  --text-muted: #7a7a9a;
-  --border: rgba(26, 35, 126, 0.1);
-  --border-strong: rgba(26, 35, 126, 0.2);
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.06);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition: 180ms var(--ease);
+  --navy: #1a237e; --navy-dark: #0d1452; --navy-light: #283593;
+  --gold: #c9a84c; --gold-light: #dfc06a; --gold-dark: #a88a32;
+  --white: #ffffff; --bg: #f5f5f5; --bg-card: #ffffff;
+  --text-primary: #1a1a2e; --text-secondary: #4a4a6a; --text-muted: #7a7a9a;
+  --border: rgba(26,35,126,0.1); --border-strong: rgba(26,35,126,0.2);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+  --ease: cubic-bezier(0.16,1,0.3,1); --transition: 180ms var(--ease);
 }
-
-/* ========== SKIP LINK ========== */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--gold);
-  color: var(--navy);
-  padding: 8px 16px;
-  z-index: 1000;
-  font-weight: 600;
-  border-radius: 0 0 var(--radius-sm) 0;
-  transition: top var(--transition);
-}
-.skip-link:focus { top: 0; }
-
-/* ========== HEADER ========== */
-header {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-  padding: clamp(24px, 4vw, 40px) clamp(16px, 4vw, 40px);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-header h1 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  position: relative;
-}
-header h1 span {
-  color: var(--gold);
-}
-header p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: clamp(0.85rem, 1.5vw, 1rem);
-  margin-top: 8px;
-  font-weight: 400;
-  position: relative;
-}
-
-/* ========== MAIN CONTENT ========== */
-main {
-  flex: 1;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: clamp(20px, 4vw, 40px) clamp(16px, 4vw, 24px);
-}
-
-/* ========== SEARCH SECTION ========== */
-.search-section {
-  background: var(--bg-card);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: clamp(20px, 3vw, 32px);
-  border: 1px solid var(--border);
-}
-
-
-
-/* ========== FORMS ========== */
+header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); padding: clamp(24px,4vw,40px) clamp(16px,4vw,40px); text-align: center; position: relative; overflow: hidden; }
+header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+header h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(1.4rem,3.5vw,2.2rem); color: var(--white); letter-spacing: -0.01em; line-height: 1.3; position: relative; }
+header h1 span { color: var(--gold); }
+header p { color: rgba(255,255,255,0.7); font-size: clamp(0.85rem,1.5vw,1rem); margin-top: 8px; font-weight: 400; position: relative; }
+main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: clamp(20px,4vw,40px) clamp(16px,4vw,24px); }
+.search-section { background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: clamp(20px,3vw,32px); border: 1px solid var(--border); }
 .search-form { display: none; }
 .search-form.active { display: block; animation: fadeIn 300ms var(--ease); }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.form-group {
-  margin-bottom: 16px;
-}
-.form-group label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  color: var(--text-primary);
-  background: var(--white);
-  transition: border-color var(--transition), box-shadow var(--transition);
-}
-.form-group input:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
-}
-.form-group input::placeholder {
-  color: var(--text-muted);
-}
-.form-group select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%237a7a9a' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
-
-.btn-search {
-  width: 100%;
-  padding: 14px 24px;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: var(--navy);
-  color: var(--white);
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-.btn-search:hover {
-  background: var(--navy-light);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
-.btn-search:active {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-.btn-search:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-.btn-search:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-.btn-search svg {
-  width: 18px;
-  height: 18px;
-  fill: currentColor;
-}
-
-/* ========== ERROR MESSAGE ========== */
-.error-msg {
-  color: #c62828;
-  font-size: 0.85rem;
-  margin-top: 6px;
-  display: none;
-}
-.error-msg.visible {
-  display: block;
-  animation: fadeIn 200ms var(--ease);
-}
-
-/* ========== LOADING STATE ========== */
-.loading-container {
-  text-align: center;
-  padding: 48px 20px;
-  display: none;
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+.form-group input, .form-group select { width: 100%; padding: 14px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--text-primary); background: var(--white); transition: border-color var(--transition), box-shadow var(--transition); }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
+.form-group input::placeholder { color: var(--text-muted); }
+.btn-search { width: 100%; padding: 14px 24px; border: none; border-radius: var(--radius-sm); background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; }
+.btn-search:hover { background: var(--navy-light); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.btn-search:active { transform: translateY(0); }
+.btn-search:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.btn-search svg { width: 18px; height: 18px; fill: currentColor; }
+.error-msg { color: #c62828; font-size: 0.85rem; margin-top: 6px; display: none; }
+.error-msg.visible { display: block; animation: fadeIn 200ms var(--ease); }
+.loading-container { text-align: center; padding: 48px 20px; display: none; }
 .loading-container.visible { display: block; }
-
-.spinner {
-  width: 44px;
-  height: 44px;
-  border: 3px solid var(--border);
-  border-top-color: var(--gold);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin: 0 auto 16px;
-}
+.spinner { width: 44px; height: 44px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-.loading-text {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-
-
-/* ========== RESULTS ========== */
-.results-section {
-  margin-top: 32px;
-  display: none;
-}
+.loading-text { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
+.results-section { margin-top: 32px; display: none; }
 .results-section.visible { display: block; animation: fadeIn 400ms var(--ease); }
-
-.results-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.results-header h2 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
-  color: var(--navy);
-  font-weight: 600;
-}
-.results-count {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  background: var(--bg);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: 500;
-}
-
-/* ========== PROCESS CARD ========== */
-.process-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  margin-bottom: 16px;
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition);
-}
-.process-card:hover {
-  box-shadow: var(--shadow-md);
-}
-.card-header {
-  padding: 20px 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  transition: background var(--transition);
-  position: relative;
-}
-.card-header:hover {
-  background: rgba(201, 168, 76, 0.03);
-}
-.card-header:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: -2px;
-}
-.tribunal-badge {
-  background: var(--navy);
-  color: var(--white);
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 4px;
-  white-space: nowrap;
-  letter-spacing: 0.03em;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.card-info {
-  flex: 1;
-  min-width: 0;
-}
-.card-info .process-number {
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--navy);
-  word-break: break-all;
-  line-height: 1.4;
-}
-.card-info .process-class {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  margin-top: 2px;
-}
-.card-info .process-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 16px;
-  margin-top: 8px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-.card-info .process-meta span {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-.expand-icon {
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  transition: transform var(--transition);
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-.process-card.expanded .expand-icon {
-  transform: rotate(180deg);
-}
-
-/* ========== CARD BODY ========== */
-.card-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 400ms var(--ease);
-}
-.process-card.expanded .card-body {
-  max-height: 3000px;
-}
-.card-body-inner {
-  padding: 0 24px 20px;
-  border-top: 1px solid var(--border);
-}
-
-/* ========== DETAIL GRID ========== */
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 12px;
-  padding-top: 16px;
-  margin-bottom: 20px;
-}
-.detail-item {
-  font-size: 0.82rem;
-}
-.detail-item .label {
-  color: var(--text-muted);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 0.72rem;
-  margin-bottom: 2px;
-}
-.detail-item .value {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-/* ========== TIMELINE ========== */
-.timeline-section h3 {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-.timeline {
-  position: relative;
-  padding-left: 24px;
-  max-height: 400px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--border-strong);
-  border-radius: 1px;
-}
-.timeline-item {
-  position: relative;
-  padding-bottom: 16px;
-  font-size: 0.82rem;
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -20px;
-  top: 5px;
-  width: 10px;
-  height: 10px;
-  background: var(--gold);
-  border: 2px solid var(--bg-card);
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px var(--gold);
-}
+.results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+.results-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem,2vw,1.4rem); color: var(--navy); font-weight: 600; }
+.results-count { font-size: 0.85rem; color: var(--text-muted); background: var(--bg); padding: 4px 12px; border-radius: 20px; font-weight: 500; }
+.process-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition); }
+.process-card:hover { box-shadow: var(--shadow-md); }
+.card-header { padding: 20px 24px; cursor: pointer; display: flex; align-items: flex-start; gap: 16px; transition: background var(--transition); position: relative; }
+.card-header:hover { background: rgba(201,168,76,0.03); }
+.tribunal-badge { background: var(--navy); color: var(--white); font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.03em; flex-shrink: 0; margin-top: 2px; }
+.card-info { flex: 1; min-width: 0; }
+.card-info .process-number { font-weight: 700; font-size: 1rem; color: var(--navy); word-break: break-all; line-height: 1.4; }
+.card-info .process-class { font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px; }
+.card-info .process-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; font-size: 0.8rem; color: var(--text-muted); }
+.card-info .process-meta span { display: inline-flex; align-items: center; gap: 4px; }
+.expand-icon { width: 24px; height: 24px; flex-shrink: 0; transition: transform var(--transition); color: var(--text-muted); margin-top: 2px; }
+.process-card.expanded .expand-icon { transform: rotate(180deg); }
+.card-body { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ease); }
+.process-card.expanded .card-body { max-height: 3000px; }
+.card-body-inner { padding: 0 24px 20px; border-top: 1px solid var(--border); }
+.detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; padding-top: 16px; margin-bottom: 20px; }
+.detail-item { font-size: 0.82rem; }
+.detail-item .label { color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.72rem; margin-bottom: 2px; }
+.detail-item .value { color: var(--text-primary); font-weight: 600; }
+.timeline-section h3 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+.timeline { position: relative; padding-left: 24px; max-height: 400px; overflow-y: auto; }
+.timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--border-strong); border-radius: 1px; }
+.timeline-item { position: relative; padding-bottom: 16px; font-size: 0.82rem; }
+.timeline-item::before { content: ''; position: absolute; left: -20px; top: 5px; width: 10px; height: 10px; background: var(--gold); border: 2px solid var(--bg-card); border-radius: 50%; box-shadow: 0 0 0 2px var(--gold); }
 .timeline-item:last-child { padding-bottom: 0; }
-.timeline-date {
-  font-weight: 600;
-  color: var(--navy);
-  font-size: 0.78rem;
-}
-.timeline-desc {
-  color: var(--text-secondary);
-  margin-top: 2px;
-  line-height: 1.5;
-}
-.timeline-complement {
-  color: var(--text-muted);
-  font-size: 0.78rem;
-  margin-top: 2px;
-  font-style: italic;
-}
-
-/* ========== AUDIÊNCIA HIGHLIGHT ========== */
-.timeline-item.audiencia {
-  background: rgba(201, 168, 76, 0.1);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px 10px 12px;
-  margin-left: -8px;
-  padding-left: 20px;
-}
-.timeline-item.audiencia::before {
-  background: #c62828;
-  box-shadow: 0 0 0 2px #c62828;
-}
-.timeline-item.audiencia-futura {
-  background: rgba(201, 168, 76, 0.18);
-  border-color: var(--gold-dark);
-}
-.timeline-item.audiencia-futura::before {
-  background: var(--gold);
-  box-shadow: 0 0 0 2px var(--gold), 0 0 8px rgba(201, 168, 76, 0.5);
-}
-.audiencia-badge {
-  display: inline-block;
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 2px 8px;
-  border-radius: 3px;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-.audiencia-badge.passada {
-  background: rgba(198, 40, 40, 0.1);
-  color: #c62828;
-}
-.audiencia-badge.futura {
-  background: rgba(201, 168, 76, 0.2);
-  color: var(--gold-dark);
-}
-
-/* ========== CARD ACTIONS ========== */
-.card-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.btn-action {
-  padding: 8px 16px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  background: var(--white);
-  color: var(--text-secondary);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.btn-action:hover {
-  border-color: var(--gold);
-  color: var(--gold-dark);
-  background: rgba(201, 168, 76, 0.05);
-}
-.btn-action:active {
-  transform: scale(0.97);
-}
-.btn-action:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-.btn-action svg {
-  width: 14px;
-  height: 14px;
-}
-.btn-action.copied {
-  border-color: #2e7d32;
-  color: #2e7d32;
-  background: rgba(46, 125, 50, 0.05);
-}
-
-/* ========== EMPTY STATE ========== */
-.empty-state {
-  text-align: center;
-  padding: 48px 20px;
-  color: var(--text-muted);
-}
-.empty-state svg {
-  width: 56px;
-  height: 56px;
-  color: var(--border-strong);
-  margin-bottom: 16px;
-}
-.empty-state h3 {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-.empty-state p {
-  font-size: 0.88rem;
-}
-
-/* ========== FOOTER ========== */
-footer {
-  text-align: center;
-  padding: 24px 16px;
-  background: var(--navy-dark);
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.82rem;
-  margin-top: auto;
-}
-footer strong {
-  color: var(--gold);
-  font-weight: 600;
-}
-footer .api-note {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.35);
-  margin-top: 4px;
-}
-
-/* ========== TOAST ========== */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--navy);
-  color: var(--white);
-  padding: 12px 24px;
-  border-radius: var(--radius-md);
-  font-size: 0.88rem;
-  font-weight: 500;
-  box-shadow: var(--shadow-lg);
-  z-index: 1000;
-  opacity: 0;
-  transition: all 300ms var(--ease);
-  pointer-events: none;
-}
-.toast.visible {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ========== RESPONSIVE ========== */
+.timeline-date { font-weight: 600; color: var(--navy); font-size: 0.78rem; }
+.timeline-desc { color: var(--text-secondary); margin-top: 2px; line-height: 1.5; }
+.timeline-complement { color: var(--text-muted); font-size: 0.78rem; margin-top: 2px; font-style: italic; }
+.timeline-item.audiencia { background: rgba(201,168,76,0.1); border: 1px solid var(--gold); border-radius: var(--radius-sm); padding: 10px 12px; margin-left: -8px; padding-left: 20px; }
+.timeline-item.audiencia::before { background: #c62828; box-shadow: 0 0 0 2px #c62828; }
+.timeline-item.audiencia-futura { background: rgba(201,168,76,0.18); border-color: var(--gold-dark); }
+.timeline-item.audiencia-futura::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 8px rgba(201,168,76,0.5); }
+.audiencia-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
+.audiencia-badge.passada { background: rgba(198,40,40,0.1); color: #c62828; }
+.audiencia-badge.futura { background: rgba(201,168,76,0.2); color: var(--gold-dark); }
+.card-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.btn-action { padding: 8px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--white); color: var(--text-secondary); font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--transition); display: inline-flex; align-items: center; gap: 6px; }
+.btn-action:hover { border-color: var(--gold); color: var(--gold-dark); background: rgba(201,168,76,0.05); }
+.btn-action:active { transform: scale(0.97); }
+.btn-action svg { width: 14px; height: 14px; }
+.btn-action.copied { border-color: #2e7d32; color: #2e7d32; background: rgba(46,125,50,0.05); }
+.empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
+.empty-state svg { width: 56px; height: 56px; color: var(--border-strong); margin-bottom: 16px; }
+.empty-state h3 { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 4px; font-weight: 600; }
+.empty-state p { font-size: 0.88rem; }
+footer { text-align: center; padding: 24px 16px; background: var(--navy-dark); color: rgba(255,255,255,0.6); font-size: 0.82rem; margin-top: auto; }
+footer strong { color: var(--gold); font-weight: 600; }
+footer .api-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--navy); color: var(--white); padding: 12px 24px; border-radius: var(--radius-md); font-size: 0.88rem; font-weight: 500; box-shadow: var(--shadow-lg); z-index: 1000; opacity: 0; transition: all 300ms var(--ease); pointer-events: none; }
+.toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 @media (max-width: 600px) {
   .card-header { padding: 16px; gap: 12px; flex-wrap: wrap; }
   .card-body-inner { padding: 0 16px 16px; }
@@ -625,39 +115,30 @@ footer .api-note {
 </style>
 </head>
 <body>
-
 <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
-
 <header>
   <h1><span>Douglas Vilar</span> — Consulta Processual Inteligente</h1>
   <p>Consulte processos judiciais diretamente na base do DataJud/CNJ</p>
 </header>
-
 <main id="main-content">
   <section class="search-section" aria-label="Busca processual">
-    <!-- Form: Número do Processo -->
-    <form id="form-numero" class="search-form active" onsubmit="searchByNumero(event)">
+    <form id="form-numero" class="search-form active">
       <div class="form-group">
         <label for="input-numero">Número do processo</label>
         <input type="text" id="input-numero" placeholder="0000000-00.0000.0.00.0000" maxlength="25" autocomplete="off" inputmode="numeric">
         <div class="error-msg" id="error-numero"></div>
       </div>
       <button type="submit" class="btn-search" id="btn-numero">
-        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5z"/></svg>
         Consultar Processo
       </button>
     </form>
-
-
-    <!-- Loading -->
-    <div class="loading-container" id="loading">
-      <div class="spinner"></div>
-      <div class="loading-text" id="loading-text">Consultando DataJud...</div>
-    </div>
   </section>
-
-  <!-- Results -->
-  <section class="results-section" id="results-section" aria-label="Resultados">
+  <div class="loading-container" id="loading">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loading-text">Consultando DataJud...</div>
+  </div>
+  <section class="results-section" id="results-section">
     <div class="results-header">
       <h2>Resultados</h2>
       <span class="results-count" id="results-count"></span>
@@ -665,125 +146,52 @@ footer .api-note {
     <div id="results-list"></div>
   </section>
 </main>
-
 <footer>
   <div>Desenvolvido por <strong>Douglas Vilar — Advocacia</strong> | Dados: DataJud/CNJ</div>
   <div class="api-note">API Pública do DataJud (api_publica_cnj@1.0.0)</div>
 </footer>
-
 <div class="toast" id="toast"></div>
-
 <script>
-/* ============================================================
-   CONSULTA PROCESSUAL INTELIGENTE
-   ============================================================ */
+const DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';
+const DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
 
-const DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';     const DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
-
-/* ========== TRIBUNAL MAP ========== */
-// Process number format: NNNNNNN-DD.AAAA.J.TR.OOOO
-// J=1: STF, J=2: CNJ, J=3: STJ, J=4: Justiça Federal
-// J=5: Justiça do Trabalho, J=6: Justiça Eleitoral
-// J=7: Justiça Militar da União, J=8: Justiça Estadual, J=9: Justiça Militar Estadual
 const TRIBUNAL_MAP_FULL = {
-  // STJ (3)
   '3.00': 'api_publica_stj',
-  // Justiça Federal (4)
-  '4.01': 'api_publica_trf1', '4.02': 'api_publica_trf2',
-  '4.03': 'api_publica_trf3', '4.04': 'api_publica_trf4',
-  '4.05': 'api_publica_trf5', '4.06': 'api_publica_trf6',
-  // Justiça do Trabalho (5)
+  '4.01': 'api_publica_trf1', '4.02': 'api_publica_trf2', '4.03': 'api_publica_trf3', '4.04': 'api_publica_trf4', '4.05': 'api_publica_trf5', '4.06': 'api_publica_trf6',
   '5.00': 'api_publica_tst',
-  '5.01': 'api_publica_trt1', '5.02': 'api_publica_trt2',
-  '5.03': 'api_publica_trt3', '5.04': 'api_publica_trt4',
-  '5.05': 'api_publica_trt5', '5.06': 'api_publica_trt6',
-  '5.07': 'api_publica_trt7', '5.08': 'api_publica_trt8',
-  '5.09': 'api_publica_trt9', '5.10': 'api_publica_trt10',
-  '5.11': 'api_publica_trt11', '5.12': 'api_publica_trt12',
-  '5.13': 'api_publica_trt13', '5.14': 'api_publica_trt14',
-  '5.15': 'api_publica_trt15', '5.16': 'api_publica_trt16',
-  '5.17': 'api_publica_trt17', '5.18': 'api_publica_trt18',
-  '5.19': 'api_publica_trt19', '5.20': 'api_publica_trt20',
-  '5.21': 'api_publica_trt21', '5.22': 'api_publica_trt22',
-  '5.23': 'api_publica_trt23', '5.24': 'api_publica_trt24',
-  // Justiça Eleitoral (6)
+  '5.01': 'api_publica_trt1', '5.02': 'api_publica_trt2', '5.03': 'api_publica_trt3', '5.04': 'api_publica_trt4', '5.05': 'api_publica_trt5', '5.06': 'api_publica_trt6', '5.07': 'api_publica_trt7', '5.08': 'api_publica_trt8', '5.09': 'api_publica_trt9', '5.10': 'api_publica_trt10', '5.11': 'api_publica_trt11', '5.12': 'api_publica_trt12', '5.13': 'api_publica_trt13', '5.14': 'api_publica_trt14', '5.15': 'api_publica_trt15', '5.16': 'api_publica_trt16', '5.17': 'api_publica_trt17', '5.18': 'api_publica_trt18', '5.19': 'api_publica_trt19', '5.20': 'api_publica_trt20', '5.21': 'api_publica_trt21', '5.22': 'api_publica_trt22', '5.23': 'api_publica_trt23', '5.24': 'api_publica_trt24',
   '6.00': 'api_publica_tse',
-  '6.01': 'api_publica_tre-ac', '6.02': 'api_publica_tre-al',
-  '6.03': 'api_publica_tre-ap', '6.04': 'api_publica_tre-am',
-  '6.05': 'api_publica_tre-ba', '6.06': 'api_publica_tre-ce',
-  '6.07': 'api_publica_tre-dft', '6.08': 'api_publica_tre-es',
-  '6.09': 'api_publica_tre-go', '6.10': 'api_publica_tre-ma',
-  '6.11': 'api_publica_tre-mt', '6.12': 'api_publica_tre-ms',
-  '6.13': 'api_publica_tre-mg', '6.14': 'api_publica_tre-pa',
-  '6.15': 'api_publica_tre-pb', '6.16': 'api_publica_tre-pr',
-  '6.17': 'api_publica_tre-pe', '6.18': 'api_publica_tre-pi',
-  '6.19': 'api_publica_tre-rj', '6.20': 'api_publica_tre-rn',
-  '6.21': 'api_publica_tre-rs', '6.22': 'api_publica_tre-ro',
-  '6.23': 'api_publica_tre-rr', '6.24': 'api_publica_tre-sc',
-  '6.25': 'api_publica_tre-se', '6.26': 'api_publica_tre-sp',
-  '6.27': 'api_publica_tre-to',
-  // Justiça Militar da União (7)
+  '6.01': 'api_publica_tre-ac', '6.02': 'api_publica_tre-al', '6.03': 'api_publica_tre-ap', '6.04': 'api_publica_tre-am', '6.05': 'api_publica_tre-ba', '6.06': 'api_publica_tre-ce', '6.07': 'api_publica_tre-dft', '6.08': 'api_publica_tre-es', '6.09': 'api_publica_tre-go', '6.10': 'api_publica_tre-ma', '6.11': 'api_publica_tre-mt', '6.12': 'api_publica_tre-ms', '6.13': 'api_publica_tre-mg', '6.14': 'api_publica_tre-pa', '6.15': 'api_publica_tre-pb', '6.16': 'api_publica_tre-pr', '6.17': 'api_publica_tre-pe', '6.18': 'api_publica_tre-pi', '6.19': 'api_publica_tre-rj', '6.20': 'api_publica_tre-rn', '6.21': 'api_publica_tre-rs', '6.22': 'api_publica_tre-ro', '6.23': 'api_publica_tre-rr', '6.24': 'api_publica_tre-sc', '6.25': 'api_publica_tre-se', '6.26': 'api_publica_tre-sp', '6.27': 'api_publica_tre-to',
   '7.00': 'api_publica_stm',
-  // Justiça Estadual (8)
-  '8.01': 'api_publica_tjac', '8.02': 'api_publica_tjal',
-  '8.03': 'api_publica_tjap', '8.04': 'api_publica_tjam',
-  '8.05': 'api_publica_tjba', '8.06': 'api_publica_tjce',
-  '8.07': 'api_publica_tjdft', '8.08': 'api_publica_tjes',
-  '8.09': 'api_publica_tjgo', '8.10': 'api_publica_tjma',
-  '8.11': 'api_publica_tjmt', '8.12': 'api_publica_tjms',
-  '8.13': 'api_publica_tjmg', '8.14': 'api_publica_tjpa',
-  '8.15': 'api_publica_tjpb', '8.16': 'api_publica_tjpr',
-  '8.17': 'api_publica_tjpe', '8.18': 'api_publica_tjpi',
-  '8.19': 'api_publica_tjrj', '8.20': 'api_publica_tjrn',
-  '8.21': 'api_publica_tjrs', '8.22': 'api_publica_tjro',
-  '8.23': 'api_publica_tjrr', '8.24': 'api_publica_tjsc',
-  '8.25': 'api_publica_tjse', '8.26': 'api_publica_tjsp',
-  '8.27': 'api_publica_tjto',
-  // Justiça Militar Estadual (9)
+  '8.01': 'api_publica_tjac', '8.02': 'api_publica_tjal', '8.03': 'api_publica_tjap', '8.04': 'api_publica_tjam', '8.05': 'api_publica_tjba', '8.06': 'api_publica_tjce', '8.07': 'api_publica_tjdft', '8.08': 'api_publica_tjes', '8.09': 'api_publica_tjgo', '8.10': 'api_publica_tjma', '8.11': 'api_publica_tjmt', '8.12': 'api_publica_tjms', '8.13': 'api_publica_tjmg', '8.14': 'api_publica_tjpa', '8.15': 'api_publica_tjpb', '8.16': 'api_publica_tjpr', '8.17': 'api_publica_tjpe', '8.18': 'api_publica_tjpi', '8.19': 'api_publica_tjrj', '8.20': 'api_publica_tjrn', '8.21': 'api_publica_tjrs', '8.22': 'api_publica_tjro', '8.23': 'api_publica_tjrr', '8.24': 'api_publica_tjsc', '8.25': 'api_publica_tjse', '8.26': 'api_publica_tjsp', '8.27': 'api_publica_tjto',
   '9.13': 'api_publica_tjmmg', '9.21': 'api_publica_tjmrs', '9.26': 'api_publica_tjmsp'
 };
 
-// Friendly name lookup from TRIBUNAL_MAP_FULL
 const TRIBUNAL_NAMES = {};
 Object.entries(TRIBUNAL_MAP_FULL).forEach(([key, endpoint]) => {
-  const name = endpoint.replace('api_publica_', '').toUpperCase();
-  TRIBUNAL_NAMES[endpoint] = name;
+  TRIBUNAL_NAMES[endpoint] = endpoint.replace('api_publica_', '').toUpperCase();
 });
 
-
-/* ========== PROCESS NUMBER MASK ========== */
 const numeroInput = document.getElementById('input-numero');
 numeroInput.addEventListener('input', function(e) {
   let v = e.target.value.replace(/\D/g, '');
   if (v.length > 20) v = v.slice(0, 20);
-  if (v.length > 15) {
-    v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{1,4})/, '$1-$2.$3.$4.$5.$6');
-  } else if (v.length > 13) {
-    v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{1,2})/, '$1-$2.$3.$4.$5');
-  } else if (v.length > 12) {
-    v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})/, '$1-$2.$3.$4');
-  } else if (v.length > 9) {
-    v = v.replace(/^(\d{7})(\d{2})(\d{1,4})/, '$1-$2.$3');
-  } else if (v.length > 7) {
-    v = v.replace(/^(\d{7})(\d{1,2})/, '$1-$2');
-  }
+  if (v.length > 15) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{1,4})/, '$1-$2.$3.$4.$5.$6');
+  else if (v.length > 13) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{1,2})/, '$1-$2.$3.$4.$5');
+  else if (v.length > 12) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})/, '$1-$2.$3.$4');
+  else if (v.length > 9) v = v.replace(/^(\d{7})(\d{2})(\d{1,4})/, '$1-$2.$3');
+  else if (v.length > 7) v = v.replace(/^(\d{7})(\d{1,2})/, '$1-$2');
   e.target.value = v;
 });
 
-
-/* ========== PROCESS NUMBER → TRIBUNAL ========== */
 function getEndpointFromProcessNumber(numero) {
   const clean = numero.replace(/\D/g, '');
   if (clean.length !== 20) return null;
-  // NNNNNNN DD AAAA J TR OOOO
-  // 0123456 78 9012 3 45 6789
   const J = clean.charAt(13);
   const TR = clean.substring(14, 16);
-  const key = J + '.' + TR;
-  return TRIBUNAL_MAP_FULL[key] || null;
+  return TRIBUNAL_MAP_FULL[J + '.' + TR] || null;
 }
 
-/* ========== API CALL (via proxy) ========== */
 async function queryDataJud(endpoint, body) {
   const url = 'https://corsproxy.io/?url=' + encodeURIComponent(DATAJUD_BASE + '/' + endpoint + '/_search');
   const resp = await fetch(url, {
@@ -792,60 +200,32 @@ async function queryDataJud(endpoint, body) {
     body: JSON.stringify(body)
   });
   const data = await resp.json();
-  if (data.error) {
-    throw new Error(data.error.reason || JSON.stringify(data.error).substring(0, 150));
-  }
+  if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0, 150));
   return data;
 }
 
-/* ========== LOADING UI ========== */
 function showLoading(text) {
   document.getElementById('loading').classList.add('visible');
   document.getElementById('loading-text').textContent = text || 'Consultando DataJud...';
   document.getElementById('results-section').classList.remove('visible');
 }
-function hideLoading() {
-  document.getElementById('loading').classList.remove('visible');
-}
-function showError(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-function clearError(id) {
-  const el = document.getElementById(id);
-  el.textContent = '';
-  el.classList.remove('visible');
-}
+function hideLoading() { document.getElementById('loading').classList.remove('visible'); }
+function showError(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.classList.add('visible'); }
+function clearError(id) { const el = document.getElementById(id); el.textContent = ''; el.classList.remove('visible'); }
 
-/* ========== SEARCH BY NUMERO ========== */
-async function searchByNumero(e) {
+async function searchByNumber(e) {
   e.preventDefault();
   clearError('error-numero');
-
   const raw = document.getElementById('input-numero').value;
   const clean = raw.replace(/\D/g, '');
-
-  if (clean.length !== 20) {
-    showError('error-numero', 'Número do processo deve conter exatamente 20 dígitos.');
-    return;
-  }
-
+  if (clean.length !== 20) { showError('error-numero', 'O n\u00famero do processo deve conter exatamente 20 d\u00edgitos.'); return; }
   const endpoint = getEndpointFromProcessNumber(raw);
-  if (!endpoint) {
-    showError('error-numero', 'Não foi possível identificar o tribunal a partir do número informado.');
-    return;
-  }
-
+  if (!endpoint) { showError('error-numero', 'N\u00e3o foi poss\u00edvel identificar o tribunal a partir do n\u00famero informado.'); return; }
   const btn = document.getElementById('btn-numero');
   btn.disabled = true;
   showLoading('Consultando ' + (TRIBUNAL_NAMES[endpoint] || endpoint).toUpperCase() + '...');
-
   try {
-    const data = await queryDataJud(endpoint, {
-      query: { match: { numeroProcesso: clean } }
-    });
-
+    const data = await queryDataJud(endpoint, { query: { match: { numeroProcesso: clean } } });
     const hits = (data.hits && data.hits.hits) || [];
     displayResults(hits.map(h => ({ ...h._source, _tribunal: TRIBUNAL_NAMES[endpoint] || endpoint })));
   } catch (err) {
@@ -856,172 +236,92 @@ async function searchByNumero(e) {
   }
 }
 
+let currentResults = [];
 
-/* ========== DISPLAY RESULTS ========== */
 function displayResults(results) {
+  currentResults = results || [];
   const section = document.getElementById('results-section');
   const list = document.getElementById('results-list');
   const countEl = document.getElementById('results-count');
-
   if (!results || results.length === 0) {
     section.classList.add('visible');
-    countEl.textContent = '0 processos';
-    list.innerHTML = `
-      <div class="empty-state">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-        </svg>
-        <h3>Nenhum processo encontrado</h3>
-        <p>Verifique os dados informados e tente novamente.</p>
-      </div>`;
+    countEl.textContent = '0';
+    list.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><h3>Nenhum processo encontrado</h3><p>Verifique os dados informados e tente novamente.</p></div>';
     return;
   }
-
   section.classList.add('visible');
   countEl.textContent = results.length + ' processo' + (results.length > 1 ? 's' : '');
-
   list.innerHTML = results.map((proc, idx) => buildProcessCard(proc, idx)).join('');
-
-  // Scroll to results
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function formatDate(dateStr) {
-  if (!dateStr) return '—';
-  try {
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-  } catch {
-    return dateStr;
-  }
+  if (!dateStr) return '--';
+  try { const d = new Date(dateStr); if (isNaN(d.getTime())) return dateStr; return d.toLocaleDateString('pt-BR', {day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e) { return dateStr; }
 }
-
 function formatDateTime(dateStr) {
-  if (!dateStr) return '—';
-  try {
-    const d = new Date(dateStr);
-    if (isNaN(d.getTime())) return dateStr;
-    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' +
-           d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-  } catch {
-    return dateStr;
-  }
+  if (!dateStr) return '--';
+  try { const d = new Date(dateStr); if (isNaN(d.getTime())) return dateStr; return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}) + ' ' + d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); } catch(e) { return dateStr; }
 }
-
-function getClasseName(proc) {
-  if (proc.classe && proc.classe.nome) return proc.classe.nome;
-  if (proc.classe && typeof proc.classe === 'string') return proc.classe;
-  return '—';
-}
-
-function getSubjects(proc) {
-  if (proc.assuntos && Array.isArray(proc.assuntos)) {
-    return proc.assuntos.map(a => a.nome || a).filter(Boolean).join(', ') || '—';
-  }
-  return '—';
-}
-
-function getOrgaoJulgador(proc) {
-  if (proc.orgaoJulgador && proc.orgaoJulgador.nome) return proc.orgaoJulgador.nome;
-  return '—';
-}
+function getClasseName(proc) { if (proc.classe && proc.classe.nome) return proc.classe.nome; if (proc.classe && typeof proc.classe === 'string') return proc.classe; return '-'; }
+function getSubjects(proc) { if (proc.assuntos && Array.isArray(proc.assuntos)) return proc.assuntos.map(a => a.nome || a).filter(Boolean).join(', ') || '-'; return '-'; }
+function getOrgaoJulgador(proc) { if (proc.orgaoJulgador && proc.orgaoJulgador.nome) return proc.orgaoJulgador.nome; return '-'; }
+function formatProcessNumber(num) { const clean = (num||'').replace(/\D/g,''); if (clean.length === 20) return clean.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$/, '$1-$2.$3.$4.$5.$6'); return num; }
 
 function buildProcessCard(proc, idx) {
-  const numero = proc.numeroProcesso || '—';
-  const tribunal = proc._tribunal || '—';
+  const numero = proc.numeroProcesso || '-';
+  const tribunal = proc._tribunal || '-';
   const classe = getClasseName(proc);
   const assuntos = getSubjects(proc);
   const orgao = getOrgaoJulgador(proc);
   const dataAjuizamento = formatDate(proc.dataAjuizamento);
-  const grau = proc.grau || '—';
-  const formato = proc.formato && proc.formato.nome ? proc.formato.nome : (proc.formato || '—');
-
-  // Movements — sort oldest first (ascending by dataHora)
+  const grau = proc.grau || '-';
+  const formato = proc.formato && proc.formato.nome ? proc.formato.nome : (proc.formato || '-');
   const movimentos = (proc.movimentos || proc.movimento || []);
-  const movimentosSorted = [...movimentos].sort((a, b) => {
-    const da = a.dataHora || '';
-    const db = b.dataHora || '';
-    return da.localeCompare(db);
-  });
+  const movimentosSorted = [...movimentos].sort((a,b) => (a.dataHora||'').localeCompare(b.dataHora||''));
   const now = new Date();
-  const movimentosHtml = movimentosSorted.length > 0 ? movimentosSorted.slice(0, 50).map(m => {
-    const date = formatDateTime(m.dataHora);
-    const name = (m.nome || m.complemento || '—');
-    const complementos = (m.complementosTabelados || []).map(c => c.nome || c.descricao || '').filter(Boolean).join('; ');
-    const fullText = (name + ' ' + complementos).toLowerCase();
-    const isAudiencia = /audi[eê]ncia/.test(fullText) || /designa[cç][aã]o.*audi/i.test(fullText) || /pauta.*audi/i.test(fullText);
-    let extraClass = '';
-    let badge = '';
-    if (isAudiencia) {
-      const mDate = m.dataHora ? new Date(m.dataHora) : null;
-      const isFutura = mDate && mDate > now;
-      extraClass = isFutura ? ' audiencia audiencia-futura' : ' audiencia';
-      badge = isFutura
-        ? '<span class="audiencia-badge futura">Audiência Futura</span>'
-        : '<span class="audiencia-badge passada">Audiência</span>';
-    }
-    return `<div class="timeline-item${extraClass}">
-      <div class="timeline-date">${date}${badge}</div>
-      <div class="timeline-desc">${name}</div>
-      ${complementos ? `<div class="timeline-complement">${complementos}</div>` : ''}
-    </div>`;
-  }).join('') : '<p style="color:var(--text-muted);font-size:0.85rem;">Nenhum movimento registrado.</p>';
-
-  return `
-    <article class="process-card" id="card-${idx}">
-      <div class="card-header" tabindex="0" role="button" aria-expanded="false" onclick="toggleCard(${idx})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleCard(${idx})}">
-        <span class="tribunal-badge">${tribunal}</span>
-        <div class="card-info">
-          <div class="process-number">${formatProcessNumber(numero)}</div>
-          <div class="process-class">${classe}</div>
-          <div class="process-meta">
-            <span>📅 ${dataAjuizamento}</span>
-            <span>⚖️ ${orgao}</span>
-            <span>📋 Grau: ${grau}</span>
-          </div>
-        </div>
-        <svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </div>
-      <div class="card-body">
-        <div class="card-body-inner">
-          <div class="detail-grid">
-            <div class="detail-item"><div class="label">Tribunal</div><div class="value">${tribunal}</div></div>
-            <div class="detail-item"><div class="label">Classe</div><div class="value">${classe}</div></div>
-            <div class="detail-item"><div class="label">Assunto</div><div class="value">${assuntos}</div></div>
-            <div class="detail-item"><div class="label">Órgão Julgador</div><div class="value">${orgao}</div></div>
-            <div class="detail-item"><div class="label">Data Ajuizamento</div><div class="value">${dataAjuizamento}</div></div>
-            <div class="detail-item"><div class="label">Grau</div><div class="value">${grau}</div></div>
-            <div class="detail-item"><div class="label">Formato</div><div class="value">${formato}</div></div>
-          </div>
-          <div class="timeline-section">
-            <h3>Movimentações (${movimentosSorted.length})</h3>
-            <div class="timeline">${movimentosHtml}</div>
-          </div>
-          <div class="card-actions">
-            <button class="btn-action" onclick="copyProcessInfo(${idx}, this)" type="button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-              Copiar
-            </button>
-            <button class="btn-action" onclick="generatePDF(${idx})" type="button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              Gerar PDF
-            </button>
-          </div>
-        </div>
-      </div>
-    </article>`;
-}
-
-function formatProcessNumber(num) {
-  const clean = (num || '').replace(/\D/g, '');
-  if (clean.length === 20) {
-    return clean.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$/, '$1-$2.$3.$4.$5.$6');
+  let movimentosHtml = '<p style="color:var(--text-muted);font-size:0.85rem;">Nenhum movimento registrado.</p>';
+  if (movimentosSorted.length > 0) {
+    movimentosHtml = movimentosSorted.slice(0,50).map(m => {
+      const date = formatDateTime(m.dataHora);
+      const name = m.nome || m.complemento || '-';
+      const complementos = (m.complementosTabelados||[]).map(c => c.nome||c.descricao||'').filter(Boolean).join('; ');
+      const fullText = (name + ' ' + complementos).toLowerCase();
+      const isAudiencia = /audi[e\u00ea]ncia/.test(fullText);
+      let extraClass = '', badge = '';
+      if (isAudiencia) {
+        const mDate = m.dataHora ? new Date(m.dataHora) : null;
+        const isFutura = mDate && mDate > now;
+        extraClass = isFutura ? ' audiencia audiencia-futura' : ' audiencia';
+        badge = isFutura ? '<span class="audiencia-badge futura">Audi\u00eancia Futura</span>' : '<span class="audiencia-badge passada">Audi\u00eancia</span>';
+      }
+      return '<div class="timeline-item' + extraClass + '"><div class="timeline-date">' + date + badge + '</div><div class="timeline-desc">' + name + '</div>' + (complementos ? '<div class="timeline-complement">' + complementos + '</div>' : '') + '</div>';
+    }).join('');
   }
-  return num;
+  return '<article class="process-card" id="card-' + idx + '">' +
+    '<div class="card-header" tabindex="0" role="button" aria-expanded="false" onclick="toggleCard(' + idx + ')">' +
+    '<span class="tribunal-badge">' + tribunal + '</span>' +
+    '<div class="card-info">' +
+    '<div class="process-number">' + formatProcessNumber(numero) + '</div>' +
+    '<div class="process-class">' + classe + '</div>' +
+    '<div class="process-meta"><span>\ud83d\udcc5 ' + dataAjuizamento + '</span><span>\u2696\ufe0f ' + orgao + '</span><span>\ud83d\udccb Grau: ' + grau + '</span></div></div>' +
+    '<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>' +
+    '<div class="card-body"><div class="card-body-inner">' +
+    '<div class="detail-grid">' +
+    '<div class="detail-item"><div class="label">Tribunal</div><div class="value">' + tribunal + '</div></div>' +
+    '<div class="detail-item"><div class="label">Classe</div><div class="value">' + classe + '</div></div>' +
+    '<div class="detail-item"><div class="label">Assunto</div><div class="value">' + assuntos + '</div></div>' +
+    '<div class="detail-item"><div class="label">\u00d3rg\u00e3o Julgador</div><div class="value">' + orgao + '</div></div>' +
+    '<div class="detail-item"><div class="label">Data Ajuizamento</div><div class="value">' + dataAjuizamento + '</div></div>' +
+    '<div class="detail-item"><div class="label">Grau</div><div class="value">' + grau + '</div></div>' +
+    '<div class="detail-item"><div class="label">Formato</div><div class="value">' + formato + '</div></div></div>' +
+    '<div class="timeline-section"><h3>Movimenta\u00e7\u00f5es (' + movimentosSorted.length + ')</h3><div class="timeline">' + movimentosHtml + '</div></div>' +
+    '<div class="card-actions">' +
+    '<button class="btn-action" onclick="copyProcessInfo(' + idx + ', this)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar</button>' +
+    '<button class="btn-action" onclick="generatePDF(' + idx + ')" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Gerar PDF</button></div>' +
+    '</div></div></article>';
 }
 
-/* ========== EXPAND/COLLAPSE ========== */
 function toggleCard(idx) {
   const card = document.getElementById('card-' + idx);
   const header = card.querySelector('.card-header');
@@ -1029,148 +329,70 @@ function toggleCard(idx) {
   header.setAttribute('aria-expanded', isExpanded);
 }
 
-/* ========== COPY ========== */
-let currentResults = [];
-
-// Wrap displayResults to store results globally for copy/PDF
-(function() {
-  const _orig = displayResults;
-  displayResults = function(results) {
-    currentResults = results || [];
-    _orig(results);
-  };
-})();
-
 function copyProcessInfo(idx, btn) {
   const proc = currentResults[idx];
   if (!proc) return;
-
-  const text = [
-    `Processo: ${formatProcessNumber(proc.numeroProcesso || '')}`,
-    `Tribunal: ${proc._tribunal || ''}`,
-    `Classe: ${getClasseName(proc)}`,
-    `Assuntos: ${getSubjects(proc)}`,
-    `Órgão Julgador: ${getOrgaoJulgador(proc)}`,
-    `Data Ajuizamento: ${formatDate(proc.dataAjuizamento)}`,
-    `Grau: ${proc.grau || ''}`,
-  ].join('\n');
-
+  const text = 'Processo: ' + formatProcessNumber(proc.numeroProcesso||'') + '\nTribunal: ' + (proc._tribunal||'') + '\nClasse: ' + getClasseName(proc) + '\nAssuntos: ' + getSubjects(proc) + '\n\u00d3rg\u00e3o Julgador: ' + getOrgaoJulgador(proc) + '\nData Ajuizamento: ' + formatDate(proc.dataAjuizamento) + '\nGrau: ' + (proc.grau||'');
   navigator.clipboard.writeText(text).then(() => {
     btn.classList.add('copied');
     const original = btn.innerHTML;
-    btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiado!`;
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = original;
-    }, 2000);
-  }).catch(() => {
-    showToast('Não foi possível copiar. Use seleção manual.');
-  });
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = original; }, 2000);
+  }).catch(() => showToast('N\u00e3o foi poss\u00edvel copiar.'));
 }
 
-/* ========== PDF GENERATION ========== */
 function generatePDF(idx) {
   const proc = currentResults[idx];
   if (!proc) return;
-
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ unit: 'mm', format: 'a4' });
-  const pageWidth = doc.internal.pageSize.getWidth();
+  const pw = doc.internal.pageSize.getWidth();
   const margin = 20;
-  const contentWidth = pageWidth - margin * 2;
+  const cw = pw - margin * 2;
   let y = margin;
-
-  // Header
   doc.setFillColor(26, 35, 126);
-  doc.rect(0, 0, pageWidth, 35, 'F');
+  doc.rect(0, 0, pw, 35, 'F');
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
   doc.setTextColor(255, 255, 255);
-  doc.text('Douglas Vilar - Consulta Processual', pageWidth / 2, 15, { align: 'center' });
+  doc.text('Douglas Vilar - Consulta Processual', pw/2, 15, {align:'center'});
   doc.setFontSize(9);
   doc.setTextColor(201, 168, 76);
-  doc.text('Dados: DataJud/CNJ', pageWidth / 2, 23, { align: 'center' });
+  doc.text('Dados: DataJud/CNJ', pw/2, 23, {align:'center'});
   doc.setFontSize(8);
   doc.setTextColor(200, 200, 200);
-  doc.text('Gerado em: ' + new Date().toLocaleString('pt-BR'), pageWidth / 2, 30, { align: 'center' });
-
+  doc.text('Gerado em: ' + new Date().toLocaleString('pt-BR'), pw/2, 30, {align:'center'});
   y = 45;
-
-  // Process info
-  doc.setTextColor(26, 35, 126);
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(12);
-  doc.text('Dados do Processo', margin, y);
-  y += 8;
-
-  const fields = [
-    ['Número', formatProcessNumber(proc.numeroProcesso || '')],
-    ['Tribunal', proc._tribunal || ''],
-    ['Classe', getClasseName(proc)],
-    ['Assuntos', getSubjects(proc)],
-    ['Órgão Julgador', getOrgaoJulgador(proc)],
-    ['Data Ajuizamento', formatDate(proc.dataAjuizamento)],
-    ['Grau', proc.grau || ''],
-    ['Formato', (proc.formato && proc.formato.nome) ? proc.formato.nome : (proc.formato || '')],
-  ];
-
+  doc.setTextColor(26, 35, 126); doc.setFont('helvetica','bold'); doc.setFontSize(12);
+  doc.text('Dados do Processo', margin, y); y += 8;
+  const fields = [['N\u00famero', formatProcessNumber(proc.numeroProcesso||'')],['Tribunal',proc._tribunal||''],['Classe',getClasseName(proc)],['Assuntos',getSubjects(proc)],['\u00d3rg\u00e3o Julgador',getOrgaoJulgador(proc)],['Data Ajuizamento',formatDate(proc.dataAjuizamento)],['Grau',proc.grau||''],['Formato',(proc.formato&&proc.formato.nome)?proc.formato.nome:(proc.formato||'')]];
   doc.setFontSize(9);
   fields.forEach(([label, value]) => {
     if (y > 270) { doc.addPage(); y = margin; }
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(100, 100, 100);
-    doc.text(label + ':', margin, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(30, 30, 30);
-    const lines = doc.splitTextToSize(String(value), contentWidth - 40);
-    doc.text(lines, margin + 40, y);
-    y += lines.length * 5 + 3;
+    doc.setFont('helvetica','bold'); doc.setTextColor(100,100,100); doc.text(label + ':', margin, y);
+    doc.setFont('helvetica','normal'); doc.setTextColor(30,30,30);
+    const lines = doc.splitTextToSize(String(value), cw - 40); doc.text(lines, margin + 40, y); y += lines.length * 5 + 3;
   });
-
-  // Movements — sort oldest first for PDF too
-  const movimentos = (proc.movimentos || proc.movimento || []);
-  const movimentosSorted = [...movimentos].sort((a, b) => {
-    const da = a.dataHora || '';
-    const db = b.dataHora || '';
-    return da.localeCompare(db);
-  });
-  if (movimentosSorted.length > 0) {
-    y += 6;
-    if (y > 260) { doc.addPage(); y = margin; }
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(12);
-    doc.setTextColor(26, 35, 126);
-    doc.text('Movimentações (' + movimentosSorted.length + ')', margin, y);
-    y += 8;
-
-    doc.setFontSize(8);
-    movimentosSorted.slice(0, 100).forEach((m, i) => {
+  const movs = [...(proc.movimentos||proc.movimento||[])].sort((a,b)=>(a.dataHora||'').localeCompare(b.dataHora||''));
+  if (movs.length > 0) {
+    y += 6; if (y > 260) { doc.addPage(); y = margin; }
+    doc.setFont('helvetica','bold'); doc.setFontSize(12); doc.setTextColor(26,35,126);
+    doc.text('Movimenta\u00e7\u00f5es (' + movs.length + ')', margin, y); y += 8; doc.setFontSize(8);
+    movs.slice(0,100).forEach(m => {
       if (y > 270) { doc.addPage(); y = margin; }
-      const date = formatDateTime(m.dataHora);
-      const name = m.nome || m.complemento || '—';
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(26, 35, 126);
-      doc.text(date, margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.setTextColor(50, 50, 50);
-      const nameLines = doc.splitTextToSize(name, contentWidth - 5);
-      doc.text(nameLines, margin, y + 4);
-      y += 4 + nameLines.length * 4 + 4;
+      const date = formatDateTime(m.dataHora); const name = m.nome||m.complemento||'-';
+      doc.setFont('helvetica','bold'); doc.setTextColor(26,35,126); doc.text(date, margin, y);
+      doc.setFont('helvetica','normal'); doc.setTextColor(50,50,50);
+      const nl = doc.splitTextToSize(name, cw - 5); doc.text(nl, margin, y+4); y += 4 + nl.length*4 + 4;
     });
   }
-
-  // Footer on last page
-  doc.setFontSize(7);
-  doc.setTextColor(150, 150, 150);
-  doc.text('Douglas Vilar - Advocacia | API Pública do DataJud (api_publica_cnj@1.0.0)', pageWidth / 2, 290, { align: 'center' });
-
-  // Save
-  const filename = 'processo_' + (proc.numeroProcesso || 'consulta').replace(/\D/g, '').substring(0, 20) + '.pdf';
+  doc.setFontSize(7); doc.setTextColor(150,150,150);
+  doc.text('Douglas Vilar - Advocacia | API P\u00fablica do DataJud', pw/2, 290, {align:'center'});
+  const filename = 'processo_' + (proc.numeroProcesso||'consulta').replace(/\D/g,'').substring(0,20) + '.pdf';
   doc.save(filename);
   showToast('PDF gerado com sucesso!');
 }
 
-/* ========== TOAST ========== */
 function showToast(msg) {
   const toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -1178,10 +400,8 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('visible'), 3000);
 }
 
-/* ========== INIT ========== */
 document.addEventListener('DOMContentLoaded', function() {
-  // Focus the first input
-      document.getElementById('form-numero').addEventListener('submit', searchByNumber);
+  document.getElementById('form-numero').addEventListener('submit', searchByNumber);
   document.getElementById('input-numero').focus();
 });
 </script>
