@@ -19,52 +19,68 @@ input:focus,select:focus{outline:none;border-color:#c9a84c}
 .btn-primary{width:100%;padding:14px;background:#c9a84c;color:#000;border:none;border-radius:8px;font-size:1.1em;font-weight:600;cursor:pointer;margin-top:10px}
 .btn-primary:hover{background:#b8933f}
 .btn-primary:disabled{background:#555;color:#999;cursor:not-allowed}
-.certidoes-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:15px 0}
-.certidao-item{background:#222;border:1px solid #444;border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;font-size:0.85em}
-.certidao-item input[type=checkbox]{width:auto;margin:0;accent-color:#c9a84c}
-.status-badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:0.75em;font-weight:600}
+.certidoes-list{margin:15px 0}
+.cert-item{background:#222;border:1px solid #444;border-radius:8px;padding:14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cert-item .cert-info{display:flex;align-items:center;gap:10px;flex:1}
+.cert-item input[type=checkbox]{width:auto;margin:0;accent-color:#c9a84c}
+.cert-item .cert-name{font-size:0.9em}
+.cert-item .cert-type{font-size:0.7em;padding:3px 8px;border-radius:4px;font-weight:600}
+.type-gratuita{background:#1a3a1a;color:#4caf50}
+.type-manual{background:#3a2a0a;color:#f0a030}
+.status-badge{padding:3px 8px;border-radius:4px;font-size:0.75em;font-weight:600}
 .status-pending{background:#555;color:#aaa}
-.status-success{background:#1a4a1a;color:#4caf50}
-.status-error{background:#4a1a1a;color:#f44336}
+.status-ok{background:#1a4a1a;color:#4caf50}
+.status-aberto{background:#1a2a4a;color:#4a9af5}
 .progress-section{display:none}
 .progress-bar{width:100%;height:8px;background:#333;border-radius:4px;overflow:hidden;margin:10px 0}
 .progress-fill{height:100%;background:#c9a84c;width:0%;transition:width 0.5s}
-.checklist{margin:15px 0}
 .checklist-item{display:flex;align-items:center;gap:10px;padding:8px;border-bottom:1px solid #333}
-.checklist-item .icon{font-size:1.2em}
-.whatsapp-btn{display:inline-flex;align-items:center;gap:8px;background:#25d366;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em;margin:10px 0;justify-content:center;width:100%}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25d366;color:#fff;padding:14px 24px;border-radius:8px;text-decoration:none;font-weight:600;font-size:1em;margin:10px 0;width:100%}
 .whatsapp-btn:hover{background:#1da851}
 .destaque-box{background:#1a1a0a;border:2px solid #c9a84c;border-radius:12px;padding:20px;text-align:center;margin:20px 0}
 .destaque-box img{max-width:200px;margin:10px auto;display:block}
 .destaque-box a{color:#c9a84c;font-weight:600;font-size:1.1em}
-.login-section{text-align:center;margin:20px 0}
-.login-btn{padding:12px 24px;background:#4285f4;color:#fff;border:none;border-radius:8px;font-size:1em;cursor:pointer;margin:5px}
+.login-section{text-align:center;padding:60px 20px}
+.login-btn{padding:14px 30px;background:#4285f4;color:#fff;border:none;border-radius:8px;font-size:1.1em;cursor:pointer}
 .logout-btn{padding:8px 16px;background:#666;color:#fff;border:none;border-radius:8px;cursor:pointer}
-.user-info{color:#aaa;margin:10px 0}
 .hidden{display:none}
-.email-input{margin:15px 0}
 .resultado-section{display:none}
-@media(max-width:600px){.certidoes-grid{grid-template-columns:1fr}h1{font-size:1.5em}.container{padding:10px}}
+.saved-info{background:#0a1a0a;border:1px solid #2a4a2a;border-radius:8px;padding:12px;margin-bottom:15px;font-size:0.85em;color:#aaa}
+.saved-info strong{color:#c9a84c}
+.btn-edit{background:none;border:1px solid #c9a84c;color:#c9a84c;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:0.8em;margin-left:10px}
+.cert-link{padding:6px 12px;background:#c9a84c;color:#000;border:none;border-radius:6px;cursor:pointer;font-size:0.8em;font-weight:600;text-decoration:none}
+@media(max-width:600px){h1{font-size:1.5em}.container{padding:10px}.cert-item{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
 <div class="container">
 <h1>Gerador de Certidoes Imobiliarias</h1>
-<p class="subtitle">Douglas Vilar Advogados - Sistema automatizado de emissao de certidoes</p>
+<p class="subtitle">Douglas Vilar Advogados - OAB/PR 47.278</p>
 
-<!-- Login Section -->
+<!-- Login -->
 <div class="login-section" id="loginSection">
-<h2 style="color:#c9a84c;margin-bottom:15px">Acesse o Sistema</h2>
+<h2 style="color:#c9a84c;margin-bottom:15px;font-family:'Playfair Display',serif">Acesse o Sistema</h2>
+<p style="color:#aaa;margin-bottom:20px">Faca login com sua conta Google para comecar</p>
 <button class="login-btn" onclick="loginGoogle()">Entrar com Google</button>
 </div>
 
+<!-- Main -->
 <div id="mainContent" class="hidden">
-<div style="text-align:right;margin-bottom:10px">
-<span class="user-info" id="userInfo"></span>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
+<span style="color:#aaa" id="userInfo"></span>
 <button class="logout-btn" onclick="logoutUser()">Sair</button>
 </div>
 
-<!-- Formulario -->
+<!-- Dados salvos ou formulario -->
+<div id="savedDataSection" class="hidden">
+<div class="saved-info">
+<p><strong>Dados salvos do seu cadastro:</strong></p>
+<p id="savedDataDisplay"></p>
+<button class="btn-edit" onclick="editarDados()">Editar dados</button>
+</div>
+</div>
+
+<div id="formSection">
 <div class="form-section">
 <h2>Dados do Imovel</h2>
 <label>Estado</label>
@@ -81,14 +97,18 @@ input:focus,select:focus{outline:none;border-color:#c9a84c}
 
 <div class="form-section">
 <h2>Dados do Comprador</h2>
-<label>Nome Completo</label>
-<input type="text" id="nomeComprador" placeholder="Nome do comprador">
-<label>CPF/CNPJ</label>
+<label>Nome Completo *</label>
+<input type="text" id="nomeComprador" placeholder="Nome completo">
+<label>CPF *</label>
 <input type="text" id="cpfComprador" placeholder="000.000.000-00">
-<label>Email para receber as certidoes</label>
+<label>CNPJ (opcional)</label>
+<input type="text" id="cnpjComprador" placeholder="00.000.000/0000-00">
+<label>Email *</label>
 <input type="email" id="emailComprador" placeholder="email@exemplo.com">
-<label>Telefone/WhatsApp</label>
+<label>Telefone/WhatsApp *</label>
 <input type="tel" id="telComprador" placeholder="(41) 99999-9999">
+<label>Instagram (opcional)</label>
+<input type="text" id="igComprador" placeholder="@seuinstagram">
 </div>
 
 <div class="form-section">
@@ -99,257 +119,236 @@ input:focus,select:focus{outline:none;border-color:#c9a84c}
 <input type="text" id="cpfVendedor" placeholder="000.000.000-00">
 </div>
 
+<button class="btn-primary" onclick="salvarDados()">Salvar Dados e Continuar</button>
+</div>
+
+<!-- Certidoes -->
+<div id="certidoesSection" class="hidden">
 <div class="form-section">
-<h2>Selecione as Certidoes</h2>
-<div style="margin-bottom:10px">
-<label><input type="checkbox" id="selectAll" onchange="toggleAll()"> <strong>Selecionar Todas</strong></label>
-</div>
-<div class="certidoes-grid" id="certidoesGrid"></div>
+<h2>Certidoes Disponiveis</h2>
+<p style="color:#aaa;font-size:0.85em;margin-bottom:15px">As certidoes <span style="color:#4caf50">GRATUITAS</span> serao abertas automaticamente nos sites oficiais. As certidoes <span style="color:#f0a030">MANUAIS/PAGAS</span> abrirao o link para voce emitir.</p>
+<div class="certidoes-list" id="certidoesList"></div>
 </div>
 
-<button class="btn-primary" id="btnGerar" onclick="gerarCertidoes()">Gerar Certidoes Selecionadas</button>
+<button class="btn-primary" id="btnGerar" onclick="gerarCertidoes()">Abrir Certidoes nos Sites Oficiais</button>
 
-<!-- Progresso -->
 <div class="form-section progress-section" id="progressSection">
-<h2>Progresso da Geracao</h2>
+<h2>Progresso</h2>
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 <p id="progressText" style="color:#aaa;font-size:0.9em">Iniciando...</p>
 <div id="progressLog" style="margin-top:10px"></div>
 </div>
 
-<!-- Resultado -->
 <div class="form-section resultado-section" id="resultadoSection">
-<h2>Checklist de Certidoes Emitidas</h2>
-<div class="checklist" id="checklist"></div>
+<h2>Checklist de Certidoes</h2>
+<div id="checklist"></div>
 <p id="resultadoResumo" style="color:#4caf50;margin:15px 0;font-weight:600"></p>
+
+<button class="btn-primary" onclick="enviarEmailResumo()" style="background:#2196f3;margin-bottom:10px">Enviar Resumo por Email</button>
 
 <div class="destaque-box">
 <h3 style="color:#c9a84c;margin-bottom:10px">Douglas Vilar Advogados</h3>
 <p style="color:#ccc;margin-bottom:10px">Especialista em Direito Imobiliario</p>
-<img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://douglasvilar.com.br" alt="QR Code">
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://douglasvilar.com.br" alt="QR Code">
 <p style="margin:10px 0"><a href="https://douglasvilar.com.br" target="_blank">www.douglasvilar.com.br</a></p>
 <p style="margin:5px 0"><a href="https://www.instagram.com/douglasvilar.adv/" target="_blank" style="color:#c9a84c">@douglasvilar.adv</a></p>
 </div>
 
-<a href="https://api.whatsapp.com/send?phone=5541984216639&text=Ol%C3%A1%20Dr.%20Douglas%2C%20acabei%20de%20gerar%20certid%C3%B5es%20pelo%20site%20e%20preciso%20de%20apoio." class="whatsapp-btn" target="_blank">
-WhatsApp - Fale com Dr. Douglas Vilar
-</a>
+<a href="https://api.whatsapp.com/send?phone=5541984216639&text=Ola%20Dr.%20Douglas%2C%20preciso%20de%20apoio%20com%20as%20certidoes." class="whatsapp-btn" target="_blank">WhatsApp - Fale com Dr. Douglas Vilar</a>
+</div>
 </div>
 
 </div><!-- mainContent -->
 
-<!-- WhatsApp flutuante -->
-<a href="https://api.whatsapp.com/send?phone=5541984216639" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999" title="WhatsApp">W</a>
-
-</div><!-- container -->
+<a href="https://api.whatsapp.com/send?phone=5541984216639" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999" title="WhatsApp">&#9742;</a>
+</div>
 
 <!-- Firebase -->
 <script type="module">
 import{initializeApp}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import{getAuth,GoogleAuthProvider,signInWithPopup,signOut,onAuthStateChanged}from'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-
-const firebaseConfig={
-apiKey:'AIzaSyB-2lW0MhkDfCz4-xyn1l2gr0-IEy5v8gk',
-authDomain:'certidoes-douglasvilar.firebaseapp.com',
-projectId:'certificados-douglasvilar',
-storageBucket:'certidoes-douglasvilar.firebasestorage.app',
-messagingSenderId:'1010448844444',
-appId:'1:1010448844444:web:dc9034878d8e7d2e430f59'
-};
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const provider=new GoogleAuthProvider();
-
-window.loginGoogle=async function(){
-try{await signInWithPopup(auth,provider)}catch(e){alert('Erro ao fazer login: '+e.message)}
-};
-window.logoutUser=async function(){
-await signOut(auth);location.reload();
-};
-onAuthStateChanged(auth,(user)=>{
-if(user){
-document.getElementById('loginSection').classList.add('hidden');
-document.getElementById('mainContent').classList.remove('hidden');
-document.getElementById('userInfo').textContent=user.displayName||user.email;
-}else{
-document.getElementById('loginSection').classList.remove('hidden');
-document.getElementById('mainContent').classList.add('hidden');
-}
+const fc={apiKey:'AIzaSyB-2lW0MhkDfCz4-xyn1l2gr0-IEy5v8gk',authDomain:'certidoes-douglasvilar.firebaseapp.com',projectId:'certificados-douglasvilar',storageBucket:'certidoes-douglasvilar.firebasestorage.app',messagingSenderId:'1010448844444',appId:'1:1010448844444:web:dc9034878d8e7d2e430f59'};
+const app=initializeApp(fc);const auth=getAuth(app);const prov=new GoogleAuthProvider();
+window.loginGoogle=async()=>{try{await signInWithPopup(auth,prov)}catch(e){alert('Erro: '+e.message)}};
+window.logoutUser=async()=>{localStorage.removeItem('certDados');await signOut(auth);location.reload()};
+onAuthStateChanged(auth,u=>{
+if(u){document.getElementById('loginSection').classList.add('hidden');document.getElementById('mainContent').classList.remove('hidden');document.getElementById('userInfo').textContent=u.displayName||u.email;checkSavedData()}
+else{document.getElementById('loginSection').classList.remove('hidden');document.getElementById('mainContent').classList.add('hidden')}
 });
 </script>
 
 <script>
 const CERTIDOES=[
-{id:'matricula',nome:'Certidao de Matricula Atualizada'},
-{id:'onus',nome:'Certidao de Onus Reais'},
-{id:'iptu',nome:'Certidao Negativa de IPTU'},
-{id:'federal_pf',nome:'Certidao Negativa Federal - Pessoa Fisica'},
-{id:'federal_pj',nome:'Certidao Negativa Federal - Pessoa Juridica'},
-{id:'estadual',nome:'Certidao Negativa Estadual'},
-{id:'municipal',nome:'Certidao Negativa Municipal'},
-{id:'trabalhista',nome:'Certidao Negativa Trabalhista (TST)'},
-{id:'protesto',nome:'Certidao de Protesto'},
-{id:'acoes_civeis',nome:'Certidao de Acoes Civeis'},
-{id:'acoes_federais',nome:'Certidao de Acoes Federais'},
-{id:'acoes_trabalhistas',nome:'Certidao de Acoes Trabalhistas'},
-{id:'falencia',nome:'Certidao de Falencia e Concordata'},
-{id:'ambiental',nome:'Certidao Ambiental'},
-{id:'receita',nome:'Certidao de Regularidade do FGTS/Receita'}
+{id:'cnd_federal_pf',nome:'CND Federal - Pessoa Fisica',url:'https://solucoes.receita.fazenda.gov.br/servicos/certidaointernet/pf/emitir',tipo:'gratuita',desc:'Receita Federal - CPF'},
+{id:'cnd_federal_pj',nome:'CND Federal - Pessoa Juridica',url:'https://solucoes.receita.fazenda.gov.br/Servicos/certidaointernet/PJ/Emitir',tipo:'gratuita',desc:'Receita Federal - CNPJ'},
+{id:'cnd_trabalhista',nome:'CNDT - Certidao Negativa Trabalhista',url:'https://www.tst.jus.br/certidao',tipo:'gratuita',desc:'TST - por CPF ou CNPJ'},
+{id:'cnd_fgts',nome:'CRF - Regularidade FGTS',url:'https://consulta-crf.caixa.gov.br/consultacrf/pages/consultaEmpregador.jsf',tipo:'gratuita',desc:'Caixa Economica Federal'},
+{id:'cnd_justica_federal',nome:'Certidao Unificada Justica Federal',url:'https://certidao-unificada.cjf.jus.br/',tipo:'gratuita',desc:'CJF - Todos os TRFs'},
+{id:'cnd_estadual_pr',nome:'CND Estadual - Receita PR',url:'https://receita.pr.gov.br/certidoes',tipo:'gratuita',desc:'SEFA Parana - CPF ou CNPJ'},
+{id:'cnd_municipal',nome:'CND Municipal',url:'https://cnd-cidadao.curitiba.pr.gov.br',tipo:'gratuita',desc:'Prefeitura - varia por cidade'},
+{id:'acoes_trabalhistas',nome:'Certidao Acoes Trabalhistas',url:'https://pje.trt9.jus.br/certidoes/',tipo:'gratuita',desc:'TRT9 Parana'},
+{id:'matricula',nome:'Certidao de Matricula Atualizada',url:'https://www.registrodeimoveis.org.br/',tipo:'manual',desc:'Cartorio de Registro - PAGA'},
+{id:'onus',nome:'Certidao de Onus Reais',url:'https://www.registrodeimoveis.org.br/',tipo:'manual',desc:'Cartorio de Registro - PAGA'},
+{id:'protesto',nome:'Certidao de Protesto',url:'https://www.protestors.com.br/',tipo:'manual',desc:'Central de Protestos - consulta gratuita, certidao paga'},
+{id:'iptu',nome:'Certidao Negativa de IPTU',url:'https://cnd-cidadao.curitiba.pr.gov.br',tipo:'gratuita',desc:'Prefeitura Municipal'},
+{id:'falencia',nome:'Certidao de Falencia e Concordata',url:'https://www.tjpr.jus.br/certidoes',tipo:'manual',desc:'TJPR - pode ter custas'},
+{id:'acoes_civeis',nome:'Certidao de Acoes Civeis',url:'https://portal.tjpr.jus.br/projudi/',tipo:'gratuita',desc:'TJPR - Projudi'},
+{id:'ambiental',nome:'Certidao Ambiental / IAT',url:'https://www.iat.pr.gov.br/',tipo:'manual',desc:'Instituto Agua e Terra PR'}
 ];
 
 const ESTADOS={'AC':'Acre','AL':'Alagoas','AM':'Amazonas','AP':'Amapa','BA':'Bahia','CE':'Ceara','DF':'Distrito Federal','ES':'Espirito Santo','GO':'Goias','MA':'Maranhao','MG':'Minas Gerais','MS':'Mato Grosso do Sul','MT':'Mato Grosso','PA':'Para','PB':'Paraiba','PE':'Pernambuco','PI':'Piaui','PR':'Parana','RJ':'Rio de Janeiro','RN':'Rio Grande do Norte','RO':'Rondonia','RR':'Roraima','RS':'Rio Grande do Sul','SC':'Santa Catarina','SE':'Sergipe','SP':'Sao Paulo','TO':'Tocantins'};
-
-function initCertidoes(){
-const grid=document.getElementById('certidoesGrid');
-grid.innerHTML='';
-CERTIDOES.forEach(c=>{
-const div=document.createElement('div');
-div.className='certidao-item';
-div.innerHTML=`<input type="checkbox" class="cert-check" value="${c.id}" checked><span>${c.nome}</span><span class="status-badge status-pending" id="status-${c.id}">Pendente</span>`;
-grid.appendChild(div);
-});
-}
-
 function initEstados(){
-const sel=document.getElementById('estado');
-Object.entries(ESTADOS).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([uf,nome])=>{
-const opt=document.createElement('option');
-opt.value=uf;opt.textContent=nome;
-sel.appendChild(opt);
+const s=document.getElementById('estado');
+Object.entries(ESTADOS).sort((a,b)=>a[1].localeCompare(b[1])).forEach(([uf,n])=>{
+const o=document.createElement('option');o.value=uf;o.textContent=n;s.appendChild(o);
 });
 }
-
 function carregarCidades(){
 const uf=document.getElementById('estado').value;
-const sel=document.getElementById('cidade');
-sel.innerHTML='<option value="">Carregando...</option>';
-if(!uf){sel.innerHTML='<option value="">Selecione a cidade</option>';return}
-fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
-.then(r=>r.json()).then(data=>{
-sel.innerHTML='<option value="">Selecione a cidade</option>';
-data.sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(m=>{
-const opt=document.createElement('option');
-opt.value=m.nome;opt.textContent=m.nome;
-sel.appendChild(opt);
+const s=document.getElementById('cidade');
+s.innerHTML='<option value="">Carregando...</option>';
+if(!uf){s.innerHTML='<option value="">Selecione a cidade</option>';return}
+fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados/'+uf+'/municipios')
+.then(r=>r.json()).then(d=>{
+s.innerHTML='<option value="">Selecione a cidade</option>';
+d.sort((a,b)=>a.nome.localeCompare(b.nome)).forEach(m=>{
+const o=document.createElement('option');o.value=m.nome;o.textContent=m.nome;s.appendChild(o);
 });
-}).catch(()=>{sel.innerHTML='<option value="">Erro ao carregar</option>'});
+}).catch(()=>{s.innerHTML='<option value="">Erro</option>'});
 }
 window.carregarCidades=carregarCidades;
 
-function toggleAll(){
-const checked=document.getElementById('selectAll').checked;
-document.querySelectorAll('.cert-check').forEach(cb=>{cb.checked=checked});
+function checkSavedData(){
+const saved=localStorage.getItem('certDados');
+if(saved){
+const d=JSON.parse(saved);
+document.getElementById('savedDataSection').classList.remove('hidden');
+document.getElementById('formSection').classList.add('hidden');
+document.getElementById('certidoesSection').classList.remove('hidden');
+document.getElementById('savedDataDisplay').innerHTML=
+'Nome: '+d.nome+'<br>CPF: '+d.cpf+'<br>Email: '+d.email+'<br>Tel: '+d.tel+'<br>Estado: '+d.estado+' - Cidade: '+d.cidade;
+initCertidoes();
+}else{
+document.getElementById('savedDataSection').classList.add('hidden');
+document.getElementById('formSection').classList.remove('hidden');
+document.getElementById('certidoesSection').classList.add('hidden');
 }
-window.toggleAll=toggleAll;
+}
+function editarDados(){
+document.getElementById('savedDataSection').classList.add('hidden');
+document.getElementById('formSection').classList.remove('hidden');
+document.getElementById('certidoesSection').classList.add('hidden');
+const d=JSON.parse(localStorage.getItem('certDados')||'{}');
+if(d.nome)document.getElementById('nomeComprador').value=d.nome;
+if(d.cpf)document.getElementById('cpfComprador').value=d.cpf;
+if(d.cnpj)document.getElementById('cnpjComprador').value=d.cnpj;
+if(d.email)document.getElementById('emailComprador').value=d.email;
+if(d.tel)document.getElementById('telComprador').value=d.tel;
+if(d.ig)document.getElementById('igComprador').value=d.ig;
+if(d.nomeV)document.getElementById('nomeVendedor').value=d.nomeV;
+if(d.cpfV)document.getElementById('cpfVendedor').value=d.cpfV;
+}
+window.editarDados=editarDados;
 
-async function gerarCertidoes(){
+function salvarDados(){
+const nome=document.getElementById('nomeComprador').value;
+const cpf=document.getElementById('cpfComprador').value;
+const email=document.getElementById('emailComprador').value;
+const tel=document.getElementById('telComprador').value;
 const estado=document.getElementById('estado').value;
 const cidade=document.getElementById('cidade').value;
-const matricula=document.getElementById('matricula').value;
-const nomeC=document.getElementById('nomeComprador').value;
-const cpfC=document.getElementById('cpfComprador').value;
-const emailC=document.getElementById('emailComprador').value;
-const telC=document.getElementById('telComprador').value;
-const nomeV=document.getElementById('nomeVendedor').value;
-const cpfV=document.getElementById('cpfVendedor').value;
+if(!nome||!cpf||!email||!tel||!estado||!cidade){alert('Preencha os campos obrigatorios: Nome, CPF, Email, Telefone, Estado e Cidade');return}
+const dados={nome:nome,cpf:cpf,cnpj:document.getElementById('cnpjComprador').value,email:email,tel:tel,ig:document.getElementById('igComprador').value,estado:estado,cidade:cidade,matricula:document.getElementById('matricula').value,nomeV:document.getElementById('nomeVendedor').value,cpfV:document.getElementById('cpfVendedor').value};
+localStorage.setItem('certDados',JSON.stringify(dados));
+enviarGoogleForms(dados);
+checkSavedData();
+}
+window.salvarDados=salvarDados;
 
-if(!estado||!cidade||!nomeC||!cpfC||!emailC){
-alert('Preencha todos os campos obrigatorios: Estado, Cidade, Nome, CPF e Email do comprador.');
-return;
+function initCertidoes(){
+const list=document.getElementById('certidoesList');
+list.innerHTML='';
+CERTIDOES.forEach(c=>{
+const div=document.createElement('div');div.className='cert-item';
+const tipoClass=c.tipo==='gratuita'?'type-gratuita':'type-manual';
+const tipoLabel=c.tipo==='gratuita'?'GRATUITA':'MANUAL/PAGA';
+div.innerHTML='<div class="cert-info"><input type="checkbox" class="cert-check" value="'+c.id+'" '+(c.tipo==='gratuita'?'checked':'')+' id="chk-'+c.id+'"><div><span class="cert-name">'+c.nome+'</span><br><small style="color:#888">'+c.desc+'</small></div></div><span class="cert-type '+tipoClass+'">'+tipoLabel+'</span><span class="status-badge status-pending" id="st-'+c.id+'">Pendente</span>';
+list.appendChild(div);
+});
 }
 
+async function gerarCertidoes(){
 const selecionadas=Array.from(document.querySelectorAll('.cert-check:checked')).map(cb=>cb.value);
-if(selecionadas.length===0){alert('Selecione pelo menos uma certidao.');return}
-
-const btn=document.getElementById('btnGerar');
-btn.disabled=true;btn.textContent='Gerando...';
-
-const progSection=document.getElementById('progressSection');
-progSection.style.display='block';
-const progFill=document.getElementById('progressFill');
-const progText=document.getElementById('progressText');
-const progLog=document.getElementById('progressLog');
-progLog.innerHTML='';
-
+if(selecionadas.length===0){alert('Selecione pelo menos uma certidao');return}
+const btn=document.getElementById('btnGerar');btn.disabled=true;btn.textContent='Abrindo...';
+const progS=document.getElementById('progressSection');progS.style.display='block';
+const pf=document.getElementById('progressFill');
+const pt=document.getElementById('progressText');
+const pl=document.getElementById('progressLog');pl.innerHTML='';
 const resultados=[];
 for(let i=0;i<selecionadas.length;i++){
-const certId=selecionadas[i];
-const cert=CERTIDOES.find(c=>c.id===certId);
+const cid=selecionadas[i];
+const cert=CERTIDOES.find(c=>c.id===cid);
 const pct=Math.round(((i+1)/selecionadas.length)*100);
-progFill.style.width=pct+'%';
-progText.textContent=`Emitindo: ${cert.nome} (${i+1}/${selecionadas.length})`;
-
-await new Promise(r=>setTimeout(r,800+Math.random()*1200));
-
-const sucesso=Math.random()>0.05;
-const statusEl=document.getElementById('status-'+certId);
-if(sucesso){
-statusEl.className='status-badge status-success';statusEl.textContent='Emitida';
-resultados.push({cert:cert,status:'success'});
-progLog.innerHTML+=`<div style="color:#4caf50;font-size:0.85em">OK ${cert.nome}</div>`;
+pf.style.width=pct+'%';
+pt.textContent='Abrindo: '+cert.nome+' ('+(i+1)+'/'+selecionadas.length+')';
+window.open(cert.url,'_blank');
+const stEl=document.getElementById('st-'+cid);
+if(cert.tipo==='gratuita'){
+stEl.className='status-badge status-ok';stEl.textContent='Aberto';
+resultados.push({cert:cert,status:'aberto'});
+pl.innerHTML+='<div style="color:#4caf50;font-size:0.85em">&#10003; '+cert.nome+' - site aberto</div>';
 }else{
-statusEl.className='status-badge status-error';statusEl.textContent='Erro';
-resultados.push({cert:cert,status:'error'});
-progLog.innerHTML+=`<div style="color:#f44336;font-size:0.85em">ERRO ${cert.nome}</div>`;
+stEl.className='status-badge status-aberto';stEl.textContent='Link aberto';
+resultados.push({cert:cert,status:'manual'});
+pl.innerHTML+='<div style="color:#f0a030;font-size:0.85em">&#9889; '+cert.nome+' - aberto para emissao manual</div>';
 }
+await new Promise(r=>setTimeout(r,1500));
 }
-
-progText.textContent='Concluido!';
-progFill.style.width='100%';
-
-// Gerar checklist
-const resSection=document.getElementById('resultadoSection');
-resSection.style.display='block';
-const checklistEl=document.getElementById('checklist');
-checklistEl.innerHTML='';
-let okCount=0;
+pt.textContent='Concluido! Verifique as abas abertas no navegador.';
+pf.style.width='100%';
+// Checklist
+const rs=document.getElementById('resultadoSection');rs.style.display='block';
+const cl=document.getElementById('checklist');cl.innerHTML='';
+let gratCount=0;let manCount=0;
 resultados.forEach(r=>{
-const icon=r.status==='success'?'&#9989;':'&#10060;';
-const statusTxt=r.status==='success'?'Emitida':'Erro';
-if(r.status==='success')okCount++;
-checklistEl.innerHTML+=`<div class="checklist-item"><span class="icon">${icon}</span><span>${r.cert.nome}</span><span class="status-badge status-${r.status==='success'?'success':'error'}">${statusTxt}</span></div>`;
+const icon=r.status==='aberto'?'&#9989;':'&#9889;';
+const txt=r.status==='aberto'?'Site aberto - emita com CPF/CNPJ':'Link aberto - emissao manual/paga';
+if(r.status==='aberto')gratCount++;else manCount++;
+cl.innerHTML+='<div class="checklist-item"><span>'+icon+'</span><span>'+r.cert.nome+'</span><small style="color:#aaa"> - '+txt+'</small></div>';
 });
-document.getElementById('resultadoResumo').textContent=`${okCount} de ${resultados.length} certidoes emitidas com sucesso!`;
-
-// Enviar para Google Forms
-const formData={
-nomeComprador:nomeC,cpfComprador:cpfC,email:emailC,telefone:telC,
-nomeVendedor:nomeV,cpfVendedor:cpfV,estado:estado,cidade:cidade,
-matricula:matricula,certidoes:resultados.map(r=>r.cert.nome+': '+r.status).join(', '),
-data:new Date().toLocaleString('pt-BR')
-};
-enviarGoogleForms(formData);
-
-// Enviar email via EmailJS
-enviarEmail(formData,resultados);
-
-btn.disabled=false;btn.textContent='Gerar Certidoes Selecionadas';
+document.getElementById('resultadoResumo').textContent=gratCount+' certidoes gratuitas abertas, '+manCount+' manuais/pagas abertas. Verifique cada aba!';
+btn.disabled=false;btn.textContent='Abrir Certidoes nos Sites Oficiais';
+window._lastResultados=resultados;
 }
 window.gerarCertidoes=gerarCertidoes;
 
-function enviarGoogleForms(data){
-const formUrl='https://docs.google.com/forms/d/e/1FAIpQLSd_2lh5SANqXTHdSXARNFfBnVRI1ehJo8eG46jpMse7YeBiEA/formResponse';
-const params=new URLSearchParams();
-params.append('entry.1000000',data.nomeComprador);
-params.append('entry.1000001',data.cpfComprador);
-params.append('entry.1000002',data.email);
-params.append('entry.1000003',data.telefone);
-params.append('entry.1000004',data.estado+' - '+data.cidade);
-params.append('entry.1000005',data.certidoes);
-params.append('entry.1000006',data.data);
-fetch(formUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:params.toString()});
+function enviarGoogleForms(d){
+const url='https://docs.google.com/forms/d/e/1FAIpQLSd_2lh5SANqXTHdSXARNFfBnVRI1ehJo8eG46jpMse7YeBiEA/formResponse';
+const p=new URLSearchParams();
+p.append('entry.619622057',d.nome);
+p.append('entry.711138095',d.cpf);
+p.append('entry.114490874',d.cnpj||'');
+p.append('entry.639669299',d.ig||'');
+p.append('entry.917246947',d.tel);
+p.append('entry.2114387371',d.estado);
+p.append('entry.986527802',d.cidade);
+p.append('entry.1488039562','Site Certidoes - '+new Date().toLocaleString('pt-BR'));
+p.append('emailAddress',d.email);
+fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()}).catch(()=>{});
 }
 
-function enviarEmail(data,resultados){
-const certList=resultados.map(r=>(r.status==='success'?'[OK]':'[ERRO]')+' '+r.cert.nome).join('\n');
-const subject=encodeURIComponent('Certidoes Emitidas - '+data.nomeComprador);
-const body=encodeURIComponent(`Prezado(a) ${data.nomeComprador},\n\nSuas certidoes foram processadas:\n\n${certList}\n\nDados:\nEstado: ${data.estado}\nCidade: ${data.cidade}\nMatricula: ${data.matricula}\n\nEm caso de duvidas, entre em contato:\nWhatsApp: (41) 98421-6639\nSite: https://douglasvilar.com.br\n\nDouglas Vilar Advogados`);
-const mailtoLink=`mailto:${data.email}?subject=${subject}&body=${body}`;
-window.open(mailtoLink,'_blank');
+function enviarEmailResumo(){
+const d=JSON.parse(localStorage.getItem('certDados')||'{}');
+if(!d.email){alert('Nenhum email cadastrado');return}
+const res=window._lastResultados||[];
+let body='Prezado(a) '+d.nome+',%0A%0ASegue o resumo das certidoes processadas:%0A%0A';
+res.forEach(r=>{body+=(r.status==='aberto'?'[GRATUITA]':'[MANUAL/PAGA]')+' '+r.cert.nome+' - '+r.cert.url+'%0A'});
+body+='%0ADados:%0AEstado: '+d.estado+'%0ACidade: '+d.cidade+'%0ACPF: '+d.cpf+'%0A%0AEm caso de duvidas:%0AWhatsApp: (41) 98421-6639%0Ahttps://douglasvilar.com.br%0A%0ADouglas Vilar Advogados - OAB/PR 47.278';
+window.open('mailto:'+d.email+'?subject=Certidoes Imobiliarias - '+d.nome+'&body='+body,'_blank');
 }
+window.enviarEmailResumo=enviarEmailResumo;
 
-// Init
-initCertidoes();
 initEstados();
 </script>
 </body>
