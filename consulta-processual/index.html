@@ -678,7 +678,7 @@ footer .api-note {
    CONSULTA PROCESSUAL INTELIGENTE
    ============================================================ */
 
-const CGI_BIN = '__CGI_BIN__';
+const DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';     const DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
 
 /* ========== TRIBUNAL MAP ========== */
 // Process number format: NNNNNNN-DD.AAAA.J.TR.OOOO
@@ -785,15 +785,15 @@ function getEndpointFromProcessNumber(numero) {
 
 /* ========== API CALL (via proxy) ========== */
 async function queryDataJud(endpoint, body) {
-  const url = `${CGI_BIN}/datajud.py?endpoint=${encodeURIComponent(endpoint)}`;
+  const url = `${DATAJUD_BASE}/${endpoint}/_search`;
   const resp = await fetch(url, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
     body: JSON.stringify(body)
   });
   const data = await resp.json();
   if (data.error) {
-    throw new Error(data.error + (data.detail ? ': ' + data.detail.substring(0, 150) : ''));
+    throw new Error(data.error.reason || JSON.stringify(data.error).substring(0, 150));
   }
   return data;
 }
