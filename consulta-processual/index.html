@@ -843,7 +843,7 @@ async function searchByNumero(e) {
 
   try {
     const data = await queryDataJud(endpoint, {
-      query: { match: { numeroProcesso: clean } }
+      query: { match: { numeroProcesso: raw } }
     });
 
     const hits = (data.hits && data.hits.hits) || [];
