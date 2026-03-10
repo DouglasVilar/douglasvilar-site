@@ -168,129 +168,91 @@ const DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';
 const DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
 
 /* ---------- Lista de proxies CORS com fallback automático ---------- */
-const CORS_PROXIES = [
-  { name: 'corsproxy.io',  fmt: url => 'https://corsproxy.io/?' + encodeURIComponent(url) },
-  { name: 'cors.eu.org',   fmt: url => 'https://cors.eu.org/' + url },
-  { name: 'api.allorigins', fmt: url => 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url) },
-  { name: 'corsproxy.org', fmt: url => 'https://corsproxy.org/?' + encodeURIComponent(url) },
-];
-let currentProxyIndex = 0;
+/* ---------- Proxy CORS (cors.eu.org + application/x-ndjson) ---------- */
+/* Elasticsearch aceita x-ndjson e cors.eu.org preserva esse Content-Type */
 
-const TRIBUNAL_MAP_FULL = {
-  '3.00':'api_publica_stj',
-  '4.01':'api_publica_trf1','4.02':'api_publica_trf2','4.03':'api_publica_trf3',
-  '4.04':'api_publica_trf4','4.05':'api_publica_trf5','4.06':'api_publica_trf6',
-  '5.00':'api_publica_tst',
-  '5.01':'api_publica_trt1','5.02':'api_publica_trt2','5.03':'api_publica_trt3',
-  '5.04':'api_publica_trt4','5.05':'api_publica_trt5','5.06':'api_publica_trt6',
-  '5.07':'api_publica_trt7','5.08':'api_publica_trt8','5.09':'api_publica_trt9',
-  '5.10':'api_publica_trt10','5.11':'api_publica_trt11','5.12':'api_publica_trt12',
-  '5.13':'api_publica_trt13','5.14':'api_publica_trt14','5.15':'api_publica_trt15',
-  '5.16':'api_publica_trt16','5.17':'api_publica_trt17','5.18':'api_publica_trt18',
-  '5.19':'api_publica_trt19','5.20':'api_publica_trt20','5.21':'api_publica_trt21',
-  '5.22':'api_publica_trt22','5.23':'api_publica_trt23','5.24':'api_publica_trt24',
-  '6.00':'api_publica_tse',
-  '6.01':'api_publica_tre-ac','6.02':'api_publica_tre-al','6.03':'api_publica_tre-ap',
-  '6.04':'api_publica_tre-am','6.05':'api_publica_tre-ba','6.06':'api_publica_tre-ce',
-  '6.07':'api_publica_tre-dft','6.08':'api_publica_tre-es','6.09':'api_publica_tre-go',
-  '6.10':'api_publica_tre-ma','6.11':'api_publica_tre-mt','6.12':'api_publica_tre-ms',
-  '6.13':'api_publica_tre-mg','6.14':'api_publica_tre-pa','6.15':'api_publica_tre-pb',
-  '6.16':'api_publica_tre-pr','6.17':'api_publica_tre-pe','6.18':'api_publica_tre-pi',
-  '6.19':'api_publica_tre-rj','6.20':'api_publica_tre-rn','6.21':'api_publica_tre-rs',
-  '6.22':'api_publica_tre-ro','6.23':'api_publica_tre-rr','6.24':'api_publica_tre-sc',
-  '6.25':'api_publica_tre-se','6.26':'api_publica_tre-sp','6.27':'api_publica_tre-to',
-  '7.00':'api_publica_stm',
-  '8.01':'api_publica_tjac','8.02':'api_publica_tjal','8.03':'api_publica_tjap',
-  '8.04':'api_publica_tjam','8.05':'api_publica_tjba','8.06':'api_publica_tjce',
-  '8.07':'api_publica_tjdft','8.08':'api_publica_tjes','8.09':'api_publica_tjgo',
-  '8.10':'api_publica_tjma','8.11':'api_publica_tjmt','8.12':'api_publica_tjms',
-  '8.13':'api_publica_tjmg','8.14':'api_publica_tjpa','8.15':'api_publica_tjpb',
-  '8.16':'api_publica_tjpr','8.17':'api_publica_tjpe','8.18':'api_publica_tjpi',
-  '8.19':'api_publica_tjrj','8.20':'api_publica_tjrn','8.21':'api_publica_tjrs',
-  '8.22':'api_publica_tjro','8.23':'api_publica_tjrr','8.24':'api_publica_tjsc',
-  '8.25':'api_publica_tjse','8.26':'api_publica_tjsp','8.27':'api_publica_tjto',
-  '9.13':'api_publica_tjmmg','9.21':'api_publica_tjmrs','9.26':'api_publica_tjmsp'
-};
+const CORS_PROXY = 'https://cors.eu.org/';
 
-const TRIBUNAL_NAMES = {};
-Object.entries(TRIBUNAL_MAP_FULL).forEach(([key, endpoint]) => {
-  TRIBUNAL_NAMES[endpoint] = endpoint.replace('api_publica_','').toUpperCase();
-});
-
-/* ---------- Máscara de input ---------- */
-const numeroInput = document.getElementById('input-numero');
-numeroInput.addEventListener('input', function(e) {
-  let v = e.target.value.replace(/\D/g, '');
-  if (v.length > 20) v = v.slice(0, 20);
-  if      (v.length > 15) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{1,4})/, '$1-$2.$3.$4.$5.$6');
-  else if (v.length > 13) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{1,2})/, '$1-$2.$3.$4.$5');
-  else if (v.length > 12) v = v.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})/, '$1-$2.$3.$4');
-  else if (v.length > 9)  v = v.replace(/^(\d{7})(\d{2})(\d{1,4})/, '$1-$2.$3');
-  else if (v.length > 7)  v = v.replace(/^(\d{7})(\d{1,2})/, '$1-$2');
-  e.target.value = v;
-});
-
-function getEndpointFromProcessNumber(numero) {
-  const clean = numero.replace(/\D/g, '');
-  if (clean.length !== 20) return null;
-  const J  = clean.charAt(13);
-  const TR = clean.substring(14, 16);
-  return TRIBUNAL_MAP_FULL[J + '.' + TR] || null;
-}
-
-/* ---------- Consulta DataJud com fallback de proxies CORS ---------- */
 async function queryDataJud(endpoint, body) {
   const targetUrl = DATAJUD_BASE + '/' + endpoint + '/_search';
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'APIKey ' + DATAJUD_API_KEY
-    },
-    body: JSON.stringify(body)
-  };
+  const bodyStr = JSON.stringify(body);
   let lastError = null;
 
-  /* Tenta cada proxy em sequência; começa pelo último que funcionou */
-  for (let attempt = 0; attempt < CORS_PROXIES.length; attempt++) {
-    const idx = (currentProxyIndex + attempt) % CORS_PROXIES.length;
-    const proxy = CORS_PROXIES[idx];
-    const proxyUrl = proxy.fmt(targetUrl);
-    try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 15000);
-      const resp = await fetch(proxyUrl, { ...options, signal: controller.signal });
-      clearTimeout(timeout);
-      if (!resp.ok) {
-        const errText = await resp.text().catch(() => '');
-        throw new Error('HTTP ' + resp.status + ' via ' + proxy.name + (errText ? ': ' + errText.substring(0,120) : ''));
-      }
-      const data = await resp.json();
-      if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
-      currentProxyIndex = idx;   /* lembra o proxy que funcionou */
-      return data;
-    } catch (err) {
-      lastError = err;
-      console.warn('[DataJud] Proxy ' + proxy.name + ' falhou:', err.message);
+  /* ---- Tentativa 1: cors.eu.org com Content-Type x-ndjson (funciona!) ---- */
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    const resp = await fetch(CORS_PROXY + targetUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-ndjson',
+        'Authorization': 'APIKey ' + DATAJUD_API_KEY
+      },
+      body: bodyStr,
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    if (!resp.ok) {
+      const errText = await resp.text().catch(() => '');
+      throw new Error('HTTP ' + resp.status + ' via cors.eu.org' + (errText ? ': ' + errText.substring(0,120) : ''));
     }
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
+    console.log('[DataJud] Sucesso via cors.eu.org');
+    return data;
+  } catch (err) {
+    lastError = err;
+    console.warn('[DataJud] cors.eu.org falhou:', err.message);
   }
 
-  /* Tentativa direta (sem proxy) — funciona se a API tiver CORS habilitado */
+  /* ---- Tentativa 2: corsproxy.io (fallback caso volte ao ar) ---- */
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
-    const resp = await fetch(targetUrl, { ...options, signal: controller.signal });
+    const resp = await fetch('https://corsproxy.io/?' + encodeURIComponent(targetUrl), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'APIKey ' + DATAJUD_API_KEY
+      },
+      body: bodyStr,
+      signal: controller.signal
+    });
     clearTimeout(timeout);
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const data = await resp.json();
     if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
+    console.log('[DataJud] Sucesso via corsproxy.io');
     return data;
-  } catch (directErr) {
-    console.warn('[DataJud] Chamada direta falhou:', directErr.message);
+  } catch (err) {
+    console.warn('[DataJud] corsproxy.io falhou:', err.message);
+  }
+
+  /* ---- Tentativa 3: chamada direta (caso DataJud habilite CORS) ---- */
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+    const resp = await fetch(targetUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'APIKey ' + DATAJUD_API_KEY
+      },
+      body: bodyStr,
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
+    console.log('[DataJud] Sucesso via chamada direta');
+    return data;
+  } catch (err) {
+    console.warn('[DataJud] Chamada direta falhou:', err.message);
   }
 
   throw new Error(
-    'Todos os servidores proxy est\u00e3o indispon\u00edveis. Tente novamente em alguns minutos. ' +
+    'N\u00e3o foi poss\u00edvel conectar ao DataJud. Tente novamente em alguns minutos. ' +
     '(\u00daltimo erro: ' + (lastError ? lastError.message : 'desconhecido') + ')'
   );
 }
