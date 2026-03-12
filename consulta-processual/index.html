@@ -375,7 +375,7 @@ function buildProcessCard(proc, idx) {
   var grau = proc.grau || '-';
   var formato = (proc.formato && proc.formato.nome) ? proc.formato.nome : (proc.formato || '-');
   var movs = proc.movimentos || proc.movimento || [];
-  var sorted = [].concat(movs).sort(function(a,b){return (a.dataHora||'').localeCompare(b.dataHora||'');});
+  var sorted = [].concat(movs).sort(function(a,b){return (b.dataHora||'').localeCompare(a.dataHora||'');});
   var now = new Date();
   var movsHtml = '<p style="color:var(--text-muted);font-size:0.85rem;">Nenhum movimento registrado.</p>';
   if (sorted.length > 0) {
@@ -459,7 +459,7 @@ function generatePDF(idx) {
     var lines=doc.splitTextToSize(String(f[1]),cw-40);
     doc.text(lines,mg+40,y); y+=lines.length*5+3;
   });
-  var movs=[].concat(p.movimentos||p.movimento||[]).sort(function(a,b){return(a.dataHora||'').localeCompare(b.dataHora||'');});
+  var movs=[].concat(p.movimentos||p.movimento||[]).sort(function(a,b){return(b.dataHora||'').localeCompare(a.dataHora||'');});
   if(movs.length>0){
     y+=6; if(y>260){doc.addPage();y=mg;}
     doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(26,35,126);
