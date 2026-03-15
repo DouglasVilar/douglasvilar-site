@@ -13,14 +13,14 @@
 html { font-size: 16px; -webkit-font-smoothing: antialiased; }
 body { font-family: 'Inter', system-ui, sans-serif; background: #f5f5f5; color: #1a1a2e; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
 :root {
---navy: #1a237e; --navy-dark: #0d1452; --navy-light: #283593;
---gold: #c9a84c; --gold-light: #dfc06a; --gold-dark: #a88a32;
---white: #ffffff; --bg: #f5f5f5; --bg-card: #ffffff;
---text-primary: #1a1a2e; --text-secondary: #4a4a6a; --text-muted: #7a7a9a;
---border: rgba(26,35,126,0.1); --border-strong: rgba(26,35,126,0.2);
---shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
---radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
---ease: cubic-bezier(0.16,1,0.3,1); --transition: 180ms var(--ease);
+  --navy: #1a237e; --navy-dark: #0d1452; --navy-light: #283593;
+  --gold: #c9a84c; --gold-light: #dfc06a; --gold-dark: #a88a32;
+  --white: #ffffff; --bg: #f5f5f5; --bg-card: #ffffff;
+  --text-primary: #1a1a2e; --text-secondary: #4a4a6a; --text-muted: #7a7a9a;
+  --border: rgba(26,35,126,0.1); --border-strong: rgba(26,35,126,0.2);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+  --ease: cubic-bezier(0.16,1,0.3,1); --transition: 180ms var(--ease);
 }
 header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); padding: clamp(24px,4vw,40px) clamp(16px,4vw,40px); text-align: center; position: relative; overflow: hidden; }
 header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
@@ -97,49 +97,46 @@ footer .api-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top
 .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--navy); color: var(--white); padding: 12px 24px; border-radius: var(--radius-md); font-size: 0.88rem; font-weight: 500; box-shadow: var(--shadow-lg); z-index: 1000; opacity: 0; transition: all 300ms var(--ease); pointer-events: none; }
 .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 @media (max-width: 600px) {
-.card-header { padding: 16px; gap: 12px; }
-.card-body-inner { padding: 0 16px 16px; }
-.detail-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-.card-actions { flex-direction: column; }
-.btn-action { justify-content: center; }
+  .card-header { padding: 16px; gap: 12px; }
+  .card-body-inner { padding: 0 16px 16px; }
+  .detail-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card-actions { flex-direction: column; }
+  .btn-action { justify-content: center; }
 }
 </style>
 </head>
 <body>
-<a href="#main-content" style="position:absolute;top:-40px;left:0;background:var(--gold);color:#000;padding:8px 16px;z-index:100;font-size:0.85rem;">Pular para o conteudo</a>
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;">Pular para o conteudo</a>
 <header>
-<h1><span>Douglas Vilar</span> &mdash; Consulta Processual Inteligente</h1>
-<p>Consulte processos judiciais diretamente na base do DataJud/CNJ</p>
+  <h1><span>Douglas Vilar</span> &mdash; Consulta Processual Inteligente</h1>
+  <p>Consulte processos judiciais diretamente na base do DataJud/CNJ</p>
 </header>
 <main id="main-content">
-<div class="search-section">
-<form id="form-numero" class="search-form">
-<div class="form-group">
-<label for="input-numero">Numero do Processo</label>
-<input type="text" id="input-numero" placeholder="0000000-00.0000.0.00.0000" maxlength="25" autocomplete="off" inputmode="numeric">
-</div>
-<div id="error-numero" class="error-msg"></div>
-<button type="submit" id="btn-numero" class="btn-search">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-Consultar Processo
-</button>
-</form>
-</div>
-<div id="loading" class="loading-container">
-<div class="spinner"></div>
-<div id="loading-text" class="loading-text">Consultando DataJud...</div>
-</div>
-<section id="results-section" class="results-section">
-<div class="results-header">
-<h2>Resultados</h2>
-<span id="results-count" class="results-count"></span>
-</div>
-<div id="results-list"></div>
-</section>
+  <section class="search-section">
+    <form id="form-numero" class="search-form" autocomplete="off">
+      <div class="form-group">
+        <label for="input-numero">Numero do Processo</label>
+        <input type="text" id="input-numero" placeholder="0000000-00.0000.0.00.0000" maxlength="25" autocomplete="off" inputmode="numeric">
+        <div id="error-numero" class="error-msg"></div>
+      </div>
+      <button type="submit" id="btn-numero" class="btn-search">&#128269; Consultar Processo</button>
+    </form>
+  </section>
+  <div id="loading" class="loading-container">
+    <div class="spinner"></div>
+    <div id="loading-text" class="loading-text">Consultando DataJud...</div>
+  </div>
+  <section id="results-section" class="results-section">
+    <div class="results-header">
+      <h2>Resultados</h2>
+      <span id="results-count" class="results-count"></span>
+    </div>
+    <div id="results-list"></div>
+  </section>
 </main>
 <footer>
-<div>Desenvolvido por <strong>Douglas Vilar &mdash; Advocacia</strong> | Dados: DataJud/CNJ</div>
-<div class="api-note">API Publica do DataJud (api_publica_cnj@1.0.0)</div>
+  <div>Desenvolvido por <strong>Douglas Vilar &mdash; Advocacia</strong> | Dados: DataJud/CNJ</div>
+  <div class="api-note">API Publica do DataJud (api_publica_cnj@1.0.0)</div>
 </footer>
 <div id="toast" class="toast"></div>
 <script>
@@ -147,72 +144,113 @@ var DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';
 var DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
 var CORS_PROXIES = ['https://cors.eu.org/', 'https://corsproxy.io/?'];
 
+/* Mapa CNJ: chave = J.TT (J=justica, TT=tribunal do numero CNJ) */
 var TRIBUNAL_MAP = {
-'5':'api_publica_tjsp','8.26':'api_publica_tjsp',
-'8.16':'api_publica_tjpr','8.19':'api_publica_tjrj',
-'8.13':'api_publica_tjpb','8.06':'api_publica_tjce',
-'8.01':'api_publica_tjac','8.02':'api_publica_tjal',
-'8.03':'api_publica_tjap','8.04':'api_publica_tjam',
-'8.05':'api_publica_tjba','8.07':'api_publica_tjdft',
-'8.08':'api_publica_tjes','8.09':'api_publica_tjgo',
-'8.10':'api_publica_tjma','8.11':'api_publica_tjmt',
-'8.12':'api_publica_tjms','8.14':'api_publica_tjmg',
-'8.15':'api_publica_tjpa','8.17':'api_publica_tjpe',
-'8.18':'api_publica_tjpi','8.20':'api_publica_tjrn',
-'8.21':'api_publica_tjrs','8.22':'api_publica_tjro',
-'8.23':'api_publica_tjrr','8.24':'api_publica_tjsc',
-'8.25':'api_publica_tjse','8.27':'api_publica_tjto',
-'6.00':'api_publica_tst','6.01':'api_publica_trt1',
-'6.02':'api_publica_trt2','6.03':'api_publica_trt3',
-'6.04':'api_publica_trt4','6.05':'api_publica_trt5',
-'6.06':'api_publica_trt6','6.07':'api_publica_trt7',
-'6.08':'api_publica_trt8','6.09':'api_publica_trt9',
-'6.10':'api_publica_trt10','6.11':'api_publica_trt11',
-'6.12':'api_publica_trt12','6.13':'api_publica_trt13',
-'6.14':'api_publica_trt14','6.15':'api_publica_trt15',
-'6.16':'api_publica_trt16','6.17':'api_publica_trt17',
-'6.18':'api_publica_trt18','6.19':'api_publica_trt19',
-'6.20':'api_publica_trt20','6.21':'api_publica_trt21',
-'6.22':'api_publica_trt22','6.23':'api_publica_trt23',
-'6.24':'api_publica_trt24',
-'4.01':'api_publica_trf1','4.02':'api_publica_trf2',
-'4.03':'api_publica_trf3','4.04':'api_publica_trf4',
-'4.05':'api_publica_trf5','4.06':'api_publica_trf6',
-'2.00':'api_publica_stj','1.00':'api_publica_stf'
+  /* Tribunais Superiores */
+  '1.00':'api_publica_stf',
+  '2.00':'api_publica_stj',
+  '3.00':'api_publica_stm',
+  '5.00':'api_publica_tst',
+  '6.00':'api_publica_tse',
+  /* Justica Federal (J=5 no CNJ antigo, J=4 no atual) */
+  '4.01':'api_publica_trf1','4.02':'api_publica_trf2',
+  '4.03':'api_publica_trf3','4.04':'api_publica_trf4',
+  '4.05':'api_publica_trf5','4.06':'api_publica_trf6',
+  /* Justica do Trabalho (J=5 no CNJ) */
+  '5.01':'api_publica_trt1','5.02':'api_publica_trt2',
+  '5.03':'api_publica_trt3','5.04':'api_publica_trt4',
+  '5.05':'api_publica_trt5','5.06':'api_publica_trt6',
+  '5.07':'api_publica_trt7','5.08':'api_publica_trt8',
+  '5.09':'api_publica_trt9','5.10':'api_publica_trt10',
+  '5.11':'api_publica_trt11','5.12':'api_publica_trt12',
+  '5.13':'api_publica_trt13','5.14':'api_publica_trt14',
+  '5.15':'api_publica_trt15','5.16':'api_publica_trt16',
+  '5.17':'api_publica_trt17','5.18':'api_publica_trt18',
+  '5.19':'api_publica_trt19','5.20':'api_publica_trt20',
+  '5.21':'api_publica_trt21','5.22':'api_publica_trt22',
+  '5.23':'api_publica_trt23','5.24':'api_publica_trt24',
+  /* Justica Eleitoral (J=6 no CNJ) */
+  '6.01':'api_publica_tre-ac','6.02':'api_publica_tre-al',
+  '6.03':'api_publica_tre-ap','6.04':'api_publica_tre-am',
+  '6.05':'api_publica_tre-ba','6.06':'api_publica_tre-ce',
+  '6.07':'api_publica_tre-dft','6.08':'api_publica_tre-es',
+  '6.09':'api_publica_tre-go','6.10':'api_publica_tre-ma',
+  '6.11':'api_publica_tre-mt','6.12':'api_publica_tre-ms',
+  '6.13':'api_publica_tre-mg','6.14':'api_publica_tre-pa',
+  '6.15':'api_publica_tre-pb','6.16':'api_publica_tre-pr',
+  '6.17':'api_publica_tre-pe','6.18':'api_publica_tre-pi',
+  '6.19':'api_publica_tre-rj','6.20':'api_publica_tre-rn',
+  '6.21':'api_publica_tre-rs','6.22':'api_publica_tre-ro',
+  '6.23':'api_publica_tre-rr','6.24':'api_publica_tre-sc',
+  '6.25':'api_publica_tre-se','6.26':'api_publica_tre-sp',
+  '6.27':'api_publica_tre-to',
+  /* Justica Militar Estadual (J=9 no CNJ) */
+  '9.13':'api_publica_tjmmg','9.21':'api_publica_tjmrs',
+  '9.26':'api_publica_tjmsp',
+  /* Justica Estadual (J=8 no CNJ) */
+  '8.01':'api_publica_tjac','8.02':'api_publica_tjal',
+  '8.03':'api_publica_tjap','8.04':'api_publica_tjam',
+  '8.05':'api_publica_tjba','8.06':'api_publica_tjce',
+  '8.07':'api_publica_tjdft','8.08':'api_publica_tjes',
+  '8.09':'api_publica_tjgo','8.10':'api_publica_tjma',
+  '8.11':'api_publica_tjmt','8.12':'api_publica_tjms',
+  '8.13':'api_publica_tjpb','8.14':'api_publica_tjmg',
+  '8.15':'api_publica_tjpa','8.16':'api_publica_tjpr',
+  '8.17':'api_publica_tjpe','8.18':'api_publica_tjpi',
+  '8.19':'api_publica_tjrj','8.20':'api_publica_tjrn',
+  '8.21':'api_publica_tjrs','8.22':'api_publica_tjro',
+  '8.23':'api_publica_tjrr','8.24':'api_publica_tjsc',
+  '8.25':'api_publica_tjse','8.26':'api_publica_tjsp',
+  '8.27':'api_publica_tjto'
 };
 
 var TRIBUNAL_NAMES = {
-'api_publica_tjsp':'TJSP','api_publica_tjpr':'TJPR','api_publica_tjrj':'TJRJ',
-'api_publica_tjmg':'TJMG','api_publica_tjba':'TJBA','api_publica_tjce':'TJCE',
-'api_publica_tjdft':'TJDFT','api_publica_tjes':'TJES','api_publica_tjgo':'TJGO',
-'api_publica_tjma':'TJMA','api_publica_tjmt':'TJMT','api_publica_tjms':'TJMS',
-'api_publica_tjpa':'TJPA','api_publica_tjpb':'TJPB','api_publica_tjpe':'TJPE',
-'api_publica_tjpi':'TJPI','api_publica_tjrn':'TJRN','api_publica_tjrs':'TJRS',
-'api_publica_tjro':'TJRO','api_publica_tjrr':'TJRR','api_publica_tjsc':'TJSC',
-'api_publica_tjse':'TJSE','api_publica_tjto':'TJTO','api_publica_tjac':'TJAC',
-'api_publica_tjal':'TJAL','api_publica_tjam':'TJAM','api_publica_tjap':'TJAP',
-'api_publica_tst':'TST','api_publica_stj':'STJ','api_publica_stf':'STF',
-'api_publica_trf1':'TRF1','api_publica_trf2':'TRF2','api_publica_trf3':'TRF3',
-'api_publica_trf4':'TRF4','api_publica_trf5':'TRF5','api_publica_trf6':'TRF6',
-'api_publica_trt1':'TRT1','api_publica_trt2':'TRT2','api_publica_trt3':'TRT3',
-'api_publica_trt4':'TRT4','api_publica_trt5':'TRT5','api_publica_trt6':'TRT6',
-'api_publica_trt7':'TRT7','api_publica_trt8':'TRT8','api_publica_trt9':'TRT9',
-'api_publica_trt10':'TRT10','api_publica_trt11':'TRT11','api_publica_trt12':'TRT12',
-'api_publica_trt13':'TRT13','api_publica_trt14':'TRT14','api_publica_trt15':'TRT15',
-'api_publica_trt16':'TRT16','api_publica_trt17':'TRT17','api_publica_trt18':'TRT18',
-'api_publica_trt19':'TRT19','api_publica_trt20':'TRT20','api_publica_trt21':'TRT21',
-'api_publica_trt22':'TRT22','api_publica_trt23':'TRT23','api_publica_trt24':'TRT24'
+  'api_publica_stf':'STF','api_publica_stj':'STJ','api_publica_stm':'STM',
+  'api_publica_tst':'TST','api_publica_tse':'TSE',
+  'api_publica_tjsp':'TJSP','api_publica_tjpr':'TJPR','api_publica_tjrj':'TJRJ',
+  'api_publica_tjmg':'TJMG','api_publica_tjba':'TJBA','api_publica_tjce':'TJCE',
+  'api_publica_tjdft':'TJDFT','api_publica_tjes':'TJES','api_publica_tjgo':'TJGO',
+  'api_publica_tjma':'TJMA','api_publica_tjmt':'TJMT','api_publica_tjms':'TJMS',
+  'api_publica_tjpa':'TJPA','api_publica_tjpb':'TJPB','api_publica_tjpe':'TJPE',
+  'api_publica_tjpi':'TJPI','api_publica_tjrn':'TJRN','api_publica_tjrs':'TJRS',
+  'api_publica_tjro':'TJRO','api_publica_tjrr':'TJRR','api_publica_tjsc':'TJSC',
+  'api_publica_tjse':'TJSE','api_publica_tjto':'TJTO','api_publica_tjac':'TJAC',
+  'api_publica_tjal':'TJAL','api_publica_tjam':'TJAM','api_publica_tjap':'TJAP',
+  'api_publica_trf1':'TRF1','api_publica_trf2':'TRF2','api_publica_trf3':'TRF3',
+  'api_publica_trf4':'TRF4','api_publica_trf5':'TRF5','api_publica_trf6':'TRF6',
+  'api_publica_trt1':'TRT1','api_publica_trt2':'TRT2','api_publica_trt3':'TRT3',
+  'api_publica_trt4':'TRT4','api_publica_trt5':'TRT5','api_publica_trt6':'TRT6',
+  'api_publica_trt7':'TRT7','api_publica_trt8':'TRT8','api_publica_trt9':'TRT9',
+  'api_publica_trt10':'TRT10','api_publica_trt11':'TRT11','api_publica_trt12':'TRT12',
+  'api_publica_trt13':'TRT13','api_publica_trt14':'TRT14','api_publica_trt15':'TRT15',
+  'api_publica_trt16':'TRT16','api_publica_trt17':'TRT17','api_publica_trt18':'TRT18',
+  'api_publica_trt19':'TRT19','api_publica_trt20':'TRT20','api_publica_trt21':'TRT21',
+  'api_publica_trt22':'TRT22','api_publica_trt23':'TRT23','api_publica_trt24':'TRT24',
+  'api_publica_tre-ac':'TRE-AC','api_publica_tre-al':'TRE-AL','api_publica_tre-am':'TRE-AM',
+  'api_publica_tre-ap':'TRE-AP','api_publica_tre-ba':'TRE-BA','api_publica_tre-ce':'TRE-CE',
+  'api_publica_tre-dft':'TRE-DFT','api_publica_tre-es':'TRE-ES','api_publica_tre-go':'TRE-GO',
+  'api_publica_tre-ma':'TRE-MA','api_publica_tre-mg':'TRE-MG','api_publica_tre-ms':'TRE-MS',
+  'api_publica_tre-mt':'TRE-MT','api_publica_tre-pa':'TRE-PA','api_publica_tre-pb':'TRE-PB',
+  'api_publica_tre-pe':'TRE-PE','api_publica_tre-pi':'TRE-PI','api_publica_tre-pr':'TRE-PR',
+  'api_publica_tre-rj':'TRE-RJ','api_publica_tre-rn':'TRE-RN','api_publica_tre-ro':'TRE-RO',
+  'api_publica_tre-rr':'TRE-RR','api_publica_tre-rs':'TRE-RS','api_publica_tre-sc':'TRE-SC',
+  'api_publica_tre-se':'TRE-SE','api_publica_tre-sp':'TRE-SP','api_publica_tre-to':'TRE-TO',
+  'api_publica_tjmmg':'TJMMG','api_publica_tjmrs':'TJMRS','api_publica_tjmsp':'TJMSP'
 };
 
 function getEndpointFromProcessNumber(num) {
   var clean = num.replace(/\D/g, '');
   if (clean.length !== 20) return null;
+  /* Formato CNJ: NNNNNNN DD AAAA J TT OOOO */
+  /* Posicoes:     0-6    7-8 9-12 13 14-15 16-19 */
   var justica = clean.substring(13, 14);
   var tribunal = clean.substring(14, 16);
   var key = justica + '.' + tribunal;
   if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
+  /* Fallback: tenta sem zero a esquerda no tribunal */
   key = justica + '.' + tribunal.replace(/^0/, '');
   if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
+  /* Fallback: tribunal superior (TT=00) */
   key = justica + '.00';
   if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
   return null;
@@ -223,9 +261,7 @@ function queryDataJud(endpoint, body) {
   var bodyStr = JSON.stringify(body);
   var proxyIndex = 0;
   function tryProxy(resolve, reject) {
-    if (proxyIndex >= CORS_PROXIES.length) {
-      return tryDirect(resolve, reject);
-    }
+    if (proxyIndex >= CORS_PROXIES.length) { return tryDirect(resolve, reject); }
     var proxy = CORS_PROXIES[proxyIndex];
     var ct = (proxyIndex === 0) ? 'application/x-ndjson' : 'application/json';
     var controller = new AbortController();
@@ -233,8 +269,7 @@ function queryDataJud(endpoint, body) {
     fetch(proxy + targetUrl, {
       method: 'POST',
       headers: { 'Content-Type': ct, 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
-      body: bodyStr,
-      signal: controller.signal
+      body: bodyStr, signal: controller.signal
     }).then(function(resp) {
       clearTimeout(timeout);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
@@ -256,8 +291,7 @@ function queryDataJud(endpoint, body) {
     fetch(targetUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
-      body: bodyStr,
-      signal: controller.signal
+      body: bodyStr, signal: controller.signal
     }).then(function(resp) {
       clearTimeout(timeout);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
@@ -279,44 +313,23 @@ function showLoading(text) {
   document.getElementById('results-section').classList.remove('visible');
 }
 function hideLoading() { document.getElementById('loading').classList.remove('visible'); }
-function showError(id, msg) {
-  var el = document.getElementById(id);
-  el.textContent = msg;
-  el.classList.add('visible');
-}
-function clearError(id) {
-  var el = document.getElementById(id);
-  el.textContent = '';
-  el.classList.remove('visible');
-}
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('visible');
-  setTimeout(function() { t.classList.remove('visible'); }, 3000);
-}
+function showError(id, msg) { var el = document.getElementById(id); el.textContent = msg; el.classList.add('visible'); }
+function clearError(id) { var el = document.getElementById(id); el.textContent = ''; el.classList.remove('visible'); }
+function showToast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('visible'); setTimeout(function() { t.classList.remove('visible'); }, 3000); }
 
 function searchByNumber(e) {
   e.preventDefault();
   clearError('error-numero');
   var raw = document.getElementById('input-numero').value;
   var clean = raw.replace(/\D/g, '');
-  if (clean.length !== 20) {
-    showError('error-numero', 'O numero do processo deve conter exatamente 20 digitos.');
-    return;
-  }
+  if (clean.length !== 20) { showError('error-numero', 'O numero do processo deve conter exatamente 20 digitos.'); return; }
   var endpoint = getEndpointFromProcessNumber(raw);
-  if (!endpoint) {
-    showError('error-numero', 'Nao foi possivel identificar o tribunal a partir do numero informado.');
-    return;
-  }
+  if (!endpoint) { showError('error-numero', 'Nao foi possivel identificar o tribunal a partir do numero informado.'); return; }
   var btn = document.getElementById('btn-numero');
   btn.disabled = true;
   var tribunalLabel = (TRIBUNAL_NAMES[endpoint] || endpoint).toUpperCase();
   showLoading('Consultando ' + tribunalLabel + '...');
-  queryDataJud(endpoint, {
-    query: { match: { numeroProcesso: clean } },
-    size: 10
+  queryDataJud(endpoint, { query: { match: { numeroProcesso: clean } }, size: 10
   }).then(function(data) {
     var hits = (data.hits && data.hits.hits) || [];
     displayResults(hits.map(function(h) {
@@ -327,14 +340,10 @@ function searchByNumber(e) {
     }));
   }).catch(function(err) {
     showError('error-numero', 'Erro ao consultar: ' + err.message);
-  }).finally(function() {
-    hideLoading();
-    btn.disabled = false;
-  });
+  }).finally(function() { hideLoading(); btn.disabled = false; });
 }
 
 var currentResults = [];
-
 function displayResults(results) {
   currentResults = results || [];
   var section = document.getElementById('results-section');
@@ -352,14 +361,8 @@ function displayResults(results) {
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function formatDate(d) {
-  if (!d) return '--';
-  try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e) { return d; }
-}
-function formatDateTime(d) {
-  if (!d) return '--';
-  try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); } catch(e) { return d; }
-}
+function formatDate(d) { if (!d) return '--'; try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e) { return d; } }
+function formatDateTime(d) { if (!d) return '--'; try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); } catch(e) { return d; } }
 function getClassName(p) { return (p.classe && p.classe.nome) ? p.classe.nome : (typeof p.classe === 'string' ? p.classe : '-'); }
 function getSubjects(p) { return (p.assuntos && Array.isArray(p.assuntos)) ? p.assuntos.map(function(a){return a.nome||a;}).filter(Boolean).join(', ')||'-' : '-'; }
 function getOrgao(p) { return (p.orgaoJulgador && p.orgaoJulgador.nome) ? p.orgaoJulgador.nome : '-'; }
@@ -425,9 +428,7 @@ function copyInfo(idx, btn) {
   if (!p) return;
   var text = 'Processo: '+formatPN(p.numeroProcesso||'')+'\nTribunal: '+(p._tribunal||'')+'\nClasse: '+getClassName(p)+'\nAssuntos: '+getSubjects(p)+'\nOrgao Julgador: '+getOrgao(p)+'\nData Ajuizamento: '+formatDate(p.dataAjuizamento)+'\nGrau: '+(p.grau||'');
   navigator.clipboard.writeText(text).then(function() {
-    btn.classList.add('copied');
-    var orig = btn.innerHTML;
-    btn.textContent = 'Copiado!';
+    btn.classList.add('copied'); var orig = btn.innerHTML; btn.textContent = 'Copiado!';
     setTimeout(function() { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
   }).catch(function() { showToast('Nao foi possivel copiar.'); });
 }
