@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Douglas Vilar - Ementas Jurisprudenciais | Corretagem Imobiliária</title>
+<meta name="description" content="Base de jurisprudência sobre corretagem imobiliária e corretor de imóveis. 918 ementas do STJ, TJSP, TJSC e TJPR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #f5f5f5; color: #1a1a2e; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+:root {
+  --primary: #C41E24; --primary-dark: #9B1419; --primary-light: #E63946;
+  --navy: #1a237e; --navy-dark: #0d1452; --navy-light: #283593;
+  --gold: #c9a84c; --gold-light: #dfc06a;
+  --white: #ffffff; --bg: #f5f5f5; --bg-card: #ffffff;
+  --text-primary: #1a1a2e; --text-secondary: #4a4a6a; --text-muted: #7a7a9a;
+  --border: rgba(26,35,126,0.1); --border-strong: rgba(26,35,126,0.2);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06); --shadow-md: 0 4px 12px rgba(0,0,0,0.08); --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+  --ease: cubic-bezier(0.16,1,0.3,1); --transition: 180ms var(--ease);
+}
+
+/* HEADER */
+header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); padding: clamp(20px,3vw,32px) clamp(16px,4vw,40px); text-align: center; position: relative; overflow: hidden; }
+header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+header h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(1.3rem,3vw,2rem); color: var(--white); letter-spacing: -0.01em; line-height: 1.3; position: relative; }
+header h1 span { color: var(--gold); }
+header p { color: rgba(255,255,255,0.7); font-size: clamp(0.82rem,1.3vw,0.95rem); margin-top: 6px; font-weight: 400; position: relative; }
+.header-nav { margin-top: 14px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.header-nav a { color: rgba(255,255,255,0.7); font-size: 0.82rem; font-weight: 500; text-decoration: none; padding: 5px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; transition: all var(--transition); }
+.header-nav a:hover { color: #fff; border-color: var(--gold); background: rgba(201,168,76,0.15); }
+
+/* TABS */
+.tabs-bar { background: var(--bg-card); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm); }
+.tabs-inner { max-width: 1100px; margin: 0 auto; display: flex; padding: 0 16px; }
+.tab-btn { background: none; border: none; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); padding: 14px 24px; cursor: pointer; border-bottom: 3px solid transparent; transition: all var(--transition); display: flex; align-items: center; gap: 8px; }
+.tab-btn:hover { color: var(--text-primary); }
+.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+.tab-btn svg { width: 18px; height: 18px; }
+
+/* MAIN */
+main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: clamp(16px,3vw,28px) clamp(12px,3vw,20px); }
+.tab-panel { display: none; animation: fadeIn 0.3s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* STATS ROW */
+.stats-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.stat-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 18px; display: flex; align-items: center; gap: 10px; flex: 1; min-width: 140px; }
+.stat-chip .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); line-height: 1; }
+.stat-chip .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.3; }
+
+/* FILTERS */
+.filters-bar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+.filter-select { font-family: 'Inter', sans-serif; font-size: 0.85rem; padding: 10px 14px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--white); color: var(--text-primary); cursor: pointer; min-width: 170px; transition: border-color var(--transition); }
+.filter-select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
+.result-count { font-size: 0.82rem; color: var(--text-muted); margin-left: auto; font-weight: 500; }
+
+/* SEARCH */
+.search-card { background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: clamp(18px,3vw,28px); margin-bottom: 24px; border: 1px solid var(--border); }
+.search-wrap { position: relative; display: flex; align-items: center; }
+.search-wrap svg { position: absolute; left: 14px; color: var(--text-muted); pointer-events: none; }
+.search-input { width: 100%; font-family: 'Inter', sans-serif; font-size: 1rem; padding: 14px 40px 14px 46px; border: 2px solid var(--border-strong); border-radius: var(--radius-md); background: var(--white); color: var(--text-primary); transition: border-color var(--transition), box-shadow var(--transition); }
+.search-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+.search-input::placeholder { color: var(--text-muted); }
+.btn-clear { position: absolute; right: 10px; background: none; border: none; font-size: 1.3rem; color: var(--text-muted); cursor: pointer; padding: 4px 8px; border-radius: var(--radius-sm); display: none; }
+.btn-clear.visible { display: block; }
+.btn-clear:hover { background: #f0f0f0; color: var(--text-primary); }
+.search-hints { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.hint { font-size: 0.76rem; color: var(--text-muted); background: var(--bg); padding: 4px 12px; border-radius: 20px; cursor: pointer; transition: all var(--transition); border: 1px solid transparent; }
+.hint:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); color: var(--navy); }
+
+/* EMENTA CARD */
+.ementas-list { display: flex; flex-direction: column; gap: 14px; }
+.ementa-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); border-left: 4px solid transparent; }
+.ementa-card:hover { box-shadow: var(--shadow-md); border-left-color: var(--primary); }
+.ec-header { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 16px 20px 0; }
+.badge { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 3px 10px; border-radius: 4px; color: #fff; flex-shrink: 0; }
+.badge-STJ { background: #2563eb; }
+.badge-STF { background: #7c3aed; }
+.badge-TST { background: #0891b2; }
+.badge-TJSP { background: #C41E24; }
+.badge-TJSC { background: #059669; }
+.badge-TJPR { background: #d97706; }
+.badge-TRF4 { background: #6366f1; }
+.badge-default { background: #64748b; }
+.ec-numero { font-weight: 700; font-size: 0.9rem; color: var(--navy); }
+.ec-data { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
+.ec-meta { display: flex; flex-wrap: wrap; gap: 16px; padding: 8px 20px 0; font-size: 0.8rem; color: var(--text-secondary); }
+.ec-meta span { display: flex; align-items: center; gap: 4px; }
+.ec-body { padding: 12px 20px; }
+.ec-texto { font-size: 0.85rem; line-height: 1.75; color: var(--text-primary); white-space: pre-line; max-height: 140px; overflow: hidden; position: relative; transition: max-height 0.4s ease; }
+.ec-texto.expanded { max-height: 5000px; }
+.ec-texto:not(.expanded)::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: linear-gradient(transparent, var(--bg-card)); pointer-events: none; }
+.btn-expand { background: none; border: none; color: var(--primary); font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; padding: 4px 20px 14px; transition: color var(--transition); }
+.btn-expand:hover { color: var(--navy); }
+.ec-tags { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 20px 14px; }
+.tag { font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: rgba(201,168,76,0.1); color: #8b7120; cursor: pointer; transition: all var(--transition); border: 1px solid transparent; }
+.tag:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+/* HIGHLIGHT */
+mark { background: #fef08a; color: inherit; padding: 1px 2px; border-radius: 2px; }
+
+/* PAGINATION */
+.pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 28px; flex-wrap: wrap; }
+.page-btn { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; padding: 8px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--white); color: var(--text-primary); cursor: pointer; transition: all var(--transition); }
+.page-btn:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.page-info { font-size: 0.82rem; color: var(--text-muted); }
+
+/* EMPTY */
+.empty-state { text-align: center; padding: 50px 20px; color: var(--text-muted); }
+.empty-state svg { margin-bottom: 12px; opacity: 0.3; }
+.empty-state p { font-size: 0.95rem; }
+
+/* FOOTER */
+footer { text-align: center; padding: 24px 16px; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--white); }
+footer a { color: var(--primary); text-decoration: none; font-weight: 500; }
+footer a:hover { text-decoration: underline; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .tab-btn { font-size: 0.82rem; padding: 12px 14px; gap: 6px; }
+  .ec-header { padding: 12px 14px 0; }
+  .ec-meta { padding: 6px 14px 0; gap: 8px; }
+  .ec-body { padding: 10px 14px; }
+  .ec-tags { padding: 0 14px 12px; }
+  .btn-expand { padding: 4px 14px 12px; }
+  .filters-bar { flex-direction: column; }
+  .filter-select { width: 100%; }
+  .result-count { margin-left: 0; }
+  .ec-data { margin-left: 0; width: 100%; }
+  .stats-row { flex-direction: column; }
+  .stat-chip { min-width: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <h1>Ementas <span>Jurisprudenciais</span></h1>
+  <p>Corretagem Imobiliária &amp; Corretor de Imóveis &mdash; STJ, TJSP, TJSC, TJPR</p>
+  <nav class="header-nav">
+    <a href="/">Voltar ao Site</a>
+    <a href="/consulta-processual/">Processos</a>
+    <a href="/certidoes/">Certidoes</a>
+  </nav>
+</header>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="ementas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      Ementas
+    </button>
+    <button class="tab-btn" data-tab="pesquisa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Pesquisa
+    </button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ABA EMENTAS -->
+  <div id="tab-ementas" class="tab-panel active">
+    <div class="stats-row" id="stats-row"></div>
+    <div class="filters-bar">
+      <select id="filtro-tribunal" class="filter-select"><option value="">Todos os Tribunais</option></select>
+      <select id="filtro-assunto" class="filter-select"><option value="">Todos os Assuntos</option></select>
+      <span class="result-count" id="count-ementas"></span>
+    </div>
+    <div id="lista-ementas" class="ementas-list"></div>
+    <div id="pag-ementas" class="pagination"></div>
+  </div>
+
+  <!-- ABA PESQUISA -->
+  <div id="tab-pesquisa" class="tab-panel">
+    <div class="search-card">
+      <div class="search-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="campo-pesquisa" class="search-input" placeholder="Pesquise por termo, tribunal, relator, numero ou assunto..." autocomplete="off">
+        <button id="btn-limpar" class="btn-clear">&times;</button>
+      </div>
+      <div class="search-hints">
+        <span class="hint">corretagem</span>
+        <span class="hint">comissao</span>
+        <span class="hint">usucapiao</span>
+        <span class="hint">compra e venda</span>
+        <span class="hint">dano moral</span>
+        <span class="hint">responsabilidade solidaria</span>
+        <span class="hint">exclusividade</span>
+        <span class="hint">CRECI</span>
+      </div>
+    </div>
+    <span class="result-count" id="count-pesquisa"></span>
+    <div id="resultado-pesquisa" class="ementas-list"></div>
+    <div id="pag-pesquisa" class="pagination"></div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2024-2026 Douglas Vilar &mdash; Advocacia &amp; Consultoria Juridica &bull; <a href="https://www.douglasvilar.com.br" target="_blank">www.douglasvilar.com.br</a></p>
+</footer>
+
+<script src="dados-ementas.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  const PER_PAGE = 20;
+  const ementas = [...EMENTAS_DB].sort((a, b) => new Date(b.data) - new Date(a.data));
+
+  // DOM
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  const listaEl = document.getElementById('lista-ementas');
+  const resultEl = document.getElementById('resultado-pesquisa');
+  const campoPesq = document.getElementById('campo-pesquisa');
+  const btnLimpar = document.getElementById('btn-limpar');
+  const filtroTribunal = document.getElementById('filtro-tribunal');
+  const filtroAssunto = document.getElementById('filtro-assunto');
+  const countEmentas = document.getElementById('count-ementas');
+  const countPesquisa = document.getElementById('count-pesquisa');
+  const pagEmentas = document.getElementById('pag-ementas');
+  const pagPesquisa = document.getElementById('pag-pesquisa');
+  const statsRow = document.getElementById('stats-row');
+
+  let pageEmentas = 1;
+  let pagePesquisa = 1;
+
+  // Tabs
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      if (btn.dataset.tab === 'pesquisa') campoPesq.focus();
+    });
+  });
+
+  // Stats
+  function renderStats() {
+    const tribunais = {};
+    ementas.forEach(e => { tribunais[e.tribunal] = (tribunais[e.tribunal] || 0) + 1; });
+    let html = `<div class="stat-chip"><div class="stat-num">${ementas.length}</div><div class="stat-label">Total de<br>Ementas</div></div>`;
+    Object.keys(tribunais).sort().forEach(t => {
+      html += `<div class="stat-chip"><div class="stat-num">${tribunais[t]}</div><div class="stat-label">${t}</div></div>`;
+    });
+    statsRow.innerHTML = html;
+  }
+
+  // Format date
+  function fmtData(iso) {
+    const d = new Date(iso + 'T12:00:00');
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+  }
+
+  // Badge
+  function badgeCls(t) {
+    return ['STJ','STF','TST','TJSP','TJSC','TJPR','TRF4'].includes(t) ? 'badge-' + t : 'badge-default';
+  }
+
+  // Escape HTML
+  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+  // Highlight
+  function hl(text, q) {
+    if (!q) return esc(text);
+    const r = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return esc(text).replace(r, '<mark>$1</mark>');
+  }
+
+  // Render card
+  function card(e, q) {
+    const tags = e.tags.map(t => `<span class="tag" data-tag="${esc(t)}">${hl(t, q)}</span>`).join('');
+    return `<article class="ementa-card">
+      <div class="ec-header">
+        <span class="badge ${badgeCls(e.tribunal)}">${hl(e.tribunal, q)}</span>
+        <span class="ec-numero">${hl(e.numero, q)}</span>
+        <span class="ec-data">${fmtData(e.data)}</span>
+      </div>
+      <div class="ec-meta">
+        <span>${hl(e.orgao, q)}</span>
+        <span>${hl(e.relator, q)}</span>
+        <span>${hl(e.assunto, q)}</span>
+      </div>
+      <div class="ec-body"><div class="ec-texto">${hl(e.ementa, q)}</div></div>
+      <button class="btn-expand" onclick="const t=this.previousElementSibling.querySelector('.ec-texto');t.classList.toggle('expanded');this.textContent=t.classList.contains('expanded')?'Ver menos':'Ver mais';">Ver mais</button>
+      <div class="ec-tags">${tags}</div>
+    </article>`;
+  }
+
+  // Empty
+  function empty(msg) {
+    return `<div class="empty-state"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>${msg}</p></div>`;
+  }
+
+  // Pagination
+  function renderPag(container, page, total, onChange) {
+    const pages = Math.ceil(total / PER_PAGE);
+    if (pages <= 1) { container.innerHTML = ''; return; }
+    let html = `<button class="page-btn" ${page <= 1 ? 'disabled' : ''} data-p="${page - 1}">&laquo;</button>`;
+    const start = Math.max(1, page - 2);
+    const end = Math.min(pages, page + 2);
+    if (start > 1) html += `<button class="page-btn" data-p="1">1</button>`;
+    if (start > 2) html += `<span class="page-info">...</span>`;
+    for (let i = start; i <= end; i++) {
+      html += `<button class="page-btn ${i === page ? 'active' : ''}" data-p="${i}">${i}</button>`;
+    }
+    if (end < pages - 1) html += `<span class="page-info">...</span>`;
+    if (end < pages) html += `<button class="page-btn" data-p="${pages}">${pages}</button>`;
+    html += `<button class="page-btn" ${page >= pages ? 'disabled' : ''} data-p="${page + 1}">&raquo;</button>`;
+    html += `<span class="page-info">${total} resultado${total !== 1 ? 's' : ''}</span>`;
+    container.innerHTML = html;
+    container.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        onChange(parseInt(btn.dataset.p));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  }
+
+  // Populate filters
+  function populateFilters() {
+    const tribunais = [...new Set(ementas.map(e => e.tribunal))].sort();
+    const assuntos = [...new Set(ementas.map(e => e.assunto))].sort();
+    tribunais.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; filtroTribunal.appendChild(o); });
+    assuntos.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = a; filtroAssunto.appendChild(o); });
+  }
+
+  // Render ementas list
+  function renderEmentas() {
+    const tribunal = filtroTribunal.value;
+    const assunto = filtroAssunto.value;
+    let f = ementas;
+    if (tribunal) f = f.filter(e => e.tribunal === tribunal);
+    if (assunto) f = f.filter(e => e.assunto === assunto);
+    countEmentas.textContent = f.length + ' ementa' + (f.length !== 1 ? 's' : '');
+    if (f.length === 0) { listaEl.innerHTML = empty('Nenhuma ementa com os filtros selecionados.'); pagEmentas.innerHTML = ''; return; }
+    const start = (pageEmentas - 1) * PER_PAGE;
+    const slice = f.slice(start, start + PER_PAGE);
+    listaEl.innerHTML = slice.map(e => card(e, '')).join('');
+    renderPag(pagEmentas, pageEmentas, f.length, (p) => { pageEmentas = p; renderEmentas(); });
+  }
+
+  // Search
+  function normalize(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
+
+  function pesquisar() {
+    const q = campoPesq.value.trim();
+    btnLimpar.classList.toggle('visible', q.length > 0);
+    if (!q) { resultEl.innerHTML = empty('Digite um termo para buscar nas ementas.'); countPesquisa.textContent = ''; pagPesquisa.innerHTML = ''; return; }
+    const qn = normalize(q);
+    const res = ementas.filter(e => {
+      const campos = normalize([e.tribunal, e.orgao, e.relator, e.numero, e.assunto, e.ementa, ...e.tags].join(' '));
+      return campos.includes(qn);
+    });
+    countPesquisa.textContent = res.length + ' resultado' + (res.length !== 1 ? 's' : '');
+    if (res.length === 0) { resultEl.innerHTML = empty('Nenhuma ementa encontrada para "' + esc(q) + '".'); pagPesquisa.innerHTML = ''; return; }
+    const start = (pagePesquisa - 1) * PER_PAGE;
+    const slice = res.slice(start, start + PER_PAGE);
+    resultEl.innerHTML = slice.map(e => card(e, q)).join('');
+    renderPag(pagPesquisa, pagePesquisa, res.length, (p) => { pagePesquisa = p; pesquisar(); });
+  }
+
+  // Events
+  let timer;
+  campoPesq.addEventListener('input', () => { clearTimeout(timer); pagePesquisa = 1; timer = setTimeout(pesquisar, 300); });
+  btnLimpar.addEventListener('click', () => { campoPesq.value = ''; btnLimpar.classList.remove('visible'); pagePesquisa = 1; pesquisar(); campoPesq.focus(); });
+  document.querySelectorAll('.hint').forEach(h => { h.addEventListener('click', () => { campoPesq.value = h.textContent; pagePesquisa = 1; pesquisar(); }); });
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('tag')) {
+      const tag = e.target.dataset.tag;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-tab="pesquisa"]').classList.add('active');
+      document.getElementById('tab-pesquisa').classList.add('active');
+      campoPesq.value = tag;
+      pagePesquisa = 1;
+      pesquisar();
+    }
+  });
+  filtroTribunal.addEventListener('change', () => { pageEmentas = 1; renderEmentas(); });
+  filtroAssunto.addEventListener('change', () => { pageEmentas = 1; renderEmentas(); });
+
+  // Init
+  populateFilters();
+  renderStats();
+  renderEmentas();
+  pesquisar();
+})();
+</script>
+</body>
+</html>
