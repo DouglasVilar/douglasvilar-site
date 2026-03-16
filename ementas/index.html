@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Douglas Vilar - Ementas Jurisprudenciais | Corretagem Imobiliária</title>
-<meta name="description" content="Base de jurisprudência sobre corretagem imobiliária e corretor de imóveis. 918 ementas do STJ, TJSP, TJSC e TJPR.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Douglas Vilar - Ementas Jurisprudenciais | Corretagem Imobiliária</title>
+  <meta name="description" content="Base de investigações sobre corretagem imobiliária e corretora de imóveis. 918 ementas do STJ, TJSP, TJSC e TJPR.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; -webkit-font-smoothing: antialiased; }
@@ -48,7 +48,7 @@ main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: clamp(1
 .tab-panel.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-/* STATS ROW */
+/* STATS */
 .stats-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
 .stat-chip { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 12px 18px; display: flex; align-items: center; gap: 10px; flex: 1; min-width: 140px; }
 .stat-chip .stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); line-height: 1; }
@@ -92,15 +92,34 @@ main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: clamp(1
 .ec-data { font-size: 0.8rem; color: var(--text-muted); margin-left: auto; }
 .ec-meta { display: flex; flex-wrap: wrap; gap: 16px; padding: 8px 20px 0; font-size: 0.8rem; color: var(--text-secondary); }
 .ec-meta span { display: flex; align-items: center; gap: 4px; }
-.ec-body { padding: 12px 20px; }
-.ec-texto { font-size: 0.85rem; line-height: 1.75; color: var(--text-primary); white-space: pre-line; max-height: 140px; overflow: hidden; position: relative; transition: max-height 0.4s ease; }
-.ec-texto.expanded { max-height: 5000px; }
+.ec-body { padding: 12px 20px; position: relative; }
+.ec-texto { font-size: 0.85rem; line-height: 1.75; color: var(--text-primary); white-space: pre-line; max-height: 300px; overflow: hidden; position: relative; transition: max-height 0.4s ease; }
+.ec-texto.expanded { max-height: none; }
 .ec-texto:not(.expanded)::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: linear-gradient(transparent, var(--bg-card)); pointer-events: none; }
 .btn-expand { background: none; border: none; color: var(--primary); font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; padding: 4px 20px 14px; transition: color var(--transition); }
 .btn-expand:hover { color: var(--navy); }
 .ec-tags { display: flex; flex-wrap: wrap; gap: 5px; padding: 0 20px 14px; }
 .tag { font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: rgba(201,168,76,0.1); color: #8b7120; cursor: pointer; transition: all var(--transition); border: 1px solid transparent; }
 .tag:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+/* EMENTA FORMATADA */
+.ementa-titulo { font-weight: 700; font-size: 0.9rem; color: var(--navy); text-transform: uppercase; margin-bottom: 10px; line-height: 1.5; }
+.ementa-secao { margin-bottom: 12px; }
+.ementa-secao-titulo { font-weight: 700; font-size: 0.82rem; color: var(--primary-dark); margin-bottom: 4px; }
+.ementa-secao-corpo { font-size: 0.85rem; line-height: 1.75; color: var(--text-primary); padding-left: 8px; }
+.ementa-tese { background: rgba(201,168,76,0.08); border-left: 3px solid var(--gold); padding: 10px 14px; margin: 10px 0; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.83rem; line-height: 1.7; }
+.ementa-tese-titulo { font-weight: 700; color: var(--navy); margin-bottom: 4px; font-size: 0.82rem; }
+.ementa-legislacao { font-size: 0.8rem; color: var(--text-secondary); margin-top: 8px; padding: 8px 12px; background: var(--bg); border-radius: var(--radius-sm); }
+.ementa-legislacao strong { color: var(--text-primary); font-weight: 600; }
+.ementa-jurisprudencia { font-size: 0.8rem; color: var(--text-secondary); margin-top: 6px; padding: 8px 12px; background: var(--bg); border-radius: var(--radius-sm); }
+.ementa-jurisprudencia strong { color: var(--text-primary); font-weight: 600; }
+
+/* BOTAO COPIAR */
+.btn-copiar-wrap { display: flex; justify-content: flex-end; padding: 0 20px 4px; }
+.btn-copiar { display: inline-flex; align-items: center; gap: 5px; background: none; border: 1px solid var(--border-strong); color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 500; padding: 4px 12px; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition); }
+.btn-copiar:hover { border-color: var(--gold); color: var(--navy); background: rgba(201,168,76,0.08); }
+.btn-copiar.copiado { border-color: #059669; color: #059669; background: rgba(5,150,105,0.08); }
+.btn-copiar svg { width: 14px; height: 14px; }
 
 /* HIGHLIGHT */
 mark { background: #fef08a; color: inherit; padding: 1px 2px; border-radius: 2px; }
@@ -131,6 +150,7 @@ footer a:hover { text-decoration: underline; }
   .ec-body { padding: 10px 14px; }
   .ec-tags { padding: 0 14px 12px; }
   .btn-expand { padding: 4px 14px 12px; }
+  .btn-copiar-wrap { padding: 0 14px 4px; }
   .filters-bar { flex-direction: column; }
   .filter-select { width: 100%; }
   .result-count { margin-left: 0; }
@@ -141,15 +161,14 @@ footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
-
 <!-- HEADER -->
 <header>
   <h1>Ementas <span>Jurisprudenciais</span></h1>
-  <p>Corretagem Imobiliária &amp; Corretor de Imóveis &mdash; STJ, TJSP, TJSC, TJPR</p>
+  <p>Corretagem Imobiliária &amp; Corretor de Imóveis - STJ, TJSP, TJSC, TJPR</p>
   <nav class="header-nav">
     <a href="/">Voltar ao Site</a>
     <a href="/consulta-processual/">Processos</a>
-    <a href="/certidoes/">Certidoes</a>
+    <a href="/certificados/">Certificados</a>
   </nav>
 </header>
 
@@ -169,8 +188,7 @@ footer a:hover { text-decoration: underline; }
 
 <!-- MAIN -->
 <main>
-
-  <!-- ABA EMENTAS -->
+  <!-- TAB EMENTAS -->
   <div id="tab-ementas" class="tab-panel active">
     <div class="stats-row" id="stats-row"></div>
     <div class="filters-bar">
@@ -182,21 +200,21 @@ footer a:hover { text-decoration: underline; }
     <div id="pag-ementas" class="pagination"></div>
   </div>
 
-  <!-- ABA PESQUISA -->
+  <!-- TAB PESQUISA -->
   <div id="tab-pesquisa" class="tab-panel">
     <div class="search-card">
       <div class="search-wrap">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="campo-pesquisa" class="search-input" placeholder="Pesquise por termo, tribunal, relator, numero ou assunto..." autocomplete="off">
-        <button id="btn-limpar" class="btn-clear">&times;</button>
+        <input type="text" id="campo-pesquisa" class="search-input" placeholder="Pesquisa por termo, tribunal, relator, número ou assunto..." autocomplete="off">
+        <button id="btn-limpar" class="btn-clear">×</button>
       </div>
       <div class="search-hints">
         <span class="hint">corretagem</span>
-        <span class="hint">comissao</span>
+        <span class="hint">comissão</span>
         <span class="hint">usucapiao</span>
         <span class="hint">compra e venda</span>
         <span class="hint">dano moral</span>
-        <span class="hint">responsabilidade solidaria</span>
+        <span class="hint">responsabilidade solidária</span>
         <span class="hint">exclusividade</span>
         <span class="hint">CRECI</span>
       </div>
@@ -205,12 +223,11 @@ footer a:hover { text-decoration: underline; }
     <div id="resultado-pesquisa" class="ementas-list"></div>
     <div id="pag-pesquisa" class="pagination"></div>
   </div>
-
 </main>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2024-2026 Douglas Vilar &mdash; Advocacia &amp; Consultoria Juridica &bull; <a href="https://www.douglasvilar.com.br" target="_blank">www.douglasvilar.com.br</a></p>
+  <p>&copy; 2024-2026 Douglas Vilar - Advocacia &amp; Consultoria Jurídica &bull; <a href="https://www.douglasvilar.com.br">www.douglasvilar.com.br</a></p>
 </footer>
 
 <script src="dados-ementas.js"></script>
@@ -254,9 +271,9 @@ footer a:hover { text-decoration: underline; }
   function renderStats() {
     const tribunais = {};
     ementas.forEach(e => { tribunais[e.tribunal] = (tribunais[e.tribunal] || 0) + 1; });
-    let html = `<div class="stat-chip"><div class="stat-num">${ementas.length}</div><div class="stat-label">Total de<br>Ementas</div></div>`;
+    let html = '<div class="stat-chip"><div class="stat-num">' + ementas.length + '</div><div class="stat-label">Total de<br>Ementas</div></div>';
     Object.keys(tribunais).sort().forEach(t => {
-      html += `<div class="stat-chip"><div class="stat-num">${tribunais[t]}</div><div class="stat-label">${t}</div></div>`;
+      html += '<div class="stat-chip"><div class="stat-num">' + tribunais[t] + '</div><div class="stat-label">' + t + '</div></div>';
     });
     statsRow.innerHTML = html;
   }
@@ -282,47 +299,133 @@ footer a:hover { text-decoration: underline; }
     return esc(text).replace(r, '<mark>$1</mark>');
   }
 
+  // Format ementa text with structured sections
+  function formatEmenta(texto, q) {
+    const t = texto.trim();
+    // Check if structured format (has I. Caso em Exame or similar patterns)
+    const hasStructure = /\b[IVX]+\.\s*(Caso|Quest|Raz|Dispos)/i.test(t);
+    if (!hasStructure) return hl(t, q);
+
+    let html = '';
+    // Extract title (everything before "I.")
+    const titleMatch = t.match(/^(.+?)(?=\s*I\.\s)/s);
+    if (titleMatch) {
+      html += '<div class="ementa-titulo">' + hl(titleMatch[1].trim(), q) + '</div>';
+    }
+
+    // Extract sections I, II, III, IV
+    const sectionRegex = /([IVX]+\.\s*[^\n.]+?)\s*(\d+\.\s*.+?)(?=(?:[IVX]+\.\s*[A-Z])|(?:Tese de julgamento)|(?:Legisla[cç][aã]o)|(?:Jurisprud[eê]ncia)|$)/gs;
+    const sections = [];
+    let remaining = titleMatch ? t.substring(titleMatch[0].length) : t;
+
+    // Parse sections manually
+    const sectionHeaders = remaining.match(/[IVX]+\.\s*(?:Caso em Exame|Quest[aã]o em Discuss[aã]o|Raz[oõ]es de Decidir|Dispositivo e Tese)[^\d]*/gi) || [];
+    const sectionParts = remaining.split(/(?=[IVX]+\.\s*(?:Caso em Exame|Quest[aã]o em Discuss[aã]o|Raz[oõ]es de Decidir|Dispositivo e Tese))/i);
+
+    sectionParts.forEach(part => {
+      part = part.trim();
+      if (!part) return;
+      const headerMatch = part.match(/^([IVX]+\.\s*(?:Caso em Exame|Quest[aã]o em Discuss[aã]o|Raz[oõ]es de Decidir|Dispositivo e Tese))/i);
+      if (headerMatch) {
+        const header = headerMatch[1];
+        let body = part.substring(header.length).trim();
+
+        // Check for Tese de julgamento inside Dispositivo
+        let teseHtml = '';
+        const teseMatch = body.match(/Tese de julgamento:\s*(.+?)(?=Legisla[cç][aã]o|Jurisprud[eê]ncia|$)/is);
+        if (teseMatch) {
+          body = body.substring(0, body.indexOf('Tese de julgamento')).trim();
+          teseHtml = '<div class="ementa-tese"><div class="ementa-tese-titulo">Tese de julgamento:</div>' + hl(teseMatch[1].trim(), q) + '</div>';
+        }
+
+        // Check for Legislacao
+        let legHtml = '';
+        const legMatch = remaining.match(/Legisla[cç][aã]o Citada:\s*(.+?)(?=Jurisprud[eê]ncia|$)/is);
+        if (legMatch && part.includes('Legisla')) {
+          legHtml = '<div class="ementa-legislacao"><strong>Legisla\u00e7\u00e3o Citada:</strong> ' + hl(legMatch[1].trim(), q) + '</div>';
+        }
+
+        // Check for Jurisprudencia
+        let jurHtml = '';
+        const jurMatch = remaining.match(/Jurisprud[eê]ncia Citada:\s*(.+?)$/is);
+        if (jurMatch && part.includes('Jurisprud')) {
+          jurHtml = '<div class="ementa-jurisprudencia"><strong>Jurisprud\u00eancia Citada:</strong> ' + hl(jurMatch[1].trim(), q) + '</div>';
+        }
+
+        // Clean body from Legislacao and Jurisprudencia
+        body = body.replace(/Legisla[cç][aã]o Citada:.*/is, '').replace(/Jurisprud[eê]ncia Citada:.*/is, '').trim();
+
+        html += '<div class="ementa-secao">';
+        html += '<div class="ementa-secao-titulo">' + hl(header, q) + '</div>';
+        if (body) html += '<div class="ementa-secao-corpo">' + hl(body, q) + '</div>';
+        html += teseHtml + legHtml + jurHtml;
+        html += '</div>';
+      }
+    });
+
+    // If parsing failed, fallback to simple
+    if (!html || html.indexOf('ementa-secao') === -1) return hl(t, q);
+    return html;
+  }
+
+  // Copy ementa
+  window.copyEmenta = function(btn) {
+    const card = btn.closest('.ementa-card');
+    const texto = card.querySelector('.ec-texto');
+    const plainText = texto.innerText || texto.textContent;
+    navigator.clipboard.writeText(plainText).then(() => {
+      btn.classList.add('copiado');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copiado!';
+      setTimeout(() => {
+        btn.classList.remove('copiado');
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copiar';
+      }, 2000);
+    });
+  };
+
   // Render card
   function card(e, q) {
-    const tags = e.tags.map(t => `<span class="tag" data-tag="${esc(t)}">${hl(t, q)}</span>`).join('');
-    return `<article class="ementa-card">
-      <div class="ec-header">
-        <span class="badge ${badgeCls(e.tribunal)}">${hl(e.tribunal, q)}</span>
-        <span class="ec-numero">${hl(e.numero, q)}</span>
-        <span class="ec-data">${fmtData(e.data)}</span>
-      </div>
-      <div class="ec-meta">
-        <span>${hl(e.orgao, q)}</span>
-        <span>${hl(e.relator, q)}</span>
-        <span>${hl(e.assunto, q)}</span>
-      </div>
-      <div class="ec-body"><div class="ec-texto">${hl(e.ementa, q)}</div></div>
-      <button class="btn-expand" onclick="const t=this.previousElementSibling.querySelector('.ec-texto');t.classList.toggle('expanded');this.textContent=t.classList.contains('expanded')?'Ver menos':'Ver mais';">Ver mais</button>
-      <div class="ec-tags">${tags}</div>
-    </article>`;
+    const tags = e.tags.map(t => '<span class="tag" data-tag="' + esc(t) + '">' + hl(t, q) + '</span>').join('');
+    const copyIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    return '<article class="ementa-card">' +
+      '<div class="ec-header">' +
+        '<span class="badge ' + badgeCls(e.tribunal) + '">' + hl(e.tribunal, q) + '</span>' +
+        '<span class="ec-numero">' + hl(e.numero, q) + '</span>' +
+        '<span class="ec-data">' + fmtData(e.data) + '</span>' +
+      '</div>' +
+      '<div class="ec-meta">' +
+        '<span>' + hl(e.orgao, q) + '</span>' +
+        '<span>' + hl(e.relator, q) + '</span>' +
+        '<span>' + hl(e.assunto, q) + '</span>' +
+      '</div>' +
+      '<div class="btn-copiar-wrap"><button class="btn-copiar" onclick="copyEmenta(this)">' + copyIcon + ' Copiar</button></div>' +
+      '<div class="ec-body"><div class="ec-texto">' + formatEmenta(e.ementa, q) + '</div></div>' +
+      '<button class="btn-expand" onclick="var t=this.previousElementSibling.querySelector(\'.ec-texto\');t.classList.toggle(\'expanded\');this.textContent=t.classList.contains(\'expanded\')?\' Ver menos\':\' Ver mais\';"> Ver mais</button>' +
+      '<div class="ec-tags">' + tags + '</div>' +
+    '</article>';
   }
 
   // Empty
   function empty(msg) {
-    return `<div class="empty-state"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>${msg}</p></div>`;
+    return '<div class="empty-state"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>' + msg + '</p></div>';
   }
 
   // Pagination
   function renderPag(container, page, total, onChange) {
     const pages = Math.ceil(total / PER_PAGE);
     if (pages <= 1) { container.innerHTML = ''; return; }
-    let html = `<button class="page-btn" ${page <= 1 ? 'disabled' : ''} data-p="${page - 1}">&laquo;</button>`;
+    let html = '<button class="page-btn" ' + (page <= 1 ? 'disabled' : '') + ' data-p="' + (page - 1) + '">&laquo;</button>';
     const start = Math.max(1, page - 2);
     const end = Math.min(pages, page + 2);
-    if (start > 1) html += `<button class="page-btn" data-p="1">1</button>`;
-    if (start > 2) html += `<span class="page-info">...</span>`;
+    if (start > 1) html += '<button class="page-btn" data-p="1">1</button>';
+    if (start > 2) html += '<span class="page-info">...</span>';
     for (let i = start; i <= end; i++) {
-      html += `<button class="page-btn ${i === page ? 'active' : ''}" data-p="${i}">${i}</button>`;
+      html += '<button class="page-btn ' + (i === page ? 'active' : '') + '" data-p="' + i + '">' + i + '</button>';
     }
-    if (end < pages - 1) html += `<span class="page-info">...</span>`;
-    if (end < pages) html += `<button class="page-btn" data-p="${pages}">${pages}</button>`;
-    html += `<button class="page-btn" ${page >= pages ? 'disabled' : ''} data-p="${page + 1}">&raquo;</button>`;
-    html += `<span class="page-info">${total} resultado${total !== 1 ? 's' : ''}</span>`;
+    if (end < pages - 1) html += '<span class="page-info">...</span>';
+    if (end < pages) html += '<button class="page-btn" data-p="' + pages + '">' + pages + '</button>';
+    html += '<button class="page-btn" ' + (page >= pages ? 'disabled' : '') + ' data-p="' + (page + 1) + '">&raquo;</button>';
+    html += '<span class="page-info">' + total + ' resultado' + (total !== 1 ? 's' : '') + '</span>';
     container.innerHTML = html;
     container.querySelectorAll('.page-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -369,7 +472,7 @@ footer a:hover { text-decoration: underline; }
       return campos.includes(qn);
     });
     countPesquisa.textContent = res.length + ' resultado' + (res.length !== 1 ? 's' : '');
-    if (res.length === 0) { resultEl.innerHTML = empty('Nenhuma ementa encontrada para "' + esc(q) + '".'); pagPesquisa.innerHTML = ''; return; }
+    if (res.length === 0) { resultEl.innerHTML = empty('Nenhuma informa\u00e7\u00e3o encontrada para "' + esc(q) + '".'); pagPesquisa.innerHTML = ''; return; }
     const start = (pagePesquisa - 1) * PER_PAGE;
     const slice = res.slice(start, start + PER_PAGE);
     resultEl.innerHTML = slice.map(e => card(e, q)).join('');
