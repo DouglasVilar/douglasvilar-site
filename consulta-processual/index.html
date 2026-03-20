@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Douglas Vilar - Consulta Processual Inteligente</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -22,6 +22,8 @@ body { font-family: 'Inter', system-ui, sans-serif; background: #f5f5f5; color: 
   --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
   --ease: cubic-bezier(0.16,1,0.3,1); --transition: 180ms var(--ease);
 }
+.skip-link { position: absolute; top: -100%; left: 16px; background: var(--gold); color: var(--navy-dark); padding: 8px 16px; border-radius: 0 0 var(--radius-sm) var(--radius-sm); font-weight: 600; z-index: 100; text-decoration: none; }
+.skip-link:focus { top: 0; }
 header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%); padding: clamp(24px,4vw,40px) clamp(16px,4vw,40px); text-align: center; position: relative; overflow: hidden; }
 header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
 header h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: clamp(1.4rem,3.5vw,2.2rem); color: var(--white); letter-spacing: -0.01em; line-height: 1.3; position: relative; }
@@ -29,14 +31,13 @@ header h1 span { color: var(--gold); }
 header p { color: rgba(255,255,255,0.7); font-size: clamp(0.85rem,1.5vw,1rem); margin-top: 8px; font-weight: 400; position: relative; }
 main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: clamp(20px,4vw,40px) clamp(16px,4vw,24px); }
 .search-section { background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: clamp(20px,3vw,32px); border: 1px solid var(--border); }
-.search-form { display: block; animation: fadeIn 300ms var(--ease); }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.form-group { margin-bottom: 16px; }
-.form-group label { display: block; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
-.form-group input { width: 100%; padding: 14px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--text-primary); background: var(--white); transition: border-color var(--transition), box-shadow var(--transition); }
-.form-group input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
-.form-group input::placeholder { color: var(--text-muted); }
-.btn-search { width: 100%; padding: 14px 24px; border: none; border-radius: var(--radius-sm); background: var(--navy); color: var(--white); font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; }
+.search-form { display: flex; flex-direction: column; }
+.form-group { display: flex; flex-direction: column; }
+.form-group label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 6px; }
+.form-group input { padding: 12px 16px; border: 1.5px solid var(--border-strong); border-radius: var(--radius-md); font-size: 1rem; font-family: 'Inter', system-ui, sans-serif; color: var(--text-primary); transition: border-color var(--transition), box-shadow var(--transition); background: var(--white); }
+.form-group input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(26,35,126,0.1); }
+.form-group input::placeholder { color: var(--text-muted); font-size: 0.95rem; }
+.btn-search { background: var(--navy); color: var(--white); border: none; padding: 12px 24px; border-radius: var(--radius-md); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; }
 .btn-search:hover { background: var(--navy-light); box-shadow: var(--shadow-md); transform: translateY(-1px); }
 .btn-search:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 .error-msg { color: #c62828; font-size: 0.85rem; margin-top: 6px; display: none; }
@@ -47,14 +48,13 @@ main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: clamp(20
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-text { font-size: 0.95rem; color: var(--text-secondary); font-weight: 500; }
 .results-section { margin-top: 32px; display: none; }
-.results-section.visible { display: block; animation: fadeIn 400ms var(--ease); }
-.results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
-.results-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.1rem,2vw,1.4rem); color: var(--navy); font-weight: 600; }
-.results-count { font-size: 0.85rem; color: var(--text-muted); background: var(--bg); padding: 4px 12px; border-radius: 20px; font-weight: 500; }
-.process-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 16px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow var(--transition); }
+.results-section.visible { display: block; }
+.results-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.results-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.4rem; color: var(--navy); }
+.results-count { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+.process-card { background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); margin-bottom: 12px; overflow: hidden; transition: box-shadow var(--transition); }
 .process-card:hover { box-shadow: var(--shadow-md); }
-.card-header { padding: 20px 24px; cursor: pointer; display: flex; align-items: flex-start; gap: 16px; transition: background var(--transition); position: relative; }
-.card-header:hover { background: rgba(201,168,76,0.03); }
+.card-header { display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; }
 .tribunal-badge { background: var(--navy); color: var(--white); font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 4px; white-space: nowrap; letter-spacing: 0.03em; flex-shrink: 0; margin-top: 2px; }
 .card-info { flex: 1; min-width: 0; }
 .card-info .process-number { font-weight: 700; font-size: 1rem; color: var(--navy); word-break: break-all; line-height: 1.4; }
@@ -63,12 +63,15 @@ main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: clamp(20
 .expand-icon { width: 24px; height: 24px; flex-shrink: 0; transition: transform var(--transition); color: var(--text-muted); margin-top: 2px; }
 .process-card.expanded .expand-icon { transform: rotate(180deg); }
 .card-body { max-height: 0; overflow: hidden; transition: max-height 400ms var(--ease); }
-.process-card.expanded .card-body { max-height: 3000px; }
+.process-card.expanded .card-body { max-height: 5000px; }
 .card-body-inner { padding: 0 24px 20px; border-top: 1px solid var(--border); }
 .detail-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; padding-top: 16px; margin-bottom: 20px; }
 .detail-item { font-size: 0.82rem; }
 .detail-item .label { color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.72rem; margin-bottom: 2px; }
 .detail-item .value { color: var(--text-primary); font-weight: 600; }
+.detail-item .value.sigilo-0 { color: #2e7d32; }
+.detail-item .value.sigilo-high { color: #c62828; }
+.detail-item .value.atualizado { font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); }
 .timeline-section h3 { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
 .timeline { position: relative; padding-left: 24px; max-height: 400px; overflow-y: auto; }
 .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--border-strong); border-radius: 1px; }
@@ -76,18 +79,18 @@ main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: clamp(20
 .timeline-item::before { content: ''; position: absolute; left: -20px; top: 5px; width: 10px; height: 10px; background: var(--gold); border: 2px solid var(--bg-card); border-radius: 50%; box-shadow: 0 0 0 2px var(--gold); }
 .timeline-date { font-weight: 600; color: var(--navy); font-size: 0.78rem; }
 .timeline-desc { color: var(--text-secondary); margin-top: 2px; line-height: 1.5; }
+.timeline-code { color: var(--text-muted); font-size: 0.72rem; font-family: monospace; }
 .timeline-complement { color: var(--text-muted); font-size: 0.78rem; margin-top: 2px; font-style: italic; }
 .timeline-item.audiencia { background: rgba(201,168,76,0.1); border: 1px solid var(--gold); border-radius: var(--radius-sm); padding: 10px 12px; margin-left: -8px; padding-left: 20px; }
 .timeline-item.audiencia::before { background: #c62828; box-shadow: 0 0 0 2px #c62828; }
 .timeline-item.audiencia-futura { background: rgba(201,168,76,0.18); border-color: var(--gold-dark); }
 .timeline-item.audiencia-futura::before { background: var(--gold); box-shadow: 0 0 0 2px var(--gold), 0 0 8px rgba(201,168,76,0.5); }
-.audiencia-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 3px; margin-left: 6px; vertical-align: middle; }
-.audiencia-badge.passada { background: rgba(198,40,40,0.1); color: #c62828; }
-.audiencia-badge.futura { background: rgba(201,168,76,0.2); color: var(--gold-dark); }
-.card-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
-.btn-action { padding: 8px 16px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--white); color: var(--text-secondary); font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--transition); display: inline-flex; align-items: center; gap: 6px; }
-.btn-action:hover { border-color: var(--gold); color: var(--gold-dark); background: rgba(201,168,76,0.05); }
-.btn-action.copied { border-color: #2e7d32; color: #2e7d32; background: rgba(46,125,50,0.05); }
+.audiencia-badge { display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 3px; margin-bottom: 4px; }
+.audiencia .audiencia-badge { background: rgba(198,40,40,0.15); color: #c62828; }
+.audiencia-futura .audiencia-badge { background: rgba(201,168,76,0.3); color: var(--gold-dark); }
+.card-actions { display: flex; gap: 8px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+.card-actions button { padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--transition); border: 1px solid var(--border-strong); background: var(--white); color: var(--text-secondary); }
+.card-actions button:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
 .empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
 .empty-state h3 { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 4px; font-weight: 600; }
 .empty-state p { font-size: 0.88rem; }
@@ -101,32 +104,32 @@ footer .api-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top
   .card-body-inner { padding: 0 16px 16px; }
   .detail-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .card-actions { flex-direction: column; }
-  .btn-action { justify-content: center; }
+  .card-actions button { width: 100%; justify-content: center; }
 }
 </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;">Pular para o conteudo</a>
+<a href="#main-content" class="skip-link">Pular para o conteudo</a>
 <header>
   <h1><span>Douglas Vilar</span> &mdash; Consulta Processual Inteligente</h1>
   <p>Consulte processos judiciais diretamente na base do DataJud/CNJ</p>
 </header>
 <main id="main-content">
-  <section class="search-section">
+  <section class="search-section" aria-label="Busca processual">
     <form id="form-numero" class="search-form" autocomplete="off">
       <div class="form-group">
         <label for="input-numero">Numero do Processo</label>
-        <input type="text" id="input-numero" placeholder="0000000-00.0000.0.00.0000" maxlength="25" autocomplete="off" inputmode="numeric">
-        <div id="error-numero" class="error-msg"></div>
+        <input id="input-numero" type="text" placeholder="0000000-00.0000.0.00.0000" inputmode="text" aria-describedby="error-numero">
+        <div id="error-numero" class="error-msg" role="alert"></div>
       </div>
-      <button type="submit" id="btn-numero" class="btn-search">&#128269; Consultar Processo</button>
+      <button id="btn-numero" class="btn-search" type="submit">&#128269; Consultar Processo</button>
     </form>
   </section>
-  <div id="loading" class="loading-container">
-    <div class="spinner"></div>
-    <div id="loading-text" class="loading-text">Consultando DataJud...</div>
+  <div id="loading" class="loading-container" aria-live="polite">
+    <div class="spinner" role="status"></div>
+    <div id="loading-text" class="loading-text">Consultando...</div>
   </div>
-  <section id="results-section" class="results-section">
+  <section id="results-section" class="results-section" aria-label="Resultados da busca">
     <div class="results-header">
       <h2>Resultados</h2>
       <span id="results-count" class="results-count"></span>
@@ -138,70 +141,46 @@ footer .api-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top
   <div>Desenvolvido por <strong>Douglas Vilar &mdash; Advocacia</strong> | Dados: DataJud/CNJ</div>
   <div class="api-note">API Publica do DataJud (api_publica_cnj@1.0.0)</div>
 </footer>
-<div id="toast" class="toast"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
+/* ===== CONFIGURACAO ===== */
 var DATAJUD_BASE = 'https://api-publica.datajud.cnj.jus.br';
-var DATAJUD_API_KEY = 'cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
-var CORS_PROXIES = ['https://cors.eu.org/', 'https://corsproxy.io/?'];
+var DATAJUD_API_KEY = 'APIKey cDZHYzlZa0JadVREZDJCendQbXY6SkJlTzNjLV9TRENyQk1RdnFKZGRQdw==';
+var CORS_PROXIES = ['https://cors.eu.org/', 'https://corsproxy.io/?', 'https://api.allorigins.win/raw?url='];
 
-/* Mapa CNJ: chave = J.TT (J=justica, TT=tribunal do numero CNJ) */
+/* ===== MAPA DE TRIBUNAIS ===== */
 var TRIBUNAL_MAP = {
-  /* Tribunais Superiores */
-  '1.00':'api_publica_stf',
-  '2.00':'api_publica_stj',
-  '3.00':'api_publica_stm',
-  '5.00':'api_publica_tst',
-  '6.00':'api_publica_tse',
-  /* Justica Federal (J=5 no CNJ antigo, J=4 no atual) */
-  '4.01':'api_publica_trf1','4.02':'api_publica_trf2',
-  '4.03':'api_publica_trf3','4.04':'api_publica_trf4',
-  '4.05':'api_publica_trf5','4.06':'api_publica_trf6',
-  /* Justica do Trabalho (J=5 no CNJ) */
-  '5.01':'api_publica_trt1','5.02':'api_publica_trt2',
-  '5.03':'api_publica_trt3','5.04':'api_publica_trt4',
-  '5.05':'api_publica_trt5','5.06':'api_publica_trt6',
-  '5.07':'api_publica_trt7','5.08':'api_publica_trt8',
-  '5.09':'api_publica_trt9','5.10':'api_publica_trt10',
-  '5.11':'api_publica_trt11','5.12':'api_publica_trt12',
-  '5.13':'api_publica_trt13','5.14':'api_publica_trt14',
-  '5.15':'api_publica_trt15','5.16':'api_publica_trt16',
-  '5.17':'api_publica_trt17','5.18':'api_publica_trt18',
-  '5.19':'api_publica_trt19','5.20':'api_publica_trt20',
-  '5.21':'api_publica_trt21','5.22':'api_publica_trt22',
-  '5.23':'api_publica_trt23','5.24':'api_publica_trt24',
-  /* Justica Eleitoral (J=6 no CNJ) */
-  '6.01':'api_publica_tre-ac','6.02':'api_publica_tre-al',
-  '6.03':'api_publica_tre-ap','6.04':'api_publica_tre-am',
-  '6.05':'api_publica_tre-ba','6.06':'api_publica_tre-ce',
-  '6.07':'api_publica_tre-dft','6.08':'api_publica_tre-es',
-  '6.09':'api_publica_tre-go','6.10':'api_publica_tre-ma',
-  '6.11':'api_publica_tre-mt','6.12':'api_publica_tre-ms',
-  '6.13':'api_publica_tre-mg','6.14':'api_publica_tre-pa',
-  '6.15':'api_publica_tre-pb','6.16':'api_publica_tre-pr',
-  '6.17':'api_publica_tre-pe','6.18':'api_publica_tre-pi',
-  '6.19':'api_publica_tre-rj','6.20':'api_publica_tre-rn',
-  '6.21':'api_publica_tre-rs','6.22':'api_publica_tre-ro',
-  '6.23':'api_publica_tre-rr','6.24':'api_publica_tre-sc',
-  '6.25':'api_publica_tre-se','6.26':'api_publica_tre-sp',
-  '6.27':'api_publica_tre-to',
-  /* Justica Militar Estadual (J=9 no CNJ) */
-  '9.13':'api_publica_tjmmg','9.21':'api_publica_tjmrs',
-  '9.26':'api_publica_tjmsp',
-  /* Justica Estadual (J=8 no CNJ) */
-  '8.01':'api_publica_tjac','8.02':'api_publica_tjal',
-  '8.03':'api_publica_tjap','8.04':'api_publica_tjam',
-  '8.05':'api_publica_tjba','8.06':'api_publica_tjce',
-  '8.07':'api_publica_tjdft','8.08':'api_publica_tjes',
-  '8.09':'api_publica_tjgo','8.10':'api_publica_tjma',
-  '8.11':'api_publica_tjmt','8.12':'api_publica_tjms',
-  '8.13':'api_publica_tjpb','8.14':'api_publica_tjmg',
-  '8.15':'api_publica_tjpa','8.16':'api_publica_tjpr',
-  '8.17':'api_publica_tjpe','8.18':'api_publica_tjpi',
-  '8.19':'api_publica_tjrj','8.20':'api_publica_tjrn',
-  '8.21':'api_publica_tjrs','8.22':'api_publica_tjro',
-  '8.23':'api_publica_tjrr','8.24':'api_publica_tjsc',
-  '8.25':'api_publica_tjse','8.26':'api_publica_tjsp',
-  '8.27':'api_publica_tjto'
+  '1.00':'api_publica_stf','2.00':'api_publica_stj','3.00':'api_publica_stm',
+  '5.00':'api_publica_tst','6.00':'api_publica_tse',
+  '4.01':'api_publica_trf1','4.02':'api_publica_trf2','4.03':'api_publica_trf3',
+  '4.04':'api_publica_trf4','4.05':'api_publica_trf5','4.06':'api_publica_trf6',
+  '5.01':'api_publica_trt1','5.02':'api_publica_trt2','5.03':'api_publica_trt3',
+  '5.04':'api_publica_trt4','5.05':'api_publica_trt5','5.06':'api_publica_trt6',
+  '5.07':'api_publica_trt7','5.08':'api_publica_trt8','5.09':'api_publica_trt9',
+  '5.10':'api_publica_trt10','5.11':'api_publica_trt11','5.12':'api_publica_trt12',
+  '5.13':'api_publica_trt13','5.14':'api_publica_trt14','5.15':'api_publica_trt15',
+  '5.16':'api_publica_trt16','5.17':'api_publica_trt17','5.18':'api_publica_trt18',
+  '5.19':'api_publica_trt19','5.20':'api_publica_trt20','5.21':'api_publica_trt21',
+  '5.22':'api_publica_trt22','5.23':'api_publica_trt23','5.24':'api_publica_trt24',
+  '6.01':'api_publica_tre-ac','6.02':'api_publica_tre-al','6.03':'api_publica_tre-am',
+  '6.04':'api_publica_tre-ap','6.05':'api_publica_tre-ba','6.06':'api_publica_tre-ce',
+  '6.07':'api_publica_tre-dft','6.08':'api_publica_tre-es','6.09':'api_publica_tre-go',
+  '6.10':'api_publica_tre-ma','6.11':'api_publica_tre-mt','6.12':'api_publica_tre-ms',
+  '6.13':'api_publica_tre-mg','6.14':'api_publica_tre-pa','6.15':'api_publica_tre-pb',
+  '6.16':'api_publica_tre-pr','6.17':'api_publica_tre-pe','6.18':'api_publica_tre-pi',
+  '6.19':'api_publica_tre-rj','6.20':'api_publica_tre-rn','6.21':'api_publica_tre-rs',
+  '6.22':'api_publica_tre-ro','6.23':'api_publica_tre-rr','6.24':'api_publica_tre-sc',
+  '6.25':'api_publica_tre-se','6.26':'api_publica_tre-sp','6.27':'api_publica_tre-to',
+  '9.13':'api_publica_tjmmg','9.21':'api_publica_tjmrs','9.26':'api_publica_tjmsp',
+  '8.01':'api_publica_tjac','8.02':'api_publica_tjal','8.03':'api_publica_tjap',
+  '8.04':'api_publica_tjam','8.05':'api_publica_tjba','8.06':'api_publica_tjce',
+  '8.07':'api_publica_tjdft','8.08':'api_publica_tjes','8.09':'api_publica_tjgo',
+  '8.10':'api_publica_tjma','8.11':'api_publica_tjmt','8.12':'api_publica_tjms',
+  '8.13':'api_publica_tjpb','8.14':'api_publica_tjmg','8.15':'api_publica_tjpa',
+  '8.16':'api_publica_tjpr','8.17':'api_publica_tjpe','8.18':'api_publica_tjpi',
+  '8.19':'api_publica_tjrj','8.20':'api_publica_tjrn','8.21':'api_publica_tjrs',
+  '8.22':'api_publica_tjro','8.23':'api_publica_tjrr','8.24':'api_publica_tjsc',
+  '8.25':'api_publica_tjse','8.26':'api_publica_tjsp','8.27':'api_publica_tjto'
 };
 
 var TRIBUNAL_NAMES = {
@@ -238,22 +217,22 @@ var TRIBUNAL_NAMES = {
   'api_publica_tjmmg':'TJMMG','api_publica_tjmrs':'TJMRS','api_publica_tjmsp':'TJMSP'
 };
 
+var GRAU_LABELS = {
+  'G1':'1\u00BA Grau','G2':'2\u00BA Grau','JE':'Juizado Especial',
+  'TR':'Turma Recursal','TRU':'Turma Regional de Uniformiza\u00E7\u00E3o',
+  'TNU':'Turma Nacional de Uniformiza\u00E7\u00E3o','TEP':'Turma Especial',
+  'CJ':'Corte Especial','TSup':'Tribunal Superior','Orig':'Compet\u00EAncia Origin\u00E1ria',
+  'RE':'Recurso Especial','REsp':'Recurso Especial'
+};
+
+/* ===== FUNCOES AUXILIARES ===== */
 function getEndpointFromProcessNumber(num) {
   var clean = num.replace(/\D/g, '');
   if (clean.length !== 20) return null;
-  /* Formato CNJ: NNNNNNN DD AAAA J TT OOOO */
-  /* Posicoes:     0-6    7-8 9-12 13 14-15 16-19 */
   var justica = clean.substring(13, 14);
   var tribunal = clean.substring(14, 16);
   var key = justica + '.' + tribunal;
-  if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
-  /* Fallback: tenta sem zero a esquerda no tribunal */
-  key = justica + '.' + tribunal.replace(/^0/, '');
-  if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
-  /* Fallback: tribunal superior (TT=00) */
-  key = justica + '.00';
-  if (TRIBUNAL_MAP[key]) return TRIBUNAL_MAP[key];
-  return null;
+  return TRIBUNAL_MAP[key] || null;
 }
 
 function queryDataJud(endpoint, body) {
@@ -261,231 +240,328 @@ function queryDataJud(endpoint, body) {
   var bodyStr = JSON.stringify(body);
   var proxyIndex = 0;
   function tryProxy(resolve, reject) {
-    if (proxyIndex >= CORS_PROXIES.length) { return tryDirect(resolve, reject); }
+    if (proxyIndex >= CORS_PROXIES.length) { tryDirect(resolve, reject); return; }
     var proxy = CORS_PROXIES[proxyIndex];
-    var ct = (proxyIndex === 0) ? 'application/x-ndjson' : 'application/json';
+    var ct = proxy.indexOf('?') > -1 ? proxy + encodeURIComponent(targetUrl) : proxy + targetUrl;
     var controller = new AbortController();
     var timeout = setTimeout(function() { controller.abort(); }, 20000);
-    fetch(proxy + targetUrl, {
+    fetch(ct, {
       method: 'POST',
-      headers: { 'Content-Type': ct, 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
+      headers: { 'Content-Type': 'application/json', 'Authorization': DATAJUD_API_KEY },
       body: bodyStr, signal: controller.signal
-    }).then(function(resp) {
-      clearTimeout(timeout);
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      return resp.json();
-    }).then(function(data) {
-      if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
-      console.log('[DataJud] Success via proxy ' + proxyIndex);
-      resolve(data);
-    }).catch(function(err) {
-      clearTimeout(timeout);
-      console.warn('[DataJud] Proxy ' + proxyIndex + ' failed:', err.message);
-      proxyIndex++;
-      tryProxy(resolve, reject);
-    });
+    }).then(function(r) { clearTimeout(timeout); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(resolve)
+      .catch(function() { clearTimeout(timeout); proxyIndex++; tryProxy(resolve, reject); });
   }
   function tryDirect(resolve, reject) {
     var controller = new AbortController();
-    var timeout = setTimeout(function() { controller.abort(); }, 15000);
+    var timeout = setTimeout(function() { controller.abort(); }, 20000);
     fetch(targetUrl, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'APIKey ' + DATAJUD_API_KEY },
+      headers: { 'Content-Type': 'application/json', 'Authorization': DATAJUD_API_KEY },
       body: bodyStr, signal: controller.signal
-    }).then(function(resp) {
-      clearTimeout(timeout);
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      return resp.json();
-    }).then(function(data) {
-      if (data.error) throw new Error(data.error.reason || JSON.stringify(data.error).substring(0,150));
-      resolve(data);
-    }).catch(function(err) {
-      clearTimeout(timeout);
-      reject(new Error('Nao foi possivel conectar ao DataJud. Tente novamente. (' + err.message + ')'));
-    });
+    }).then(function(r) { clearTimeout(timeout); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(resolve)
+      .catch(function(err) { clearTimeout(timeout); reject(err); });
   }
   return new Promise(function(resolve, reject) { tryProxy(resolve, reject); });
 }
 
+/* ===== UI HELPERS ===== */
 function showLoading(text) {
   document.getElementById('loading').classList.add('visible');
-  document.getElementById('loading-text').textContent = text || 'Consultando DataJud...';
+  document.getElementById('loading-text').textContent = text || 'Consultando...';
   document.getElementById('results-section').classList.remove('visible');
 }
 function hideLoading() { document.getElementById('loading').classList.remove('visible'); }
 function showError(id, msg) { var el = document.getElementById(id); el.textContent = msg; el.classList.add('visible'); }
 function clearError(id) { var el = document.getElementById(id); el.textContent = ''; el.classList.remove('visible'); }
-function showToast(msg) { var t = document.getElementById('toast'); t.textContent = msg; t.classList.add('visible'); setTimeout(function() { t.classList.remove('visible'); }, 3000); }
-
-function searchByNumber(e) {
-  e.preventDefault();
-  clearError('error-numero');
-  var raw = document.getElementById('input-numero').value;
-  var clean = raw.replace(/\D/g, '');
-  if (clean.length !== 20) { showError('error-numero', 'O numero do processo deve conter exatamente 20 digitos.'); return; }
-  var endpoint = getEndpointFromProcessNumber(raw);
-  if (!endpoint) { showError('error-numero', 'Nao foi possivel identificar o tribunal a partir do numero informado.'); return; }
-  var btn = document.getElementById('btn-numero');
-  btn.disabled = true;
-  var tribunalLabel = (TRIBUNAL_NAMES[endpoint] || endpoint).toUpperCase();
-  showLoading('Consultando ' + tribunalLabel + '...');
-  queryDataJud(endpoint, { query: { match: { numeroProcesso: clean } }, size: 10
-  }).then(function(data) {
-    var hits = (data.hits && data.hits.hits) || [];
-    displayResults(hits.map(function(h) {
-      var src = h._source || {};
-      src._tribunal = TRIBUNAL_NAMES[endpoint] || endpoint;
-      src._grauOrigem = src.grau || h._index || '';
-      return src;
-    }));
-  }).catch(function(err) {
-    showError('error-numero', 'Erro ao consultar: ' + err.message);
-  }).finally(function() { hideLoading(); btn.disabled = false; });
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('visible');
+  setTimeout(function() { t.classList.remove('visible'); }, 2500);
 }
 
+/* ===== FORMATACAO DE DATAS (CORRIGIDO) ===== */
+function parseFlexibleDate(val) {
+  if (!val) return null;
+  var s = String(val).trim();
+  if (s.indexOf('T') > -1 || s.indexOf('-') > -1) {
+    var d = new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  var digits = s.replace(/\D/g, '');
+  if (digits.length >= 8) {
+    var y = parseInt(digits.substring(0, 4));
+    var mo = parseInt(digits.substring(4, 6)) - 1;
+    var day = parseInt(digits.substring(6, 8));
+    var h = digits.length >= 10 ? parseInt(digits.substring(8, 10)) : 0;
+    var mi = digits.length >= 12 ? parseInt(digits.substring(10, 12)) : 0;
+    var sec = digits.length >= 14 ? parseInt(digits.substring(12, 14)) : 0;
+    var d = new Date(y, mo, day, h, mi, sec);
+    return isNaN(d.getTime()) ? null : d;
+  }
+  var d = new Date(s);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+function formatDate(val) {
+  var d = parseFlexibleDate(val);
+  if (!d) return String(val || '\u2014');
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function formatDateTime(val) {
+  var d = parseFlexibleDate(val);
+  if (!d) return String(val || '\u2014');
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    + ' ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
+
+function formatDateTimeISO(val) {
+  var d = parseFlexibleDate(val);
+  if (!d) return String(val || '\u2014');
+  return d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    + ' \u00E0s ' + d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+/* ===== HELPERS DE DADOS ===== */
+function getClassName(src) { return (src.classe && src.classe.nome) ? src.classe.nome : '\u2014'; }
+function getSubjects(src) {
+  if (!src.assuntos || !src.assuntos.length) return '\u2014';
+  return src.assuntos.map(function(a) { return a.nome; }).join(' / ');
+}
+function getOrgao(src) { return (src.orgaoJulgador && src.orgaoJulgador.nome) ? src.orgaoJulgador.nome : '\u2014'; }
+function getGrauLabel(grau) {
+  if (!grau) return '\u2014';
+  return GRAU_LABELS[grau] ? GRAU_LABELS[grau] + ' (' + grau + ')' : grau;
+}
+function getSigiloLabel(nivel) {
+  if (nivel === undefined || nivel === null) return '\u2014';
+  var labels = {0:'P\u00FAblico (0)',1:'Segredo de Justi\u00E7a (1)',2:'Sigilo M\u00EDnimo (2)',3:'Sigilo M\u00E9dio (3)',4:'Sigilo Intenso (4)',5:'Sigilo Absoluto (5)'};
+  return labels[nivel] || ('N\u00EDvel ' + nivel);
+}
+function formatPN(n) {
+  var c = String(n).replace(/\D/g, '').padStart(20, '0');
+  return c.substring(0,7)+'-'+c.substring(7,9)+'.'+c.substring(9,13)+'.'+c.substring(13,14)+'.'+c.substring(14,16)+'.'+c.substring(16,20);
+}
+
+/* ===== BUSCA ===== */
 var currentResults = [];
+
+function searchByNumber() {
+  var raw = document.getElementById('input-numero').value;
+  var clean = raw.replace(/\D/g, '');
+  clearError('error-numero');
+  if (clean.length !== 20) { showError('error-numero', 'Informe um numero de processo valido com 20 digitos (NNNNNNN-DD.AAAA.J.TR.OOOO)'); return; }
+  var endpoint = getEndpointFromProcessNumber(clean);
+  if (!endpoint) { showError('error-numero', 'Tribunal nao identificado no numero informado.'); return; }
+  var btn = document.getElementById('btn-numero');
+  btn.disabled = true;
+  var tribunalLabel = TRIBUNAL_NAMES[endpoint] || endpoint.replace('api_publica_','').toUpperCase();
+  showLoading('Consultando ' + tribunalLabel + '...');
+  var body = { query: { match: { numeroProcesso: clean } }, size: 10 };
+  queryDataJud(endpoint, body).then(function(data) {
+    hideLoading(); btn.disabled = false;
+    var hits = (data.hits && data.hits.hits) ? data.hits.hits : [];
+    var src = hits.map(function(h) { return h._source; });
+    currentResults = src;
+    displayResults(src);
+  }).catch(function(err) {
+    hideLoading(); btn.disabled = false;
+    showError('error-numero', 'Erro ao consultar: ' + (err.message || 'Verifique sua conexao.'));
+  });
+}
+
 function displayResults(results) {
-  currentResults = results || [];
   var section = document.getElementById('results-section');
   var list = document.getElementById('results-list');
   var countEl = document.getElementById('results-count');
-  if (!results || results.length === 0) {
+  list.innerHTML = '';
+  if (!results.length) {
     section.classList.add('visible');
-    countEl.textContent = '0';
-    list.innerHTML = '<div class="empty-state"><h3>Nenhum processo encontrado</h3><p>Verifique os dados informados e tente novamente.</p></div>';
+    countEl.textContent = '0 processos';
+    list.innerHTML = '<div class="empty-state"><h3>Nenhum resultado</h3><p>Nao foram encontrados processos com este numero.</p></div>';
     return;
   }
-  section.classList.add('visible');
   countEl.textContent = results.length + ' processo' + (results.length > 1 ? 's' : '');
-  list.innerHTML = results.map(function(proc, idx) { return buildProcessCard(proc, idx); }).join('');
+  results.forEach(function(src, i) { list.innerHTML += buildProcessCard(src, i); });
+  section.classList.add('visible');
   section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function formatDate(d) { if (!d) return '--'; try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'}); } catch(e) { return d; } }
-function formatDateTime(d) { if (!d) return '--'; try { var dt = new Date(d); if (isNaN(dt)) return d; return dt.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'})+' '+dt.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); } catch(e) { return d; } }
-function getClassName(p) { return (p.classe && p.classe.nome) ? p.classe.nome : (typeof p.classe === 'string' ? p.classe : '-'); }
-function getSubjects(p) { return (p.assuntos && Array.isArray(p.assuntos)) ? p.assuntos.map(function(a){return a.nome||a;}).filter(Boolean).join(', ')||'-' : '-'; }
-function getOrgao(p) { return (p.orgaoJulgador && p.orgaoJulgador.nome) ? p.orgaoJulgador.nome : '-'; }
-function formatPN(n) { var c=(n||'').replace(/\D/g,''); return c.length===20 ? c.replace(/^(\d{7})(\d{2})(\d{4})(\d{1})(\d{2})(\d{4})$/,'$1-$2.$3.$4.$5.$6') : n; }
+/* ===== CARD BUILDER (MELHORADO) ===== */
+function buildProcessCard(src, idx) {
+  var numero = src.numeroProcesso || '';
+  var tribunal = src.tribunal || '';
+  var classe = getClassName(src);
+  var assuntos = getSubjects(src);
+  var orgao = getOrgao(src);
+  var dataAj = formatDate(src.dataAjuizamento);
+  var grau = getGrauLabel(src.grau);
+  var formato = (src.formato && src.formato.nome) ? src.formato.nome : '\u2014';
+  var sistema = (src.sistema && src.sistema.nome) ? src.sistema.nome : '\u2014';
+  var sigilo = getSigiloLabel(src.nivelSigilo);
+  var sigiloClass = (src.nivelSigilo === 0) ? 'sigilo-0' : (src.nivelSigilo > 0 ? 'sigilo-high' : '');
+  var ultimaAtt = src.dataHoraUltimaAtualizacao ? formatDateTimeISO(src.dataHoraUltimaAtualizacao) : '\u2014';
 
-function buildProcessCard(proc, idx) {
-  var numero = proc.numeroProcesso || '-';
-  var tribunal = proc._tribunal || '-';
-  var classe = getClassName(proc);
-  var assuntos = getSubjects(proc);
-  var orgao = getOrgao(proc);
-  var dataAj = formatDate(proc.dataAjuizamento);
-  var grau = proc.grau || '-';
-  var formato = (proc.formato && proc.formato.nome) ? proc.formato.nome : (proc.formato || '-');
-  var movs = proc.movimentos || proc.movimento || [];
-  var sorted = [].concat(movs).sort(function(a,b){return (b.dataHora||'').localeCompare(a.dataHora||'');});
+  var movs = src.movimentos || [];
+  var sorted = movs.slice().sort(function(a, b) {
+    return new Date(b.dataHora || 0) - new Date(a.dataHora || 0);
+  });
   var now = new Date();
-  var movsHtml = '<p style="color:var(--text-muted);font-size:0.85rem;">Nenhum movimento registrado.</p>';
-  if (sorted.length > 0) {
-    movsHtml = sorted.slice(0,50).map(function(m) {
-      var dt = formatDateTime(m.dataHora);
-      var nm = m.nome || m.complemento || '-';
-      var comps = (m.complementosTabelados||[]).map(function(c){return c.nome||c.descricao||'';}).filter(Boolean).join('; ');
-      var ft = (nm+' '+comps).toLowerCase();
-      var isAud = /audi[eê]ncia/.test(ft);
-      var ec='', badge='';
-      if (isAud) { var md=m.dataHora?new Date(m.dataHora):null; var isFut=md&&md>now; ec=isFut?' audiencia audiencia-futura':' audiencia'; badge=isFut?'<span class="audiencia-badge futura">AUDIENCIA FUTURA</span>':'<span class="audiencia-badge passada">AUDIENCIA</span>'; }
-      return '<div class="timeline-item'+ec+'"><div class="timeline-date">'+dt+badge+'</div><div class="timeline-desc">'+nm+'</div>'+(comps?'<div class="timeline-complement">'+comps+'</div>':'')+'</div>';
-    }).join('');
-  }
-  return '<article class="process-card" id="card-'+idx+'">' +
-    '<div class="card-header" tabindex="0" role="button" aria-expanded="false" onclick="toggleCard('+idx+')">' +
-    '<span class="tribunal-badge">'+tribunal+'</span>' +
-    '<div class="card-info"><div class="process-number">'+formatPN(numero)+'</div>' +
-    '<div class="process-class">'+classe+'</div>' +
-    '<div class="process-meta"><span>'+dataAj+'</span><span>'+orgao+'</span><span>Grau: '+grau+'</span></div></div>' +
-    '<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>' +
-    '<div class="card-body"><div class="card-body-inner">' +
-    '<div class="detail-grid">' +
-    '<div class="detail-item"><div class="label">Tribunal</div><div class="value">'+tribunal+'</div></div>' +
-    '<div class="detail-item"><div class="label">Classe</div><div class="value">'+classe+'</div></div>' +
-    '<div class="detail-item"><div class="label">Assunto</div><div class="value">'+assuntos+'</div></div>' +
-    '<div class="detail-item"><div class="label">Orgao Julgador</div><div class="value">'+orgao+'</div></div>' +
-    '<div class="detail-item"><div class="label">Data Ajuizamento</div><div class="value">'+dataAj+'</div></div>' +
-    '<div class="detail-item"><div class="label">Grau</div><div class="value">'+grau+'</div></div>' +
-    '<div class="detail-item"><div class="label">Formato</div><div class="value">'+formato+'</div></div></div>' +
-    '<div class="timeline-section"><h3>Movimentacoes ('+sorted.length+')</h3><div class="timeline">'+movsHtml+'</div></div>' +
-    '<div class="card-actions">' +
-    '<button class="btn-action" onclick="copyInfo('+idx+',this)" type="button">Copiar</button>' +
-    '<button class="btn-action" onclick="generatePDF('+idx+')" type="button">Gerar PDF</button>' +
-    '</div></div></div></article>';
+  var movsHtml = '';
+  sorted.forEach(function(mv) {
+    var dt = formatDateTime(mv.dataHora);
+    var nm = mv.nome || '(sem nome)';
+    var cod = mv.codigo ? ' <span class="timeline-code">[cod. ' + mv.codigo + ']</span>' : '';
+    var comps = '';
+    if (mv.complementosTabelados && mv.complementosTabelados.length) {
+      comps = mv.complementosTabelados.map(function(c) { return c.nome || c.descricao || ''; }).filter(Boolean).join(', ');
+    }
+    var ft = '';
+    var isAud = nm.toLowerCase().indexOf('audiencia') > -1 || nm.toLowerCase().indexOf('audi\u00EAncia') > -1;
+    var ec = isAud ? ' audiencia' : '';
+    var md = parseFlexibleDate(mv.dataHora);
+    var isFut = md && md > now;
+    if (isFut && isAud) ec = ' audiencia audiencia-futura';
+    if (isAud) ft += '<div class="audiencia-badge">' + (isFut ? '\u2B50 Audiencia Futura' : '\u26A0 Audiencia') + '</div>';
+    ft += '<div class="timeline-date">' + dt + '</div>';
+    ft += '<div class="timeline-desc">' + nm + cod + '</div>';
+    if (comps) ft += '<div class="timeline-complement">' + comps + '</div>';
+    movsHtml += '<div class="timeline-item' + ec + '">' + ft + '</div>';
+  });
+
+  return '<article id="card-' + idx + '" class="process-card expanded" role="region">'
+    + '<div class="card-header" onclick="toggleCard(' + idx + ')">'
+    + '<div class="tribunal-badge">' + tribunal + '</div>'
+    + '<div class="card-info">'
+    + '<div class="process-number">' + formatPN(numero) + '</div>'
+    + '<div class="process-class">' + classe + '</div>'
+    + '<div class="process-meta"><span>' + dataAj + '</span><span>' + orgao + '</span><span>Grau: ' + (src.grau || '\u2014') + '</span></div>'
+    + '</div>'
+    + '<svg class="expand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>'
+    + '</div>'
+    + '<div class="card-body"><div class="card-body-inner">'
+    + '<div class="detail-grid">'
+    + '<div class="detail-item"><div class="label">Tribunal</div><div class="value">' + tribunal + '</div></div>'
+    + '<div class="detail-item"><div class="label">Classe</div><div class="value">' + classe + '</div></div>'
+    + '<div class="detail-item"><div class="label">Assunto</div><div class="value">' + assuntos + '</div></div>'
+    + '<div class="detail-item"><div class="label">Orgao Julgador</div><div class="value">' + orgao + '</div></div>'
+    + '<div class="detail-item"><div class="label">Data Ajuizamento</div><div class="value">' + dataAj + '</div></div>'
+    + '<div class="detail-item"><div class="label">Grau</div><div class="value">' + grau + '</div></div>'
+    + '<div class="detail-item"><div class="label">Formato</div><div class="value">' + formato + '</div></div>'
+    + '<div class="detail-item"><div class="label">Sistema</div><div class="value">' + sistema + '</div></div>'
+    + '<div class="detail-item"><div class="label">Sigilo</div><div class="value ' + sigiloClass + '">' + sigilo + '</div></div>'
+    + '<div class="detail-item"><div class="label">Atualizado no DataJud</div><div class="value atualizado">' + ultimaAtt + '</div></div>'
+    + '</div>'
+    + '<div class="timeline-section"><h3>Movimentacoes (' + movs.length + ')</h3>'
+    + '<div class="timeline">' + movsHtml + '</div></div>'
+    + '<div class="card-actions">'
+    + '<button type="button" onclick="copyInfo(' + idx + ')">Copiar</button>'
+    + '<button type="button" onclick="generatePDF(' + idx + ')">Gerar PDF</button>'
+    + '</div></div></div></article>';
 }
 
+/* ===== TOGGLE, COPIAR, PDF ===== */
 function toggleCard(idx) {
   var card = document.getElementById('card-' + idx);
-  var hdr = card.querySelector('.card-header');
-  var exp = card.classList.toggle('expanded');
-  hdr.setAttribute('aria-expanded', exp);
+  if (card) card.classList.toggle('expanded');
 }
 
-function copyInfo(idx, btn) {
+function copyInfo(idx) {
   var p = currentResults[idx];
   if (!p) return;
-  var text = 'Processo: '+formatPN(p.numeroProcesso||'')+'\nTribunal: '+(p._tribunal||'')+'\nClasse: '+getClassName(p)+'\nAssuntos: '+getSubjects(p)+'\nOrgao Julgador: '+getOrgao(p)+'\nData Ajuizamento: '+formatDate(p.dataAjuizamento)+'\nGrau: '+(p.grau||'');
-  navigator.clipboard.writeText(text).then(function() {
-    btn.classList.add('copied'); var orig = btn.innerHTML; btn.textContent = 'Copiado!';
-    setTimeout(function() { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
-  }).catch(function() { showToast('Nao foi possivel copiar.'); });
+  var text = 'Processo: ' + formatPN(p.numeroProcesso)
+    + '\nTribunal: ' + (p.tribunal || '')
+    + '\nClasse: ' + getClassName(p)
+    + '\nAssunto: ' + getSubjects(p)
+    + '\nOrgao Julgador: ' + getOrgao(p)
+    + '\nData Ajuizamento: ' + formatDate(p.dataAjuizamento)
+    + '\nGrau: ' + getGrauLabel(p.grau)
+    + '\nFormato: ' + ((p.formato && p.formato.nome) ? p.formato.nome : '')
+    + '\nSistema: ' + ((p.sistema && p.sistema.nome) ? p.sistema.nome : '')
+    + '\nSigilo: ' + getSigiloLabel(p.nivelSigilo)
+    + '\nAtualizado DataJud: ' + (p.dataHoraUltimaAtualizacao ? formatDateTimeISO(p.dataHoraUltimaAtualizacao) : '');
+  if (p.movimentos && p.movimentos.length) {
+    var sorted = p.movimentos.slice().sort(function(a,b) { return new Date(b.dataHora||0)-new Date(a.dataHora||0); });
+    text += '\n\nMovimentacoes (' + sorted.length + '):';
+    sorted.slice(0, 30).forEach(function(mv) {
+      text += '\n  ' + formatDateTime(mv.dataHora) + ' - ' + (mv.nome||'') + (mv.codigo ? ' [cod.' + mv.codigo + ']' : '');
+    });
+    if (sorted.length > 30) text += '\n  ... e mais ' + (sorted.length - 30) + ' movimentacoes';
+  }
+  navigator.clipboard.writeText(text).then(function() { showToast('Informacoes copiadas!'); });
 }
 
 function generatePDF(idx) {
   var p = currentResults[idx];
   if (!p) return;
-  var jP = window.jspdf;
-  var doc = new jP.jsPDF({unit:'mm',format:'a4'});
+  var jP = window.jspdf || window.jsPDF;
+  if (!jP) { showToast('Biblioteca PDF nao carregada'); return; }
+  var doc = new jP.jsPDF();
   var pw = doc.internal.pageSize.getWidth();
-  var mg = 20, cw = pw-mg*2, y = mg;
-  doc.setFillColor(26,35,126); doc.rect(0,0,pw,35,'F');
-  doc.setFont('helvetica','bold'); doc.setFontSize(16); doc.setTextColor(255,255,255);
-  doc.text('Douglas Vilar - Consulta Processual',pw/2,15,{align:'center'});
-  doc.setFontSize(9); doc.setTextColor(201,168,76);
-  doc.text('Dados: DataJud/CNJ',pw/2,23,{align:'center'});
-  doc.setFontSize(8); doc.setTextColor(200,200,200);
-  doc.text('Gerado em: '+new Date().toLocaleString('pt-BR'),pw/2,30,{align:'center'});
-  y=45;
-  doc.setTextColor(26,35,126); doc.setFont('helvetica','bold'); doc.setFontSize(12);
-  doc.text('Dados do Processo',mg,y); y+=8;
-  var fields=[['Numero',formatPN(p.numeroProcesso||'')],['Tribunal',p._tribunal||''],['Classe',getClassName(p)],['Assuntos',getSubjects(p)],['Orgao Julgador',getOrgao(p)],['Data Ajuizamento',formatDate(p.dataAjuizamento)],['Grau',p.grau||''],['Formato',(p.formato&&p.formato.nome)?p.formato.nome:(p.formato||'')]];
-  doc.setFontSize(9);
+  var mg = 14;
+  var y = 20;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+  doc.text('Consulta Processual', pw / 2, y, { align: 'center' }); y += 10;
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(9);
+  doc.text('Douglas Vilar - Advocacia | Dados: DataJud/CNJ', pw / 2, y, { align: 'center' }); y += 12;
+  doc.setFontSize(10);
+  var fields = [
+    ['Processo', formatPN(p.numeroProcesso)],
+    ['Tribunal', p.tribunal || ''],
+    ['Classe', getClassName(p)],
+    ['Assunto', getSubjects(p)],
+    ['Orgao Julgador', getOrgao(p)],
+    ['Data Ajuizamento', formatDate(p.dataAjuizamento)],
+    ['Grau', getGrauLabel(p.grau)],
+    ['Formato', (p.formato && p.formato.nome) ? p.formato.nome : ''],
+    ['Sistema', (p.sistema && p.sistema.nome) ? p.sistema.nome : ''],
+    ['Sigilo', getSigiloLabel(p.nivelSigilo)],
+    ['Atualizado DataJud', p.dataHoraUltimaAtualizacao ? formatDateTimeISO(p.dataHoraUltimaAtualizacao) : '']
+  ];
   fields.forEach(function(f) {
-    if(y>270){doc.addPage();y=mg;}
-    doc.setFont('helvetica','bold');doc.setTextColor(100,100,100);
-    doc.text(f[0]+':',mg,y);
-    doc.setFont('helvetica','normal');doc.setTextColor(30,30,30);
-    var lines=doc.splitTextToSize(String(f[1]),cw-40);
-    doc.text(lines,mg+40,y); y+=lines.length*5+3;
+    doc.setFont('helvetica', 'bold'); doc.text(f[0] + ': ', mg, y);
+    var labelW = doc.getTextWidth(f[0] + ': ');
+    doc.setFont('helvetica', 'normal');
+    var lines = doc.splitTextToSize(f[1], pw - mg * 2 - labelW);
+    doc.text(lines, mg + labelW, y); y += lines.length * 5 + 2;
   });
-  var movs=[].concat(p.movimentos||p.movimento||[]).sort(function(a,b){return(b.dataHora||'').localeCompare(a.dataHora||'');});
-  if(movs.length>0){
-    y+=6; if(y>260){doc.addPage();y=mg;}
-    doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(26,35,126);
-    doc.text('Movimentacoes ('+movs.length+')',mg,y);y+=8;
-    doc.setFontSize(8);
-    movs.slice(0,100).forEach(function(m){
-      if(y>270){doc.addPage();y=mg;}
-      doc.setFont('helvetica','bold');doc.setTextColor(26,35,126);
-      doc.text(formatDateTime(m.dataHora),mg,y);
-      doc.setFont('helvetica','normal');doc.setTextColor(50,50,50);
-      var nl=doc.splitTextToSize(m.nome||m.complemento||'-',cw-5);
-      doc.text(nl,mg,y+4); y+=4+nl.length*4+4;
+  y += 6;
+  if (p.movimentos && p.movimentos.length) {
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+    doc.text('Movimentacoes (' + p.movimentos.length + ')', mg, y); y += 7;
+    doc.setFontSize(9); doc.setFont('helvetica', 'normal');
+    var sorted = p.movimentos.slice().sort(function(a,b) { return new Date(b.dataHora||0)-new Date(a.dataHora||0); });
+    sorted.forEach(function(mv) {
+      if (y > 275) { doc.addPage(); y = 20; }
+      var dt = formatDateTime(mv.dataHora);
+      var nm = (mv.nome || '') + (mv.codigo ? ' [cod.' + mv.codigo + ']' : '');
+      doc.setFont('helvetica', 'bold'); doc.text(dt, mg, y);
+      doc.setFont('helvetica', 'normal');
+      var nl = doc.splitTextToSize(nm, pw - mg * 2 - 40);
+      doc.text(nl, mg + 40, y); y += nl.length * 4.5 + 3;
+      if (mv.complementosTabelados && mv.complementosTabelados.length) {
+        var ct = mv.complementosTabelados.map(function(c) { return c.nome || ''; }).filter(Boolean).join(', ');
+        if (ct) { doc.setTextColor(120); var cl = doc.splitTextToSize(ct, pw - mg * 2 - 40); doc.text(cl, mg + 40, y); y += cl.length * 4 + 2; doc.setTextColor(0); }
+      }
     });
   }
-  doc.setFontSize(7);doc.setTextColor(150,150,150);
-  doc.text('Douglas Vilar - Advocacia | API Publica do DataJud',pw/2,290,{align:'center'});
-  var fn='processo_'+(p.numeroProcesso||'consulta').replace(/\D/g,'').substring(0,20)+'.pdf';
+  var fn = 'processo_' + (p.numeroProcesso || 'consulta') + '.pdf';
   doc.save(fn);
   showToast('PDF gerado com sucesso!');
 }
 
+/* ===== EVENT BINDING ===== */
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('form-numero').addEventListener('submit', searchByNumber);
-  document.getElementById('input-numero').focus();
+  document.getElementById('form-numero').addEventListener('submit', function(e) {
+    e.preventDefault();
+    searchByNumber();
+  });
 });
 </script>
+</body>
+</html>
 </body>
 </html>
