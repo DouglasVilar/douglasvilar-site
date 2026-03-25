@@ -1196,6 +1196,7 @@
 
   <script>
     // DOUGLAS VILAR | ia Skill Builder Logic
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqCd5RbPQj1wMgpm0XDxQPv4QQJgLzN6bPrmpVpqb_sF2YDUkPfX8OPGZmav4neHI/exec';
     var state = { current: 1, triggers: [], commands: [], rules: [] };
     var TOTALSTEPS = 7;
     var uploadedFiles = { assets: [], refs: [] };
@@ -1646,7 +1647,19 @@
       });
     });
 
-    // ===== SUBMIT =====
+    // ===== SUBMIT COM UPLOAD GOOGLE DRIVE =====
+    function fileToBase64(file) {
+      return new Promise(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          var base64 = reader.result.split(',')[1];
+          resolve({ name: file.name, data: base64, mimeType: file.type || 'application/octet-stream' });
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
     function submitForm() {
       var name = gv('f-sender-name');
       var email = gv('f-sender-email');
@@ -1656,42 +1669,65 @@
       }
 
       var btn = document.getElementById('btnSend');
-      btn.textContent = 'Enviando...';
+      var originalText = btn.textContent;
+      btn.textContent = '📤 Enviando arquivos...';
       btn.disabled = true;
 
-      // Build payload
       var skill = generateSkill();
       var oab = gv('f-sender-oab');
       var obs = gv('f-obs');
+      var skillName = gv('f-name') || 'skill-sem-nome';
 
-      // Mailto
-          var phone = gv('f-sender-phone');
-          var instagram = gv('f-sender-instagram');
-          var skillName = gv('f-name');
+      // Collect all files (assets + refs)
+      var allFiles = [];
+      uploadedFiles.assets.forEach(function(f) { if (f.file) allFiles.push(f.file); });
+      uploadedFiles.refs.forEach(function(f) { if (f.file) allFiles.push(f.file); });
 
-          // Envia dados para Google Drive via Apps Script
-          fetch('https://script.google.com/macros/s/AKfycbxqCd5RbPQj1wMgpm0XDxQPv4QQJgLzN6bPrmpVpqb_sF2YDUkPfX8OPGZmav4neHI/exec', {
-                  method: 'POST',
-                  mode: 'no-cors',
-                  headers: {'Content-Type':'application/json'},
-                  body: JSON.stringify({nome:name,email:email,telefone:phone,instagram:instagram,oab:oab,skillName:skillName,skillContent:skill,obs:obs})
-                        }).catch(function(e){console.log(e);});
-      var subject = encodeURIComponent('Skill Builder: Nova skill de ' + name);
-      var body = encodeURIComponent(
-        'Nome: ' + name + '\n'
-        + 'E-mail: ' + email + '\n'
-        + (oab ? 'OAB: ' + oab + '\n' : '')
-        + (obs ? 'Obs: ' + obs + '\n' : '')
-        + '\n--- SKILL.md GERADO ---\n'
-        + skill
-      );
-      window.location.href = 'mailto:douglas@vilar.adv.br?subject=' + subject + '&body=' + body;
+      // Convert files to base64
+      var filePromises = allFiles.map(fileToBase64);
 
-      // Update WhatsApp links before showing success
-      updateWhatsAppLinks();
+      Promise.all(filePromises).then(function(filesData) {
+        btn.textContent = '☁️ Salvando no Drive...';
 
-      // Show success
-      setTimeout(function() { goTo(8); }, 1000);
+        var payload = {
+          nome: name,
+          email: email,
+          oab: oab,
+          skillName: skillName,
+          skillContent: skill,
+          obs: obs,
+          files: filesData
+        };
+
+        return fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        });
+      }).then(function() {
+        btn.textContent = '✅ Enviado!';
+
+        // Also send mailto as backup
+        var subject = encodeURIComponent('Skill Builder: Nova skill de ' + name);
+        var body = encodeURIComponent(
+          'Nome: ' + name + '\n'
+          + 'E-mail: ' + email + '\n'
+          + (oab ? 'OAB: ' + oab + '\n' : '')
+          + (obs ? 'Obs: ' + obs + '\n' : '')
+          + '\n--- SKILL.md GERADO ---\n'
+          + skill
+        );
+        window.open('mailto:douglas@vilar.adv.br?subject=' + subject + '&body=' + body, '_blank');
+
+        updateWhatsAppLinks();
+        setTimeout(function() { goTo(8); }, 1500);
+
+      }).catch(function(err) {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('Erro ao enviar: ' + err.message + '\nTente novamente.');
+      });
     }
 
     // Init
