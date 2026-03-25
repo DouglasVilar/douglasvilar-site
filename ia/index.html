@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <style>
     /* DOUGLAS VILAR | ia Skill Builder Page */
-    /* Cores do site: Navy escuro + Ouro/Gold */
     :root {
       --bg-primary: #080c10;
       --bg-card: #0d1117;
@@ -41,7 +40,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-    /* NOISE TEXTURE overlay */
     body:before {
       content: '';
       position: fixed;
@@ -51,6 +49,7 @@
       z-index: 0;
       opacity: 0.4;
     }
+
     /* HEADER */
     header {
       position: sticky;
@@ -90,141 +89,547 @@
       letter-spacing: -0.5px;
     }
     .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .brand-name { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.02em; }
+    .brand-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.02em;
+    }
     .brand-sub { font-size: 10px; color: var(--gold); font-weight: 300; letter-spacing: 0.08em; }
     .header-nav { display: flex; align-items: center; gap: 6px; }
-    .nav-link { color: var(--text-muted); text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; }
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
     .nav-link:hover { color: var(--text-primary); background: var(--border-soft); }
     .nav-link.active { color: var(--gold); background: var(--gold-dim); }
+
     /* HERO */
-    .hero { position: relative; padding: 80px 24px 60px; text-align: center; overflow: hidden; }
-    .hero:before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--gold-dim); border: 1px solid var(--border); color: var(--gold-light); font-size: 11px; font-weight: 500; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; letter-spacing: 0.08em; text-transform: uppercase; }
-    .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--white); }
+    .hero {
+      position: relative;
+      padding: 80px 24px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero:before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
     .hero h1 .gold { color: var(--gold); }
-    .hero p { font-size: clamp(14px, 2vw, 17px); color: var(--text-muted); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+    .hero p {
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
     /* STEPS INDICATOR */
     .steps-bar { max-width: 760px; margin: 0 auto 48px; padding: 0 24px; }
     .steps-list { display: flex; align-items: center; gap: 0; list-style: none; }
     .step-item { display: flex; align-items: center; flex: 1; }
-    .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; font-family: 'Syne', sans-serif; transition: all 0.3s; border: 2px solid var(--border-soft); background: var(--bg-card); color: var(--text-dim); flex-shrink: 0; cursor: default; }
+    .step-dot {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; font-family: 'Syne', sans-serif;
+      transition: all 0.3s;
+      border: 2px solid var(--border-soft);
+      background: var(--bg-card);
+      color: var(--text-dim);
+      flex-shrink: 0;
+      cursor: default;
+    }
     .step-dot.done { background: var(--success); border-color: var(--success); color: white; }
     .step-dot.active { background: var(--gold); border-color: var(--gold); color: var(--bg-primary); box-shadow: 0 0 16px var(--gold-glow); }
     .step-line { flex: 1; height: 2px; background: var(--border-soft); margin: 0 4px; transition: background 0.4s; }
     .step-line.done { background: var(--gold); opacity: 0.4; }
     .step-label { display: none; }
+
     /* MAIN CONTAINER */
     .main-container { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; position: relative; z-index: 1; }
+
     /* CARD */
-    .card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: var(--radius-lg); padding: 36px; position: relative; overflow: hidden; animation: slideUp 0.35s ease both; }
-    .card:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.6; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .card-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      animation: slideUp 0.35s ease both;
+    }
+    .card:before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.6;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
     .card-title .icon { font-size: 20px; }
     .card-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+
     /* FORM ELEMENTS */
     .field { margin-bottom: 22px; }
-    label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); margin-bottom: 7px; display: flex; align-items: center; gap: 4px; }
+    label {
+      display: flex;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+      align-items: center;
+      gap: 4px;
+    }
     .required { color: var(--gold); }
-    input[type="text"], input[type="email"], textarea, select { width: 100%; background: var(--bg-primary); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 11px 14px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text-primary); transition: all 0.2s; outline: none; }
-    input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus { border-color: var(--gold); background: var(--bg-elevated); box-shadow: 0 0 0 3px var(--gold-dim); }
+    input[type="text"], input[type="email"], textarea, select {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text-primary);
+      transition: all 0.2s;
+      outline: none;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+      border-color: var(--gold);
+      background: var(--bg-elevated);
+      box-shadow: 0 0 0 3px var(--gold-dim);
+    }
     input::placeholder, textarea::placeholder { color: var(--text-dim); }
     textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
     select option { background: var(--bg-card); }
-    /* TOOLTIP */
-    .tip { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-dim); border: 1px solid var(--border); color: var(--gold); font-size: 10px; font-weight: 700; cursor: help; position: relative; }
-    .tip:hover:after { content: attr(data-tip); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: var(--bg-elevated); border: 1px solid var(--border); color: var(--text-muted); font-size: 12px; font-weight: 400; padding: 8px 12px; border-radius: 8px; width: 220px; white-space: normal; pointer-events: none; z-index: 50; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+    /* TOOLTIP SYSTEM */
+    .tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: help;
+      transition: all 0.3s ease;
+      vertical-align: middle;
+      margin-left: 4px;
+      border: 1px solid var(--border);
+    }
+    .tip:hover {
+      background: var(--gold);
+      color: var(--bg-primary);
+      transform: scale(1.1);
+    }
+    .tip::before, .tip::after { display: none !important; }
+    .tip-popup {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: 400px;
+      padding: 18px 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--gold-dim);
+      z-index: 1000;
+      text-align: left;
+      pointer-events: none;
+    }
+    .tip:hover .tip-popup {
+      display: block;
+      animation: tipFadeIn 0.2s ease;
+    }
+    @keyframes tipFadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: none; }
+    }
+    .tip-popup::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 10px;
+      border: 8px solid transparent;
+      border-bottom-color: var(--gold);
+    }
+    .tip-popup .tip-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tip-popup .tip-desc {
+      font-size: 13px;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .tip-popup .tip-examples {
+      background: var(--bg-card);
+      padding: 10px 12px;
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+      margin-bottom: 8px;
+    }
+    .tip-popup .tip-examples .tip-ex-line {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-family: 'DM Sans', monospace;
+    }
+    .tip-popup .tip-examples .tip-ex-good { color: var(--success); }
+    .tip-popup .tip-examples .tip-ex-bad { color: var(--danger); }
+    .tip-popup .tip-warn {
+      font-size: 12px;
+      color: var(--danger);
+      margin-top: 8px;
+      padding: 6px 10px;
+      background: rgba(224,82,82,0.08);
+      border-radius: 6px;
+      border-left: 3px solid var(--danger);
+    }
+
     /* EXAMPLE BOX */
-    .example { display: flex; align-items: flex-start; gap: 8px; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.12); border-radius: 8px; padding: 10px 12px; margin-top: 8px; }
-    .example-label { font-size: 10px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; margin-top: 1px; }
-    .example-text { font-size: 12px; color: var(--text-muted); font-style: italic; line-height: 1.5; }
+    .example {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 8px;
+    }
+    .example-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+      margin-top: 1px;
+    }
+    .example-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
     /* TAG INPUT */
     .tag-input-row { display: flex; gap: 8px; }
     .tag-input-row input { flex: 1; }
-    .btn-add { padding: 0 16px; background: var(--gold); color: var(--bg-primary); border: none; border-radius: var(--radius); font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; }
+    .btn-add {
+      padding: 0 16px;
+      background: var(--gold);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
     .btn-add:hover { background: var(--gold-light); }
-    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; min-height: 28px; margin-top: 10px; }
-    .tag { display: inline-flex; align-items: center; gap: 5px; background: var(--gold-dim); border: 1px solid var(--border); color: var(--gold-light); font-size: 12px; padding: 4px 10px; border-radius: 100px; }
-    .tag-rm { background: none; border: none; color: var(--gold); opacity: 0.6; cursor: pointer; font-size: 14px; line-height: 1; padding: 0; }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      min-height: 28px;
+      margin-top: 10px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      color: var(--gold-light);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .tag-rm {
+      background: none;
+      border: none;
+      color: var(--gold);
+      opacity: 0.6;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      padding: 0;
+    }
     .tag-rm:hover { opacity: 1; }
     .tag-suggestions { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-    .tag-sug { background: var(--bg-elevated); border: 1px solid var(--border-soft); color: var(--text-dim); font-size: 11px; padding: 3px 10px; border-radius: 100px; cursor: pointer; transition: all 0.18s; }
+    .tag-sug {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+      color: var(--text-dim);
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
     .tag-sug:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
     /* ALERT */
-    .alert { display: flex; gap: 10px; border-radius: var(--radius); padding: 14px 16px; font-size: 13px; margin-bottom: 24px; }
-    .alert-gold { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2); color: rgba(226,192,104,0.85); }
-    .alert-info { background: rgba(74,144,226,0.06); border: 1px solid rgba(74,144,226,0.2); color: rgba(140,185,240,0.85); }
+    .alert {
+      display: flex;
+      gap: 10px;
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .alert-gold {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: rgba(226,192,104,0.85);
+    }
+    .alert-info {
+      background: rgba(74,144,226,0.06);
+      border: 1px solid rgba(74,144,226,0.2);
+      color: rgba(140,185,240,0.85);
+    }
     .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
     .alert strong { font-weight: 600; }
+
     /* CONCEPT GRID */
-    .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
     @media (max-width: 540px) { .concept-grid { grid-template-columns: 1fr; } }
-    .concept-card { background: var(--bg-elevated); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 18px; }
+    .concept-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
     .concept-card .emoji { font-size: 22px; margin-bottom: 8px; }
     .concept-card h4 { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 5px; }
     .concept-card p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
-    .code-block { background: #060a0d; border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 16px; font-family: 'Courier New', monospace; font-size: 12px; color: #7ec8a0; line-height: 1.7; overflow-x: auto; margin-top: 16px; }
+    .code-block {
+      background: #060a0d;
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #7ec8a0;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
     .code-key { color: var(--gold-light); }
     .code-str { color: #7ec8a0; }
     .code-cmmt { color: var(--text-dim); }
+
     /* NAVIGATION */
-    .nav-btns { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-soft); }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: var(--radius); font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.2s; border: none; text-decoration: none; }
-    .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border-soft); }
+    .nav-btns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-soft);
+    }
     .btn-ghost:hover { color: var(--text-primary); border-color: var(--text-dim); background: var(--border-soft); }
-    .btn-gold { background: linear-gradient(135deg, var(--gold) 0%, #b08a2e 100%); color: var(--bg-primary); box-shadow: 0 4px 16px rgba(201,168,76,0.25); }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, #b08a2e 100%);
+      color: var(--bg-primary);
+      box-shadow: 0 4px 16px rgba(201,168,76,0.25);
+    }
     .btn-gold:hover { box-shadow: 0 6px 24px rgba(201,168,76,0.4); transform: translateY(-1px); }
     .btn-gold:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-    .btn-success { background: linear-gradient(135deg, var(--success) 0%, #357a58 100%); color: white; box-shadow: 0 4px 16px rgba(76,175,125,0.25); }
+    .btn-success {
+      background: linear-gradient(135deg, var(--success) 0%, #357a58 100%);
+      color: white;
+      box-shadow: 0 4px 16px rgba(76,175,125,0.25);
+    }
     .btn-success:hover { box-shadow: 0 6px 24px rgba(76,175,125,0.4); transform: translateY(-1px); }
+
     /* CHECKLIST */
     .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .checklist li { display: flex; align-items: center; gap: 10px; font-size: 14px; }
     .check-icon { font-size: 16px; flex-shrink: 0; }
     .check-text-pass { color: var(--text-primary); }
     .check-text-fail { color: var(--text-dim); }
+
     /* PREVIEW CODE */
-    .preview-header { background: var(--bg-elevated); border: 1px solid var(--border-soft); border-bottom: none; border-radius: var(--radius) var(--radius) 0 0; padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+    .preview-header {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+      border-bottom: none;
+      border-radius: var(--radius) var(--radius) 0 0;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     .dot { width: 10px; height: 10px; border-radius: 50%; }
     .dot-r { background: #ff5f57; }
     .dot-y { background: #febc2e; }
     .dot-g { background: #28c840; }
     .preview-filename { font-size: 12px; color: var(--text-dim); margin-left: 8px; font-family: monospace; }
-    .preview-body { background: #040710; border: 1px solid var(--border-soft); border-top: none; border-radius: 0 0 var(--radius) var(--radius); padding: 20px; font-family: monospace; font-size: 12px; color: #b8cfe8; line-height: 1.8; max-height: 360px; overflow-y: auto; white-space: pre-wrap; }
+    .preview-body {
+      background: #040710;
+      border: 1px solid var(--border-soft);
+      border-top: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 20px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #b8cfe8;
+      line-height: 1.8;
+      max-height: 360px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
     /* METRICS ROW */
     .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
-    .metric { background: var(--bg-elevated); border: 1px solid var(--border-soft); border-radius: var(--radius); padding: 16px; text-align: center; }
+    .metric {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
     .metric-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--white); }
     .metric-label { font-size: 11px; color: var(--text-dim); margin-top: 3px; }
+
     /* SUCCESS STEP */
-    .success-icon { width: 64px; height: 64px; background: linear-gradient(135deg, var(--gold) 0%, #8a6520 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 20px; box-shadow: 0 8px 32px rgba(201,168,76,0.3); }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--gold) 0%, #8a6520 100%);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.3);
+    }
+
     /* FOOTER */
     footer { border-top: 1px solid var(--border-soft); padding: 32px 24px; text-align: center; }
-    .footer-inner { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .footer-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
     .footer-brand { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-primary); }
     .footer-oab { font-size: 12px; color: var(--gold); }
     .footer-links { display: flex; gap: 16px; }
     .footer-links a { font-size: 12px; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--gold); }
+
     /* WHATSAPP FLOAT */
-    .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 200; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: all 0.2s; }
+    .wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 200;
+      width: 52px; height: 52px;
+      background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      transition: all 0.2s;
+    }
     .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+
     /* PROGRESS BAR */
     .progress-bar-outer { height: 2px; background: var(--border-soft); margin-bottom: 36px; border-radius: 2px; overflow: hidden; }
-    .progress-bar-inner { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%); transition: width 0.4s ease; border-radius: 2px; }
+    .progress-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+      transition: width 0.4s ease;
+      border-radius: 2px;
+    }
+
     /* STEP HIDDEN */
     .step-panel { display: none; }
     .step-panel.active { display: block; }
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .card { padding: 24px 20px; }
-      .hero { padding: 48px 20px 36px; }
-      .metrics { grid-template-columns: repeat(3, 1fr); }
-      .metric-num { font-size: 22px; }
-    }
-  
 
-    /* ===== UPLOAD AREA STYLES ===== */
+    /* UPLOAD AREA */
     .upload-area {
       border: 2px dashed var(--border);
       border-radius: 12px;
@@ -246,34 +651,43 @@
     .file-list { margin-top: 12px; }
     .file-item {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; background: var(--bg-elevated); border-radius: 8px;
-      margin-bottom: 6px; border: 1px solid var(--border-soft);
+      padding: 10px 14px;
+      background: var(--bg-elevated);
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border: 1px solid var(--border-soft);
     }
     .file-item .file-info { display: flex; align-items: center; gap: 10px; }
     .file-item .file-icon { font-size: 20px; }
     .file-item .file-name { font-size: 13px; color: var(--text-primary); font-weight: 500; }
     .file-item .file-size { font-size: 11px; color: var(--text-muted); }
     .file-item .file-remove {
-      background: none; border: none; color: var(--danger); cursor: pointer;
-      font-size: 16px; padding: 4px 8px; border-radius: 4px; transition: background 0.2s;
+      background: none; border: none; color: var(--danger);
+      cursor: pointer; font-size: 16px; padding: 4px 8px;
+      border-radius: 4px; transition: background 0.2s;
     }
     .file-item .file-remove:hover { background: rgba(224,82,82,0.15); }
-    .tip { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: var(--gold-dim); color: var(--gold); font-size: 11px; font-weight: 700; cursor: help; transition: all 0.3s ease; vertical-align: middle; margin-left: 4px; }
-    .tip:hover { background: var(--gold); color: var(--bg-primary); transform: scale(1.1); }
-    .tip::before, .tip::after { display: none !important; }
-    .tip-popup { display: none; position: absolute; top: calc(100% + 12px); left: 0; width: 360px; padding: 16px 18px; background: var(--bg-elevated); border: 1px solid var(--gold); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dim); z-index: 1000; text-align: left; pointer-events: none; }
-    .tip:hover .tip-popup { display: block; animation: tipFadeIn 0.2s ease; }
-    @keyframes tipFadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-    .tip-popup::after { content: ''; position: absolute; bottom: 100%; left: 10px; border: 8px solid transparent; border-bottom-color: var(--gold); }
-    .tip-popup .tip-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-    .tip-popup .tip-desc { font-size: 12px; color: var(--text-primary); line-height: 1.6; margin-bottom: 8px; }
-    .tip-popup .tip-example { font-size: 11px; color: var(--text-muted); background: var(--bg-card); padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--gold); font-family: 'DM Sans', monospace; line-height: 1.5; }
-    .tip-popup .tip-warn { font-size: 11px; color: var(--danger); margin-top: 6px; font-style: italic; }
-    .prefilled-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; color: var(--success); background: rgba(78,207,125,0.1); padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
-    @media (max-width: 600px) { .tip-popup { width: 280px; } }
-</style>
+
+    /* PREFILLED BADGE */
+    .prefilled-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; color: var(--success);
+      background: rgba(78,207,125,0.1);
+      padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .card { padding: 24px 20px; }
+      .hero { padding: 48px 20px 36px; }
+      .metrics { grid-template-columns: repeat(3, 1fr); }
+      .metric-num { font-size: 22px; }
+      .tip-popup { width: 300px; }
+    }
+  </style>
 </head>
 <body>
+
   <!-- HEADER -->
   <header>
     <div class="header-inner">
@@ -325,6 +739,7 @@
       <div class="card">
         <div class="card-title"><span class="icon">🧠</span> O que é uma Skill de IA?</div>
         <div class="card-subtitle">Entenda o conceito antes de criar a sua</div>
+
         <div class="concept-grid">
           <div class="concept-card">
             <div class="emoji">📌</div>
@@ -347,16 +762,19 @@
             <p>A skill <strong style="color:var(--gold-light)">instrucoes-douglas-vilar</strong> é ativada sempre que você pede um contrato, petição ou parecer — aplicando papel timbrado e formatação automaticamente.</p>
           </div>
         </div>
+
         <div class="code-block"><span class="code-cmmt">--- frontmatter YAML</span>
-<span class="code-key">name:</span> <span class="code-str">minha-skill</span> <span class="code-cmmt"># identificador único</span>
-<span class="code-key">description:</span> <span class="code-str"></span> <span class="code-cmmt"># MAIS IMPORTANTE</span>
+<span class="code-key">name:</span> <span class="code-str">minha-skill</span>           <span class="code-cmmt"># identificador único</span>
+<span class="code-key">description:</span> <span class="code-str"></span>              <span class="code-cmmt"># MAIS IMPORTANTE</span>
   <span class="code-str">O que faz. Usar SEMPRE para</span>
   <span class="code-str">contratos, petições...</span>
 <span class="code-cmmt">---</span>
+
 <span class="code-cmmt"># Título da Skill</span>
 <span class="code-cmmt">## Visão Geral</span>
 <span class="code-cmmt">## Regras Fundamentais</span>
 <span class="code-cmmt">## Comandos Rápidos</span></div>
+
         <div class="alert alert-gold" style="margin-top:20px;margin-bottom:0">
           <span class="alert-icon">💡</span>
           <div><strong>Dica do Douglas Vilar:</strong> A <em>description</em> é o campo mais crítico. Use "SEMPRE" para torná-la obrigatória em determinados contextos. Seja específico — o Claude tende a subutilizar skills com descrições vagas.</div>
@@ -373,21 +791,66 @@
       <div class="card">
         <div class="card-title"><span class="icon">🏷️</span> Identificação</div>
         <div class="card-subtitle">Nome, autor e propósito da skill</div>
+
         <div class="field">
-          <label>Nome da skill <span class="required">*</span> <span class="tip">?<div class="tip-popup"><div class="tip-title">📛 Nome da Skill (identificador único)</div><div class="tip-desc">Este é o nome técnico da sua skill — funciona como um "ID" que o Claude usa internamente para encontrá-la. Use SEMPRE letras minúsculas, sem espaços, separando palavras com hífen (kebab-case). Evite acentos, caracteres especiais e espaços.</div><div class="tip-example">✅ instrucoes-douglas-vilar<br>✅ contratos-imobiliarios<br>✅ peticoes-trabalhistas<br>❌ Minha Skill (espaços e maiúsculas)<br>❌ skill_nova (underscore)</div><div class="tip-warn">O nome não pode ser alterado depois — escolha algo descritivo e definitivo.</div></div></span></label>
+          <label>Nome da skill <span class="required">*</span>
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">📛 Nome da Skill (identificador único)</div>
+                <div class="tip-desc">Este é o nome técnico da sua skill — funciona como um "ID interno" que o Claude usa para encontrá-la na pasta do projeto. Use SEMPRE letras minúsculas, sem espaços, separando palavras com hífen (padrão kebab-case). Evite acentos, caracteres especiais, underscores e espaços. Este nome também será o nome da pasta que contém o SKILL.md.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ instrucoes-douglas-vilar</div>
+                  <div class="tip-ex-line tip-ex-good">✅ contratos-imobiliarios</div>
+                  <div class="tip-ex-line tip-ex-good">✅ peticoes-trabalhistas</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ Minha Skill (espaços e maiúsculas)</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ skill_nova (underscore não permitido)</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ instruções-joão (acentos não permitidos)</div>
+                </div>
+                <div class="tip-warn">⚠️ O nome não pode ser alterado depois de criado — escolha algo descritivo, curto e definitivo. Ele será o nome da pasta no projeto.</div>
+              </div>
+            </span>
+          </label>
           <input type="text" id="f-name" placeholder="ex: meu-escritorio-adv" oninput="sanitizeName(this)">
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">instrucoes-douglas-vilar</span></div>
         </div>
+
         <div class="field">
-          <label>Autor / Responsável <span class="tip">?<div class="tip-popup"><div class="tip-title">👤 Autor / Responsável</div><div class="tip-desc">Identifique quem é o autor ou responsável por esta skill. Pode ser uma pessoa física (advogado), uma sociedade de advogados, ou um escritório. Inclua a OAB para facilitar a identificação.</div><div class="tip-example">João Silva | OAB/SP 12.345<br>Douglas Vilar | OAB/PR 47.278 | Douglas Vilar Sociedade de Advogados</div></div></span></label>
+          <label>Autor / Responsável
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">👤 Autor / Responsável</div>
+                <div class="tip-desc">Identifique quem é o autor ou responsável por esta skill. Pode ser uma pessoa física (advogado), uma sociedade de advogados ou um escritório. Inclua a OAB para facilitar a identificação e o pré-preenchimento automático no passo de envio. Separe as informações com | (pipe).</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ João Silva | OAB/SP 12.345</div>
+                  <div class="tip-ex-line tip-ex-good">✅ Douglas Vilar | OAB/PR 47.278 | Douglas Vilar Sociedade de Advogados</div>
+                  <div class="tip-ex-line tip-ex-good">✅ Maria Santos | OAB/RJ 98.765 | Santos & Associados</div>
+                </div>
+                <div class="tip-warn">⚠️ O nome e a OAB informados aqui serão pré-preenchidos automaticamente no formulário de envio (Passo 7), evitando digitar duas vezes.</div>
+              </div>
+            </span>
+          </label>
           <input type="text" id="f-author" placeholder="ex: João Silva | OAB/SP 12.345">
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Douglas Vilar | OAB/PR 47.278 | Douglas Vilar Sociedade de Advogados</span></div>
         </div>
+
         <div class="field">
-          <label>Propósito / Visão Geral <span class="tip">?<div class="tip-popup"><div class="tip-title">🎯 Propósito / Visão Geral</div><div class="tip-desc">Descreva em poucas frases o OBJETIVO PRINCIPAL da sua skill. O que ela faz? Qual problema resolve? Isso vai para a seção "Visão Geral" do SKILL.md.</div><div class="tip-example">Padronizar toda a produção documental do escritório com papel timbrado, formatação CLÁUSULA/PARÁGRAFO/ALÍNEA, fonte Anek Latin 13pt e fundamentação jurídica completa.</div><div class="tip-warn">Não confunda com a "Descrição geral" (gatilho) — aqui é o propósito, lá é QUANDO ativar.</div></div></span></label>
+          <label>Propósito / Visão Geral
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">🎯 Propósito / Visão Geral</div>
+                <div class="tip-desc">Descreva em poucas frases o OBJETIVO PRINCIPAL da sua skill. O que ela faz? Qual problema resolve? Para quem é destinada? Isso vai para a seção "Visão Geral" do SKILL.md e serve como contexto geral para o Claude entender o escopo completo da skill.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ Padronizar toda a produção documental do escritório com papel timbrado, formatação CLÁUSULA/PARÁGRAFO/ALÍNEA, fonte Anek Latin 13pt e fundamentação jurídica completa.</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ Skill para documentos (muito vago — não diz quais documentos nem como)</div>
+                </div>
+                <div class="tip-warn">⚠️ Não confunda com a "Descrição geral" (gatilho do próximo passo) — aqui é o propósito geral da skill, lá é QUANDO e POR QUE o Claude deve ativá-la.</div>
+              </div>
+            </span>
+          </label>
           <textarea id="f-purpose" placeholder="Esta skill padroniza a produção de documentos do meu escritório..."></textarea>
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Padronizar toda a produção documental com papel timbrado, formatação CLÁUSULA/PARÁGRAFO/ALÍNEA, fonte Anek Latin 13pt e fundamentação jurídica completa.</span></div>
         </div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(1)">← Anterior</button>
           <button class="btn btn-gold" onclick="if(validStep2())goTo(3)">Próximo →</button>
@@ -400,17 +863,48 @@
       <div class="card">
         <div class="card-title"><span class="icon">⚡</span> Gatilhos de Ativação</div>
         <div class="card-subtitle">Quando e por quê o Claude deve ativar esta skill?</div>
+
         <div class="alert alert-gold">
           <span class="alert-icon">⚠️</span>
           <div><strong>Campo mais importante!</strong> O Claude lê apenas a <em>description</em> para decidir se usa a skill. Seja específico, use termos que você realmente escreve, e inclua "SEMPRE" para contextos obrigatórios.</div>
         </div>
+
         <div class="field">
-          <label>Descrição geral <span class="required">*</span> <span class="tip">?<div class="tip-popup"><div class="tip-title">⚡ Descrição / Gatilho de Ativação (CAMPO MAIS CRÍTICO)</div><div class="tip-desc">Este é o campo MAIS IMPORTANTE de toda a skill! O Claude lê APENAS este texto para decidir se ativa ou não a skill. Escreva como se fosse uma ordem direta: "Usar SEMPRE para..." seguido dos tipos de documento.</div><div class="tip-example">Instruções do escritório Douglas Vilar. Usar SEMPRE para contratos (compra e venda, locação), petições iniciais, contestações, recursos, pareceres jurídicos e notificações extrajudiciais.</div><div class="tip-warn">⚠️ Se a descrição for vaga, o Claude NÃO vai usar a skill. Seja o mais específico possível!</div></div></span></label>
+          <label>Descrição geral <span class="required">*</span>
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">⚡ Descrição / Gatilho de Ativação (CAMPO MAIS CRÍTICO)</div>
+                <div class="tip-desc">Este é o campo MAIS IMPORTANTE de toda a skill! O Claude lê APENAS este texto para decidir se ativa ou não a skill quando você faz um pedido. Escreva como se fosse uma ordem direta ao Claude: "Usar SEMPRE para..." seguido dos tipos de documento e situações. Quanto mais específico, melhor o Claude vai identificar quando usar.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ Instruções do escritório Douglas Vilar. Usar SEMPRE para contratos (compra e venda, locação, prestação de serviços), petições iniciais, contestações, recursos, pareceres jurídicos e notificações extrajudiciais.</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ Skill de documentos jurídicos (muito genérico — Claude não sabe QUANDO ativar)</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ Para usar quando necessário (sem contexto — Claude ignora)</div>
+                </div>
+                <div class="tip-warn">⚠️ Se a descrição for vaga, o Claude simplesmente NÃO vai usar sua skill. Use a palavra "SEMPRE" para tornar obrigatório. Liste os tipos ESPECÍFICOS de documento que a skill abrange.</div>
+              </div>
+            </span>
+          </label>
           <textarea id="f-description" rows="4" placeholder="Ex: Instruções completas do escritório X. Usar SEMPRE para petições, contratos e pareceres..."></textarea>
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Instruções do escritório Douglas Vilar. Usar SEMPRE para contratos (compra e venda, locação), petições iniciais, contestações, recursos, pareceres, notificações extrajudiciais.</span></div>
         </div>
+
         <div class="field">
-          <label>Situações específicas de ativação <span class="tip">?<div class="tip-popup"><div class="tip-title">📋 Situações Específicas de Ativação</div><div class="tip-desc">Adicione tags com situações CONCRETAS onde a skill deve ser ativada. Cada tag é um cenário real do seu dia a dia.</div><div class="tip-example">contratos imobiliários<br>petições trabalhistas<br>recursos cíveis<br>pareceres tributários<br>comandos /contrato /parecer</div><div class="tip-warn">Quanto mais situações adicionar, mais inteligente fica o gatilho da skill.</div></div></span></label>
+          <label>Situações específicas de ativação
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">📋 Situações Específicas de Ativação</div>
+                <div class="tip-desc">Adicione tags com situações CONCRETAS do seu dia a dia onde a skill deve ser ativada. Cada tag é um cenário real. Pense em todos os tipos de documento, área do direito e comandos que você usa. Quanto mais situações adicionar, mais inteligente fica o gatilho.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ contratos imobiliários</div>
+                  <div class="tip-ex-line tip-ex-good">✅ petições trabalhistas</div>
+                  <div class="tip-ex-line tip-ex-good">✅ recursos cíveis</div>
+                  <div class="tip-ex-line tip-ex-good">✅ pareceres tributários</div>
+                  <div class="tip-ex-line tip-ex-good">✅ comandos /contrato /parecer</div>
+                </div>
+                <div class="tip-warn">⚠️ Quanto mais situações você adicionar, mais inteligente o Claude fica para ativar a skill no momento certo. Não economize aqui!</div>
+              </div>
+            </span>
+          </label>
           <div class="tag-input-row">
             <input type="text" id="f-trigger-input" placeholder="Digite uma situação e pressione Enter...">
             <button class="btn-add" onclick="addTag('triggers','f-trigger-input')">+</button>
@@ -426,6 +920,7 @@
             <span class="tag-sug" onclick="suggestTag('triggers','comandos /contrato /parecer /peticao')">comandos /contrato /parecer</span>
           </div>
         </div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(2)">← Anterior</button>
           <button class="btn btn-gold" onclick="if(validStep3())goTo(4)">Próximo →</button>
@@ -436,10 +931,28 @@
     <!-- PASSO 4: CONTEÚDO -->
     <div class="step-panel" id="step-4">
       <div class="card">
-        <div class="card-title"><span class="icon">📝</span> Conteúdo &amp; Comandos</div>
+        <div class="card-title"><span class="icon">📝</span> Conteúdo & Comandos</div>
         <div class="card-subtitle">Comandos rápidos, assets e referências</div>
+
         <div class="field">
-          <label>Comandos rápidos <span class="tip">?<div class="tip-popup"><div class="tip-title">⌨️ Comandos Rápidos (Atalhos)</div><div class="tip-desc">Comandos rápidos são "atalhos" que você digita para o Claude executar ações específicas. Comece sempre com / (barra).</div><div class="tip-example">/contrato = gera minuta no formato CLÁUSULA/PARÁGRAFO<br>/parecer = parecer jurídico completo<br>/peticao = peça processual com papel timbrado<br>/post = conteúdo para redes sociais</div><div class="tip-warn">Use nomes curtos e intuitivos — você vai digitá-los constantemente.</div></div></span></label>
+          <label>Comandos rápidos
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">⌨️ Comandos Rápidos (Atalhos)</div>
+                <div class="tip-desc">Comandos rápidos são "atalhos" que você digita no chat com o Claude para executar ações específicas instantaneamente. Comece sempre com / (barra). Cada comando deve ter um nome curto e uma descrição clara do que faz. O Claude vai reconhecer e executar automaticamente.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ /contrato = gera minuta no formato CLÁUSULA/PARÁGRAFO</div>
+                  <div class="tip-ex-line tip-ex-good">✅ /parecer = parecer jurídico completo com fundamentação</div>
+                  <div class="tip-ex-line tip-ex-good">✅ /peticao = peça processual com papel timbrado</div>
+                  <div class="tip-ex-line tip-ex-good">✅ /post = conteúdo para redes sociais</div>
+                  <div class="tip-ex-line tip-ex-good">✅ /checklist = checklist prático do tema</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ contrato (sem barra / no início)</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ /c (muito curto, pode confundir)</div>
+                </div>
+                <div class="tip-warn">⚠️ Use nomes curtos e intuitivos — você vai digitá-los constantemente no dia a dia. O formato é: /comando = descrição da ação</div>
+              </div>
+            </span>
+          </label>
           <div class="tag-input-row">
             <input type="text" id="f-cmd-input" placeholder="/comando = descrição da ação" style="font-family:monospace">
             <button class="btn-add" onclick="addTag('commands','f-cmd-input')">+</button>
@@ -453,20 +966,52 @@
             <span class="tag-sug" onclick="suggestTag('commands','/checklist = checklist prático do tema')">/checklist</span>
           </div>
         </div>
+
         <div class="field">
-          <label>Assets e templates <span class="tip">?<div class="tip-popup"><div class="tip-title">📁 Assets e Templates (Seus Arquivos)</div><div class="tip-desc">Aqui você lista e faz upload dos arquivos que a skill deve usar como modelo. Podem ser templates de petição (.docx), logotipos (.png/.svg), modelos de contrato, papéis timbrados. Ficam na pasta assets/ da skill.</div><div class="tip-example">assets/template-peticao.docx (modelo oficial)<br>assets/logo-escritorio.png (logotipo)<br>assets/papel-timbrado.docx (cabeçalho padrão)</div><div class="tip-warn">Faça upload dos arquivos reais abaixo — eles serão enviados junto com sua skill.</div></div></span></label>
+          <label>Assets e templates
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">📁 Assets e Templates (Seus Modelos e Documentos)</div>
+                <div class="tip-desc">Assets são os arquivos que a skill usa como modelo para produção de documentos. Podem ser: templates de petição (.docx), logotipos do escritório (.png/.svg), modelos de contrato, papéis timbrados, planilhas de cálculos, apresentações. Eles ficam na pasta <code>assets/</code> da skill e o Claude os usa como base para gerar documentos no seu padrão.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ assets/template-peticao.docx (modelo oficial de petição)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ assets/logo-escritorio.png (logotipo para cabeçalhos)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ assets/papel-timbrado.docx (cabeçalho e rodapé padrão)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ assets/modelo-contrato.docx (estrutura de contrato)</div>
+                </div>
+                <div class="tip-warn">⚠️ Faça upload dos seus arquivos reais no campo abaixo — eles serão enviados junto com a skill para que o Douglas configure corretamente. Quanto mais modelos enviar, melhor o resultado final.</div>
+              </div>
+            </span>
+          </label>
           <textarea id="f-assets" rows="3" style="font-family:monospace;font-size:12px" placeholder="- assets/template-peticao.docx (modelo oficial)&#10;- assets/logo-escritorio.png (logotipo)"></textarea>
+
           <div class="upload-area" id="upload-assets-area" onclick="document.getElementById('file-assets').click()">
             <input type="file" id="file-assets" multiple accept=".docx,.doc,.pdf,.png,.jpg,.jpeg,.svg,.md,.txt,.xlsx,.pptx" onchange="handleFileUpload(this, 'assets')">
             <div class="upload-icon">📤</div>
             <div class="upload-title">Arraste seus templates e logos aqui</div>
-            <div class="upload-sub">ou clique para selecionar arquivos<br><small style="color:var(--text-dim)">.docx, .doc, .pdf, .png, .jpg, .svg, .md, .txt, .xlsx</small></div>
+            <div class="upload-sub">ou clique para selecionar arquivos<br><small style="color:var(--text-dim)">.docx, .doc, .pdf, .png, .jpg, .svg, .md, .txt, .xlsx, .pptx</small></div>
           </div>
           <div class="file-list" id="file-list-assets"></div>
         </div>
+
         <div class="field" style="margin-bottom:0">
-          <label>Referências externas <span class="tip">?<div class="tip-popup"><div class="tip-title">📚 Referências Externas (Documentos de Apoio)</div><div class="tip-desc">Referências são documentos complementares que contêm regras detalhadas, bibliotecas doutrinárias, jurisprudência ou material de apoio. Ficam na pasta references/ e servem como "base de conhecimento" da skill.</div><div class="tip-example">references/instrucoes-completas.md (todas as regras)<br>references/doutrina-civil.md (biblioteca doutrinária)<br>references/jurisprudencia-stj.md (precedentes)</div><div class="tip-warn">Faça upload dos arquivos reais abaixo — eles complementam as instruções da skill.</div></div></span></label>
+          <label>Referências externas
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">📚 Referências Externas (Base de Conhecimento)</div>
+                <div class="tip-desc">Referências são documentos complementares que contêm regras detalhadas, bibliotecas doutrinárias, jurisprudência, legislação específica ou qualquer material de apoio que o Claude deve consultar. Ficam na pasta <code>references/</code> e servem como "base de conhecimento" da skill. O Claude lê e aplica essas referências quando gera documentos.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ references/instrucoes-completas.md (todas as regras do escritório)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ references/doutrina-civil.md (biblioteca doutrinária)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ references/jurisprudencia-stj.md (precedentes relevantes)</div>
+                  <div class="tip-ex-line tip-ex-good">✅ references/legislacao-especifica.pdf (leis e normas)</div>
+                </div>
+                <div class="tip-warn">⚠️ Faça upload dos seus documentos de referência abaixo — eles complementam as instruções da skill e enriquecem a qualidade dos documentos gerados pelo Claude.</div>
+              </div>
+            </span>
+          </label>
           <textarea id="f-references" rows="2" style="font-family:monospace;font-size:12px" placeholder="- references/instrucoes-completas.md (regras e biblioteca doutrinária)"></textarea>
+
           <div class="upload-area" id="upload-refs-area" onclick="document.getElementById('file-refs').click()">
             <input type="file" id="file-refs" multiple accept=".md,.txt,.pdf,.docx,.doc,.xlsx,.csv" onchange="handleFileUpload(this, 'refs')">
             <div class="upload-icon">📚</div>
@@ -475,6 +1020,7 @@
           </div>
           <div class="file-list" id="file-list-refs"></div>
         </div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(3)">← Anterior</button>
           <button class="btn btn-gold" onclick="goTo(5)">Próximo →</button>
@@ -487,11 +1033,30 @@
       <div class="card">
         <div class="card-title"><span class="icon">🛡️</span> Regras Fundamentais</div>
         <div class="card-subtitle">Regras inegociáveis que o Claude SEMPRE deve seguir</div>
+
         <div class="alert alert-info">
           <span class="alert-icon">ℹ️</span>
           <div>Boas regras são <strong>específicas</strong> (Fonte Anek Latin 13pt), <strong>proibitivas</strong> (NUNCA usar 6.1/6.2) ou <strong>obrigatórias</strong> (SEMPRE incluir fundamentação legal).</div>
         </div>
+
         <div class="field">
+          <label>Adicionar regra
+            <span class="tip">?
+              <div class="tip-popup">
+                <div class="tip-title">🛡️ Regras Fundamentais (Inegociáveis)</div>
+                <div class="tip-desc">Regras fundamentais são instruções que o Claude NUNCA pode violar ao gerar documentos com a sua skill. Elas garantem padronização, qualidade e segurança. Use palavras como SEMPRE, NUNCA, OBRIGATÓRIO para dar força à regra. Cada regra deve ser clara, específica e autocontida.</div>
+                <div class="tip-examples">
+                  <div class="tip-ex-line tip-ex-good">✅ Formato CLÁUSULA/PARÁGRAFO/ALÍNEA — NUNCA usar 6.1/6.2</div>
+                  <div class="tip-ex-line tip-ex-good">✅ NUNCA inventar jurisprudência ou doutrina — só citar fontes verificáveis</div>
+                  <div class="tip-ex-line tip-ex-good">✅ Fundamentação obrigatória: lei + jurisprudência + doutrina</div>
+                  <div class="tip-ex-line tip-ex-good">✅ Fonte Anek Latin 13pt, espaçamento 1.5, margens ABNT</div>
+                  <div class="tip-ex-line tip-ex-good">✅ SEMPRE apresentar vantagens E desvantagens de qualquer operação</div>
+                  <div class="tip-ex-line tip-ex-bad">❌ Fazer documentos bonitos (vago — o Claude não sabe o que é "bonito")</div>
+                </div>
+                <div class="tip-warn">⚠️ Regras vagas serão ignoradas pelo Claude. Seja cirúrgico: especifique fontes, formatação, proibições e obrigatoriedades com linguagem direta.</div>
+              </div>
+            </span>
+          </label>
           <div class="tag-input-row">
             <input type="text" id="f-rule-input" placeholder="Ex: NUNCA inventar jurisprudência ou doutrina">
             <button class="btn-add" onclick="addTag('rules','f-rule-input')">+</button>
@@ -506,6 +1071,7 @@
             <span class="tag-sug" onclick="suggestRule('Apresentar SEMPRE vantagens E desvantagens de qualquer operação')">Equilíbrio</span>
           </div>
         </div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(4)">← Anterior</button>
           <button class="btn btn-gold" onclick="goTo(6)">Próximo →</button>
@@ -518,12 +1084,15 @@
       <div class="card">
         <div class="card-title"><span class="icon">🔍</span> Preview da Skill</div>
         <div class="card-subtitle">Confira o SKILL.md gerado antes de enviar</div>
+
         <div class="metrics" id="metricsRow">
           <div class="metric"><div class="metric-num" id="m-triggers">0</div><div class="metric-label">Gatilhos</div></div>
           <div class="metric"><div class="metric-num" id="m-rules">0</div><div class="metric-label">Regras</div></div>
           <div class="metric"><div class="metric-num" id="m-commands">0</div><div class="metric-label">Comandos</div></div>
         </div>
+
         <ul class="checklist" id="checklistItems" style="margin-bottom:24px"></ul>
+
         <div class="preview-header">
           <div class="dot dot-r"></div>
           <div class="dot dot-y"></div>
@@ -532,6 +1101,7 @@
           <button onclick="copySkill()" style="margin-left:auto;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer" id="copyBtn">📋 Copiar</button>
         </div>
         <div class="preview-body" id="previewBody"></div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(5)">← Anterior</button>
           <button class="btn btn-gold" onclick="goTo(7)">Enviar para Douglas →</button>
@@ -544,26 +1114,32 @@
       <div class="card">
         <div class="card-title"><span class="icon">📨</span> Enviar para Análise</div>
         <div class="card-subtitle">Douglas Vilar vai revisar sua skill e dar feedback personalizado</div>
+
         <div class="field">
           <label>Seu nome <span class="required">*</span></label>
           <input type="text" id="f-sender-name" placeholder="Dr. João Silva">
         </div>
+
         <div class="field">
           <label>E-mail <span class="required">*</span></label>
           <input type="email" id="f-sender-email" placeholder="joao@meuescritorio.adv.br">
         </div>
+
         <div class="field">
           <label>OAB (opcional)</label>
           <input type="text" id="f-sender-oab" placeholder="OAB/SP 12.345">
         </div>
+
         <div class="field" style="margin-bottom:0">
           <label>Observações para Douglas (opcional)</label>
           <textarea id="f-obs" rows="3" placeholder="Contexto, dúvidas específicas, onde travou..."></textarea>
         </div>
+
         <div class="alert alert-gold" style="margin-top:20px;margin-bottom:0">
           <span class="alert-icon">🔒</span>
           <div>Suas informações são tratadas com <strong>total confidencialidade</strong>. Douglas responde pessoalmente por e-mail ou WhatsApp.</div>
         </div>
+
         <div class="nav-btns">
           <button class="btn btn-ghost" onclick="goTo(6)">← Voltar</button>
           <button class="btn btn-success" id="btnSend" onclick="submitForm()">🚀 Enviar para Douglas</button>
@@ -578,11 +1154,12 @@
         <h2 style="font-family:Syne,sans-serif;font-size:26px;font-weight:800;color:var(--white);margin-bottom:8px">Skill enviada!</h2>
         <p style="color:var(--text-muted);font-size:15px;max-width:440px;margin:0 auto 32px">Douglas Vilar recebeu sua skill e vai analisar em breve. Fique atento ao seu e-mail e WhatsApp.</p>
         <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto">
-          <a href="https://wa.me/5541984216639?text=Olá Douglas, acabei de enviar minha skill pelo site!" class="btn btn-success" style="justify-content:center">💬 Falar no WhatsApp</a>
+          <a id="wa-success-link" href="#" class="btn btn-success" style="justify-content:center" onclick="updateWhatsAppLinks(); this.href=document.getElementById('wa-success-link').href;">💬 Falar no WhatsApp</a>
           <a href="https://douglasvilar.com.br" class="btn btn-ghost" style="justify-content:center">← Voltar ao site</a>
         </div>
       </div>
     </div>
+
   </main>
 
   <!-- FOOTER -->
@@ -592,16 +1169,16 @@
       <div class="footer-oab">OAB/PR 47.278 | Advocacia 4.0</div>
       <div class="footer-links">
         <a href="https://douglasvilar.com.br">Site</a>
-        <a href="https://www.instagram.com/douglasvilar" target="blank">Instagram</a>
-        <a href="https://www.youtube.com/@douglasvilaradv" target="blank">YouTube</a>
+        <a href="https://www.instagram.com/douglasvilar" target="_blank">Instagram</a>
+        <a href="https://www.youtube.com/@douglasvilaradv" target="_blank">YouTube</a>
         <a href="https://douglasvilar.com.br/contato">Contato</a>
       </div>
       <p style="font-size:11px;color:var(--text-dim)">© 2026 Douglas Vilar. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <!-- WhatsApp -->
-  <a href="https://api.whatsapp.com/send?phone=5541984216639" class="wa-float" target="blank" title="WhatsApp">
+  <!-- WhatsApp Float -->
+  <a href="https://api.whatsapp.com/send?phone=5541984216639" class="wa-float" target="_blank" title="WhatsApp">
     <svg width="28" height="28" viewBox="0 0 32 32" fill="white">
       <path d="M16 0C7.163 0 0 7.163 0 16c0 2.825.742 5.49 2.037 7.813L.054 31.962l8.366-2.064A15.94 15.94 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm7.352 19.456c-.403-.201-2.382-1.176-2.752-1.31-.37-.134-.64-.201-.909.201-.268.403-1.041 1.31-1.276 1.579-.235.268-.47.302-.873.101-.403-.201-1.701-.627-3.241-2.001-1.198-1.069-2.007-2.389-2.242-2.792-.235-.403-.025-.621.176-.822.181-.18.403-.47.604-.705.201-.235.268-.403.403-.671.134-.268.067-.503-.034-.705-.101-.201-.909-2.189-1.246-2.998-.328-.788-.662-.681-.909-.694-.235-.012-.503-.015-.771-.015s-.705.101-1.075.503c-.37.403-1.411 1.378-1.411 3.361s1.444 3.898 1.646 4.166c.201.268 2.842 4.336 6.883 6.082.962.415 1.713.663 2.298.848.966.307 1.845.264 2.541.16.775-.116 2.382-.974 2.718-1.914.336-.94.336-1.746.235-1.914-.101-.168-.37-.268-.773-.47z"/>
     </svg>
@@ -609,91 +1186,110 @@
 
   <script>
     // DOUGLAS VILAR | ia Skill Builder Logic
-    const state = { current: 1, triggers: [], commands: [], rules: [] };
-    const TOTALSTEPS = 7;
+    var state = { current: 1, triggers: [], commands: [], rules: [] };
+    var TOTALSTEPS = 7;
+    var uploadedFiles = { assets: [], refs: [] };
 
+    // ===== NAVIGATION =====
     function goTo(n) {
+      // Pré-preenchimento inteligente ao ir para step 7
+      if (n === 7) prefillSenderData();
+
       document.getElementById('step-' + state.current).classList.remove('active');
       document.getElementById('step-' + n).classList.add('active');
       state.current = n;
       updateProgress();
       updateStepDots();
       if (n === 6) renderPreview();
+      if (n === 8) updateWhatsAppLinks();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function updateProgress() {
-      const pct = Math.round((state.current - 1) / TOTALSTEPS * 100);
+      var pct = Math.round((state.current - 1) / TOTALSTEPS * 100);
       document.getElementById('progressBar').style.width = pct + '%';
     }
 
     function updateStepDots() {
-      for (let i = 1; i <= 7; i++) {
-        const dot = document.getElementById('dot-' + i);
+      for (var i = 1; i <= 7; i++) {
+        var dot = document.getElementById('dot-' + i);
         if (!dot) continue;
         dot.classList.remove('active', 'done');
         if (i < state.current) dot.classList.add('done');
         else if (i === state.current) dot.classList.add('active');
       }
-      for (let i = 1; i <= 6; i++) {
-        const line = document.getElementById('line-' + i);
+      for (var i = 1; i <= 6; i++) {
+        var line = document.getElementById('line-' + i);
         if (!line) continue;
         if (i < state.current) line.classList.add('done');
         else line.classList.remove('done');
       }
     }
 
-    // Tag system
+    // ===== TAG SYSTEM =====
     function addTag(key, inputId) {
-      const el = document.getElementById(inputId);
-      const val = el.value.trim();
-      if (!val || state[key].includes(val)) { el.value = ''; return; }
+      var el = document.getElementById(inputId);
+      var val = el.value.trim();
+      if (!val || state[key].indexOf(val) !== -1) { el.value = ''; return; }
       state[key].push(val);
       el.value = '';
-      renderTags(key);
+      if (key === 'rules') renderRules();
+      else renderTags(key);
     }
 
     function suggestTag(key, val) {
-      if (!state[key].includes(val)) { state[key].push(val); renderTags(key); }
+      if (state[key].indexOf(val) === -1) {
+        state[key].push(val);
+        renderTags(key);
+      }
     }
 
     function suggestRule(val) {
-      if (!state.rules.includes(val)) { state.rules.push(val); renderRules(); }
+      if (state.rules.indexOf(val) === -1) {
+        state.rules.push(val);
+        renderRules();
+      }
     }
 
     function renderTags(key) {
-      const container = document.getElementById('tags-' + key);
+      var container = document.getElementById('tags-' + key);
       if (!container) return;
-      container.innerHTML = state[key].map((t, i) =>
-        `<span class="tag">${t}<button class="tag-rm" onclick="removeTag('${key}',${i})">&times;</button></span>`
-      ).join('');
+      container.innerHTML = state[key].map(function(t, i) {
+        return '<span class="tag">' + escHTML(t) + '<button class="tag-rm" onclick="removeTag(\'' + key + '\',' + i + ')">&times;</button></span>';
+      }).join('');
     }
 
     function renderRules() {
-      const container = document.getElementById('tags-rules');
+      var container = document.getElementById('tags-rules');
       if (!container) return;
-      container.innerHTML = state.rules.map((r, i) =>
-        `<div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:8px;padding:10px 14px">
-          <span style="color:var(--gold);margin-top:2px">⚠️</span>
-          <span style="flex:1;font-size:13px;color:var(--text-primary)">${r}</span>
-          <button style="background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;line-height:1" onclick="removeRule(${i})">&times;</button>
-        </div>`
-      ).join('');
+      container.innerHTML = state.rules.map(function(r, i) {
+        return '<div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:8px;padding:10px 14px">'
+          + '<span style="color:var(--gold);margin-top:2px">⚠️</span>'
+          + '<span style="flex:1;font-size:13px;color:var(--text-primary)">' + escHTML(r) + '</span>'
+          + '<button style="background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;line-height:1" onclick="removeRule(' + i + ')">&times;</button>'
+          + '</div>';
+      }).join('');
     }
 
     function removeTag(key, i) { state[key].splice(i, 1); renderTags(key); }
     function removeRule(i) { state.rules.splice(i, 1); renderRules(); }
+    function escHTML(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 
     // Enter key on tag inputs
-    ['f-trigger-input','f-cmd-input','f-rule-input'].forEach(id => {
-      document.getElementById(id)?.addEventListener('keydown', e => {
+    ['f-trigger-input','f-cmd-input','f-rule-input'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           e.preventDefault();
-          if (id === 'f-trigger-input') addTag('triggers', id);
-          else if (id === 'f-cmd-input') addTag('commands', id);
-          else if (id === 'f-rule-input') {
-            const v = document.getElementById(id).value.trim();
-            if (v && !state.rules.includes(v)) { state.rules.push(v); document.getElementById(id).value = ''; renderRules(); }
+          if (id === 'f-rule-input') {
+            var v = document.getElementById(id).value.trim();
+            if (v && state.rules.indexOf(v) === -1) {
+              state.rules.push(v);
+              document.getElementById(id).value = '';
+              renderRules();
+            }
+          } else {
+            addTag(id === 'f-trigger-input' ? 'triggers' : 'commands', id);
           }
         }
       });
@@ -706,26 +1302,29 @@
 
     // Validation
     function validStep2() {
-      const name = document.getElementById('f-name').value.trim();
+      var name = document.getElementById('f-name').value.trim();
       if (!name) { document.getElementById('f-name').focus(); return false; }
       return true;
     }
 
     function validStep3() {
-      const desc = document.getElementById('f-description').value.trim();
+      var desc = document.getElementById('f-description').value.trim();
       if (!desc) { document.getElementById('f-description').focus(); return false; }
       return true;
     }
 
-    // Generate SKILL.md
+    // ===== GENERATE SKILL.md =====
+    function gv(id) { return (document.getElementById(id) || {}).value || ''; }
+
     function generateSkill() {
-      const name = document.getElementById('f-name').value.trim() || 'minha-skill';
-      const author = document.getElementById('f-author').value.trim();
-      const purpose = document.getElementById('f-purpose').value.trim();
-      const desc = document.getElementById('f-description').value.trim();
-      const assets = document.getElementById('f-assets').value.trim();
-      const refs = document.getElementById('f-references').value.trim();
-      const lines = [];
+      var name = gv('f-name') || 'minha-skill';
+      var author = gv('f-author');
+      var purpose = gv('f-purpose');
+      var desc = gv('f-description');
+      var assets = gv('f-assets');
+      var refs = gv('f-references');
+
+      var lines = [];
       lines.push('---');
       lines.push('name: ' + name);
       lines.push('description: |');
@@ -737,178 +1336,345 @@
       lines.push('');
       lines.push('# ' + name);
       lines.push('');
-      if (purpose) { lines.push('## Vis\u00e3o Geral'); lines.push(''); lines.push(purpose); lines.push(''); }
-      if (state.rules.length) {
-        lines.push('## Regras Fundamentais'); lines.push('');
-        state.rules.forEach(r => lines.push('- ' + r));
+
+      if (author) {
+        lines.push('> Criado por: ' + author);
         lines.push('');
       }
+
+      if (purpose) {
+        lines.push('## Visão Geral');
+        lines.push('');
+        lines.push(purpose);
+        lines.push('');
+      }
+
+      if (state.triggers.length) {
+        lines.push('## Gatilhos de Ativação');
+        lines.push('');
+        lines.push('Esta skill deve ser ativada nas seguintes situações:');
+        lines.push('');
+        state.triggers.forEach(function(t) { lines.push('- ' + t); });
+        lines.push('');
+      }
+
+      if (state.rules.length) {
+        lines.push('## Regras Fundamentais');
+        lines.push('');
+        lines.push('Regras inegociáveis — o Claude NUNCA pode violar:');
+        lines.push('');
+        state.rules.forEach(function(r, i) { lines.push((i + 1) + '. ' + r); });
+        lines.push('');
+      }
+
       if (state.commands.length) {
-        lines.push('## Comandos R\u00e1pidos'); lines.push('');
-        lines.push('| Comando | A\u00e7\u00e3o |');
+        lines.push('## Comandos Rápidos');
+        lines.push('');
+        lines.push('| Comando | Ação |');
         lines.push('|---------|------|');
-        state.commands.forEach(c => {
-          const [cmd, ...rest] = c.split('=');
-          lines.push('| ' + cmd.trim() + ' | ' + rest.join('=').trim() + ' |');
+        state.commands.forEach(function(c) {
+          var parts = c.split('=');
+          var cmd = parts[0].trim();
+          var action = parts.slice(1).join('=').trim();
+          lines.push('| ' + cmd + ' | ' + action + ' |');
         });
         lines.push('');
       }
-      if (assets) { lines.push('## Assets'); lines.push(''); lines.push(assets); lines.push(''); }
-      if (refs) { lines.push('## Refer\u00eancias'); lines.push(''); lines.push(refs); lines.push(''); }
-      if (author) { lines.push('---'); lines.push('Criado por: ' + author); }
+
+      if (assets || uploadedFiles.assets.length) {
+        lines.push('## Assets');
+        lines.push('');
+        if (assets) lines.push(assets);
+        if (uploadedFiles.assets.length) {
+          lines.push('');
+          lines.push('Arquivos enviados:');
+          uploadedFiles.assets.forEach(function(f) {
+            lines.push('- assets/' + f.name);
+          });
+        }
+        lines.push('');
+      }
+
+      if (refs || uploadedFiles.refs.length) {
+        lines.push('## Referências');
+        lines.push('');
+        if (refs) lines.push(refs);
+        if (uploadedFiles.refs.length) {
+          lines.push('');
+          lines.push('Documentos de referência enviados:');
+          uploadedFiles.refs.forEach(function(f) {
+            lines.push('- references/' + f.name);
+          });
+        }
+        lines.push('');
+      }
+
+      lines.push('---');
+      if (author) lines.push('Criado por: ' + author);
+      lines.push('Gerado pelo Skill Builder — douglasvilar.com.br/ia');
+
       return lines.join('\n');
     }
 
     // Render preview
     function renderPreview() {
-      const name = document.getElementById('f-name').value.trim() || 'minha-skill';
+      var name = gv('f-name') || 'minha-skill';
       document.getElementById('m-triggers').textContent = state.triggers.length;
       document.getElementById('m-rules').textContent = state.rules.length;
       document.getElementById('m-commands').textContent = state.commands.length;
       document.getElementById('preview-filename').textContent = name + '/SKILL.md';
       document.getElementById('previewBody').textContent = generateSkill();
+
       // Checklist
-      const desc = document.getElementById('f-description').value.trim();
-      const purpose = document.getElementById('f-purpose').value.trim();
-      const checks = [
+      var desc = gv('f-description');
+      var purpose = gv('f-purpose');
+      var checks = [
         { ok: name.length > 0, text: 'Nome definido em kebab-case' },
         { ok: desc.length > 30, text: 'Description com pelo menos 30 caracteres' },
-        { ok: state.triggers.length > 0, text: 'Pelo menos 1 situa\u00e7\u00e3o de ativa\u00e7\u00e3o' },
+        { ok: state.triggers.length > 0, text: 'Pelo menos 1 situação de ativação' },
         { ok: state.rules.length > 0, text: 'Pelo menos 1 regra fundamental' },
-        { ok: purpose.length > 0, text: 'Vis\u00e3o geral preenchida' },
+        { ok: purpose.length > 0, text: 'Visão geral preenchida' },
+        { ok: state.commands.length > 0, text: 'Pelo menos 1 comando rápido' },
+        { ok: uploadedFiles.assets.length > 0 || gv('f-assets').length > 0, text: 'Assets ou templates definidos' },
       ];
-      document.getElementById('checklistItems').innerHTML = checks.map(c =>
-        `<li><span class="check-icon">${c.ok ? '\u2705' : '\u26aa'}</span><span class="${c.ok ? 'check-text-pass' : 'check-text-fail'}">${c.text}</span></li>`
-      ).join('');
+      document.getElementById('checklistItems').innerHTML = checks.map(function(c) {
+        return '<li><span class="check-icon">' + (c.ok ? '✅' : '⚪') + '</span><span class="' + (c.ok ? 'check-text-pass' : 'check-text-fail') + '">' + c.text + '</span></li>';
+      }).join('');
     }
 
     // Copy
     function copySkill() {
-      const text = generateSkill();
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('copyBtn');
-        btn.textContent = '\u2705 Copiado!';
-        setTimeout(() => btn.textContent = '\ud83d\udccb Copiar', 2000);
+      var text = generateSkill();
+      navigator.clipboard.writeText(text).then(function() {
+        var btn = document.getElementById('copyBtn');
+        btn.textContent = '✅ Copiado!';
+        setTimeout(function() { btn.textContent = '📋 Copiar'; }, 2000);
       });
     }
 
-    // Submit
+    // ===== WHATSAPP COM CONTEÚDO COMPLETO =====
+    function buildWhatsAppMessage() {
+      var n = gv('f-name'), au = gv('f-author'), pu = gv('f-purpose'), de = gv('f-description');
+      var sn = gv('f-sender-name'), se = gv('f-sender-email'), so = gv('f-sender-oab'), ob = gv('f-obs');
+      var assets = gv('f-assets'), refs = gv('f-references');
+      var af = uploadedFiles.assets.map(function(f) { return f.name; });
+      var rf = uploadedFiles.refs.map(function(f) { return f.name; });
+
+      var s = '━━━━━━━━━━━━━━━━━━';
+      var msg = 'Olá Douglas! Acabei de criar minha skill pelo Skill Builder do seu site.\n\n';
+
+      // Dados do envio
+      msg += s + '\n📋 *DADOS DO ENVIO*\n' + s + '\n';
+      if (sn) msg += '👤 Nome: ' + sn + '\n';
+      if (se) msg += '📧 Email: ' + se + '\n';
+      if (so) msg += '⚖️ OAB: ' + so + '\n';
+
+      // Identificação da skill
+      msg += '\n' + s + '\n🏷️ *IDENTIFICAÇÃO DA SKILL*\n' + s + '\n';
+      if (n) msg += '📛 Nome: ' + n + '\n';
+      if (au) msg += '👤 Autor: ' + au + '\n';
+      if (pu) msg += '🎯 Propósito: ' + pu + '\n';
+
+      // Gatilhos
+      msg += '\n' + s + '\n⚡ *GATILHOS DE ATIVAÇÃO*\n' + s + '\n';
+      if (de) msg += '📝 Descrição: ' + de + '\n';
+      if (state.triggers.length) msg += '🎯 Situações: ' + state.triggers.join(', ') + '\n';
+
+      // Comandos
+      if (state.commands.length) {
+        msg += '\n' + s + '\n⌨️ *COMANDOS RÁPIDOS*\n' + s + '\n';
+        state.commands.forEach(function(c) { msg += '• ' + c + '\n'; });
+      }
+
+      // Regras
+      if (state.rules.length) {
+        msg += '\n' + s + '\n🛡️ *REGRAS FUNDAMENTAIS*\n' + s + '\n';
+        state.rules.forEach(function(r) { msg += '• ' + r + '\n'; });
+      }
+
+      // Assets
+      if (assets || af.length) {
+        msg += '\n' + s + '\n📁 *ASSETS E TEMPLATES*\n' + s + '\n';
+        if (assets) msg += assets + '\n';
+        if (af.length) msg += '📤 Arquivos enviados: ' + af.join(', ') + '\n';
+      }
+
+      // Referências
+      if (refs || rf.length) {
+        msg += '\n' + s + '\n📚 *REFERÊNCIAS*\n' + s + '\n';
+        if (refs) msg += refs + '\n';
+        if (rf.length) msg += '📤 Arquivos enviados: ' + rf.join(', ') + '\n';
+      }
+
+      // Observações
+      if (ob) {
+        msg += '\n' + s + '\n💬 *OBSERVAÇÕES*\n' + s + '\n' + ob + '\n';
+      }
+
+      msg += '\n' + s + '\n✅ Enviado pelo Skill Builder — douglasvilar.com.br/ia';
+      return msg;
+    }
+
+    function updateWhatsAppLinks() {
+      var msg = encodeURIComponent(buildWhatsAppMessage());
+      var url = 'https://wa.me/5541984216639?text=' + msg;
+      var successLink = document.getElementById('wa-success-link');
+      if (successLink) successLink.href = url;
+    }
+
+    // ===== PRÉ-PREENCHIMENTO INTELIGENTE =====
+    function prefillSenderData() {
+      var au = gv('f-author');
+      if (!au) return;
+
+      var sn = document.getElementById('f-sender-name');
+      var so = document.getElementById('f-sender-oab');
+
+      // Preencher nome (primeira parte antes do |)
+      if (sn && !sn.value) {
+        var parts = au.split('|');
+        sn.value = parts[0].trim();
+        highlightPrefilled(sn);
+      }
+
+      // Preencher OAB (parte que contém "OAB")
+      if (so && !so.value) {
+        var parts = au.split('|');
+        for (var i = 0; i < parts.length; i++) {
+          if (parts[i].trim().match(/OAB/i)) {
+            so.value = parts[i].trim();
+            highlightPrefilled(so);
+            break;
+          }
+        }
+      }
+    }
+
+    function highlightPrefilled(input) {
+      input.style.borderColor = 'var(--gold)';
+      input.style.transition = 'border-color 0.3s';
+      var field = input.closest('.field');
+      if (field) {
+        var label = field.querySelector('label');
+        if (label && !label.querySelector('.prefilled-badge')) {
+          var b = document.createElement('span');
+          b.className = 'prefilled-badge';
+          b.innerHTML = '✨ pré-preenchido';
+          label.appendChild(b);
+        }
+      }
+      setTimeout(function() { input.style.borderColor = ''; }, 3000);
+    }
+
+    // ===== FILE UPLOAD HANDLERS =====
+    function handleFileUpload(input, type) {
+      for (var i = 0; i < input.files.length; i++) {
+        uploadedFiles[type].push({
+          name: input.files[i].name,
+          size: input.files[i].size,
+          file: input.files[i]
+        });
+      }
+      renderFileList(type);
+      updateAssetTextFromFiles(type);
+      input.value = '';
+    }
+
+    function renderFileList(type) {
+      var c = document.getElementById('file-list-' + type);
+      c.innerHTML = '';
+      uploadedFiles[type].forEach(function(f, i) {
+        var ext = f.name.split('.').pop().toLowerCase();
+        var icons = {'docx':'📄','doc':'📄','pdf':'📕','png':'🖼️','jpg':'🖼️','jpeg':'🖼️','svg':'🎨','md':'📝','txt':'📝','xlsx':'📊','csv':'📊','pptx':'📊'};
+        var icon = icons[ext] || '📎';
+        var size = f.size < 1024 ? f.size + ' B' : f.size < 1048576 ? (f.size / 1024).toFixed(1) + ' KB' : (f.size / 1048576).toFixed(1) + ' MB';
+        var d = document.createElement('div');
+        d.className = 'file-item';
+        d.innerHTML = '<div class="file-info"><span class="file-icon">' + icon + '</span><div><div class="file-name">' + escHTML(f.name) + '</div><div class="file-size">' + size + '</div></div></div><button class="file-remove" onclick="removeFile(\'' + type + '\',' + i + ')">✕</button>';
+        c.appendChild(d);
+      });
+    }
+
+    function removeFile(type, i) {
+      uploadedFiles[type].splice(i, 1);
+      renderFileList(type);
+      updateAssetTextFromFiles(type);
+    }
+
+    function updateAssetTextFromFiles(type) {
+      var ta = type === 'assets' ? document.getElementById('f-assets') : document.getElementById('f-references');
+      var prefix = type === 'assets' ? 'assets/' : 'references/';
+      var fileLines = uploadedFiles[type].map(function(f) { return '- ' + prefix + f.name; });
+      // Keep lines that aren't from uploaded files
+      var existing = ta.value.split('\n').filter(function(l) {
+        return l.trim() && !uploadedFiles[type].some(function(f) { return l.indexOf(f.name) !== -1; });
+      });
+      ta.value = existing.concat(fileLines).join('\n');
+    }
+
+    // Drag & Drop setup
+    document.addEventListener('DOMContentLoaded', function() {
+      ['upload-assets-area', 'upload-refs-area'].forEach(function(id) {
+        var area = document.getElementById(id);
+        if (!area) return;
+        var type = id.indexOf('assets') !== -1 ? 'assets' : 'refs';
+        area.addEventListener('dragover', function(e) { e.preventDefault(); area.classList.add('dragover'); });
+        area.addEventListener('dragleave', function() { area.classList.remove('dragover'); });
+        area.addEventListener('drop', function(e) {
+          e.preventDefault();
+          area.classList.remove('dragover');
+          for (var i = 0; i < e.dataTransfer.files.length; i++) {
+            uploadedFiles[type].push({
+              name: e.dataTransfer.files[i].name,
+              size: e.dataTransfer.files[i].size,
+              file: e.dataTransfer.files[i]
+            });
+          }
+          renderFileList(type);
+          updateAssetTextFromFiles(type);
+        });
+      });
+    });
+
+    // ===== SUBMIT =====
     function submitForm() {
-      const name = document.getElementById('f-sender-name').value.trim();
-      const email = document.getElementById('f-sender-email').value.trim();
-      if (!name || !email) { alert('Por favor, preencha seu nome e e-mail.'); return; }
-      const btn = document.getElementById('btnSend');
+      var name = gv('f-sender-name');
+      var email = gv('f-sender-email');
+      if (!name || !email) {
+        alert('Por favor, preencha seu nome e e-mail.');
+        return;
+      }
+
+      var btn = document.getElementById('btnSend');
       btn.textContent = 'Enviando...';
       btn.disabled = true;
+
       // Build payload
-      const skill = generateSkill();
-      const oab = document.getElementById('f-sender-oab').value.trim();
-      const obs = document.getElementById('f-obs').value.trim();
-      // Mailto fallback
-      const subject = encodeURIComponent('Skill Builder: Nova skill de ' + name);
-      const body = encodeURIComponent('Nome: ' + name + '\nE-mail: ' + email + '\n' + (oab ? 'OAB: ' + oab + '\n' : '') + (obs ? 'Obs: ' + obs + '\n' : '') + '\n--- SKILL.md GERADO ---\n' + skill);
-      window.location.href = 'mailto:douglasvilar.adv.br?subject=' + subject + '&body=' + body;
-      // Mostra tela de sucesso
-      setTimeout(() => goTo(8), 1000);
+      var skill = generateSkill();
+      var oab = gv('f-sender-oab');
+      var obs = gv('f-obs');
+
+      // Mailto
+      var subject = encodeURIComponent('Skill Builder: Nova skill de ' + name);
+      var body = encodeURIComponent(
+        'Nome: ' + name + '\n'
+        + 'E-mail: ' + email + '\n'
+        + (oab ? 'OAB: ' + oab + '\n' : '')
+        + (obs ? 'Obs: ' + obs + '\n' : '')
+        + '\n--- SKILL.md GERADO ---\n'
+        + skill
+      );
+      window.location.href = 'mailto:contato@douglasvilar.com.br?subject=' + subject + '&body=' + body;
+
+      // Update WhatsApp links before showing success
+      updateWhatsAppLinks();
+
+      // Show success
+      setTimeout(function() { goTo(8); }, 1000);
     }
 
     // Init
     updateProgress();
-  
-
-    // ===== FILE UPLOAD HANDLERS =====
-    var uploadedFiles = { assets: [], refs: [] };
-    function handleFileUpload(input, type) {
-      for (var i = 0; i < input.files.length; i++) {
-        uploadedFiles[type].push({ name: input.files[i].name, size: input.files[i].size, file: input.files[i] });
-      }
-      renderFileList(type); updateAssetTextFromFiles(type); input.value = '';
-    }
-    function renderFileList(type) {
-      var c = document.getElementById('file-list-' + type); c.innerHTML = '';
-      uploadedFiles[type].forEach(function(f, i) {
-        var ext = f.name.split('.').pop().toLowerCase();
-        var icons = {'docx':'📄','doc':'📄','pdf':'📕','png':'🖼️','jpg':'🖼️','svg':'🎨','md':'📝','txt':'📝','xlsx':'📊','csv':'📊'};
-        var icon = icons[ext] || '📎';
-        var size = f.size < 1024 ? f.size+' B' : f.size < 1048576 ? (f.size/1024).toFixed(1)+' KB' : (f.size/1048576).toFixed(1)+' MB';
-        var d = document.createElement('div'); d.className = 'file-item';
-        d.innerHTML = '<div class="file-info"><span class="file-icon">'+icon+'</span><div><div class="file-name">'+f.name+'</div><div class="file-size">'+size+'</div></div></div><button class="file-remove" onclick="uploadedFiles.'+type+'.splice('+i+',1);renderFileList(\''+type+'\');updateAssetTextFromFiles(\''+type+'\')">✕</button>';
-        c.appendChild(d);
-      });
-    }
-    function updateAssetTextFromFiles(type) {
-      var ta = type==='assets' ? document.getElementById('f-assets') : document.getElementById('f-references');
-      var prefix = type==='assets' ? 'assets/' : 'references/';
-      var lines = uploadedFiles[type].map(function(f){return '- '+prefix+f.name;});
-      var existing = ta.value.split('\n').filter(function(l){return l.trim()&&!uploadedFiles[type].some(function(f){return l.includes(f.name);});});
-      ta.value = existing.concat(lines).join('\n');
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      ['upload-assets-area','upload-refs-area'].forEach(function(id) {
-        var area = document.getElementById(id); if(!area) return;
-        var type = id.includes('assets')?'assets':'refs';
-        area.addEventListener('dragover',function(e){e.preventDefault();area.classList.add('dragover');});
-        area.addEventListener('dragleave',function(){area.classList.remove('dragover');});
-        area.addEventListener('drop',function(e){
-          e.preventDefault();area.classList.remove('dragover');
-          for(var i=0;i<e.dataTransfer.files.length;i++) uploadedFiles[type].push({name:e.dataTransfer.files[i].name,size:e.dataTransfer.files[i].size,file:e.dataTransfer.files[i]});
-          renderFileList(type);updateAssetTextFromFiles(type);
-        });
-      });
-      var waLink=document.querySelector('a[href*="wa.me"]');
-      if(waLink) waLink.addEventListener('click',function(){updateWhatsAppLink();});
-    });
-
-    // ===== WHATSAPP COM CONTEÚDO COMPLETO =====
-    function buildWhatsAppMessage() {
-      var n=gv('f-name'),au=gv('f-author'),pu=gv('f-purpose'),de=gv('f-description');
-      var sn=gv('f-sender-name'),se=gv('f-sender-email'),so=gv('f-sender-oab'),ob=gv('f-obs');
-      function gv(id){return(document.getElementById(id)||{}).value||'';}
-      var triggers=[],rules=[],commands=[];
-      document.querySelectorAll('#tags-triggers > *').forEach(function(t){var x=t.textContent.replace(/×/g,'').trim();if(x)triggers.push(x);});
-      document.querySelectorAll('#tags-rules > *').forEach(function(t){var x=t.textContent.replace(/⚠️/g,'').replace(/×/g,'').trim();if(x)rules.push(x);});
-      document.querySelectorAll('#tags-commands > *').forEach(function(t){var x=t.textContent.replace(/×/g,'').trim();if(x)commands.push(x);});
-      var assets=gv('f-assets'),refs=gv('f-references');
-      var af=uploadedFiles.assets.map(function(f){return f.name;}),rf=uploadedFiles.refs.map(function(f){return f.name;});
-      var s='━━━━━━━━━━━━━━━━━━';
-      var msg='Olá Douglas! Acabei de criar minha skill pelo site.\n\n';
-      msg+=s+'\n📋 *DADOS DO ENVIO*\n'+s+'\n';
-      if(sn)msg+='👤 Nome: '+sn+'\n';if(se)msg+='📧 Email: '+se+'\n';if(so)msg+='⚖️ OAB: '+so+'\n';
-      msg+='\n'+s+'\n🏷️ *IDENTIFICAÇÃO DA SKILL*\n'+s+'\n';
-      if(n)msg+='📛 Nome: '+n+'\n';if(au)msg+='👤 Autor: '+au+'\n';if(pu)msg+='🎯 Propósito: '+pu+'\n';
-      msg+='\n'+s+'\n⚡ *GATILHOS DE ATIVAÇÃO*\n'+s+'\n';
-      if(de)msg+='📝 Descrição: '+de+'\n';if(triggers.length)msg+='🎯 Situações: '+triggers.join(', ')+'\n';
-      if(commands.length){msg+='\n'+s+'\n⌨️ *COMANDOS RÁPIDOS*\n'+s+'\n';commands.forEach(function(c){msg+='• '+c+'\n';});}
-      if(rules.length){msg+='\n'+s+'\n🛡️ *REGRAS FUNDAMENTAIS*\n'+s+'\n';rules.forEach(function(r){msg+='• '+r+'\n';});}
-      if(assets||af.length){msg+='\n'+s+'\n📁 *ASSETS E TEMPLATES*\n'+s+'\n';if(assets)msg+=assets+'\n';if(af.length)msg+='📤 Arquivos: '+af.join(', ')+'\n';}
-      if(refs||rf.length){msg+='\n'+s+'\n📚 *REFERÊNCIAS*\n'+s+'\n';if(refs)msg+=refs+'\n';if(rf.length)msg+='📤 Arquivos: '+rf.join(', ')+'\n';}
-      if(ob){msg+='\n'+s+'\n💬 *OBSERVAÇÕES*\n'+s+'\n'+ob+'\n';}
-      msg+='\n'+s+'\n✅ Enviado pelo Skill Builder - douglasvilar.com.br/ia';
-      return msg;
-    }
-    function updateWhatsAppLink(){var l=document.querySelector('a[href*="wa.me"]');if(l)l.href='https://wa.me/5541984216639?text='+encodeURIComponent(buildWhatsAppMessage());}
-
-    // ===== PRÉ-PREENCHIMENTO =====
-    var _origGoTo=goTo;
-    goTo=function(step){
-      if(step===7){
-        var sn=document.getElementById('f-sender-name'),au=document.getElementById('f-author');
-        if(sn&&au&&!sn.value&&au.value){sn.value=au.value.split('|')[0].trim();highlightPrefilled(sn);}
-        var so=document.getElementById('f-sender-oab');
-        if(so&&au&&!so.value&&au.value){au.value.split('|').forEach(function(p){if(p.trim().match(/OAB/i)){so.value=p.trim();highlightPrefilled(so);}});}
-        updateWhatsAppLink();
-      }
-      if(step===6)setTimeout(updateWhatsAppLink,100);
-      _origGoTo(step);
-    };
-    function highlightPrefilled(input){
-      input.style.borderColor='var(--gold)';input.style.transition='border-color 0.3s';
-      var field=input.closest('.field');
-      if(field){var label=field.querySelector('label');
-        if(label&&!label.querySelector('.prefilled-badge')){var b=document.createElement('span');b.className='prefilled-badge';b.innerHTML='✨ pré-preenchido';label.appendChild(b);}}
-      setTimeout(function(){input.style.borderColor='';},3000);
-    }
-
   </script>
 </body>
 </html>
