@@ -1125,6 +1125,16 @@
           <input type="email" id="f-sender-email" placeholder="joao@meuescritorio.adv.br">
         </div>
 
+                <div class="field">
+                            <label>Telefone / WhatsApp <span class="required">*</span></label>
+                            <input type="text" id="f-sender-phone" placeholder="(41) 98421-6639">
+                          </div>
+
+                <div class="field">
+                            <label>Instagram</label>
+                            <input type="text" id="f-sender-instagram" placeholder="@seuusuario">
+                          </div>
+
         <div class="field">
           <label>OAB (opcional)</label>
           <input type="text" id="f-sender-oab" placeholder="OAB/SP 12.345">
@@ -1655,6 +1665,17 @@
       var obs = gv('f-obs');
 
       // Mailto
+          var phone = gv('f-sender-phone');
+          var instagram = gv('f-sender-instagram');
+          var skillName = gv('f-name');
+
+          // Envia dados para Google Drive via Apps Script
+          fetch('https://script.google.com/macros/s/AKfycbxqCd5RbPQj1wMgpm0XDxQPv4QQJgLzN6bPrmpVpqb_sF2YDUkPfX8OPGZmav4neHI/exec', {
+                  method: 'POST',
+                  mode: 'no-cors',
+                  headers: {'Content-Type':'application/json'},
+                  body: JSON.stringify({nome:name,email:email,telefone:phone,instagram:instagram,oab:oab,skillName:skillName,skillContent:skill,obs:obs})
+                        }).catch(function(e){console.log(e);});
       var subject = encodeURIComponent('Skill Builder: Nova skill de ' + name);
       var body = encodeURIComponent(
         'Nome: ' + name + '\n'
