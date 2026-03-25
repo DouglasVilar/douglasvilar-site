@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA Jurídica | Douglas Vilar | Advocacia 4.0</title>
-  <meta name="description" content="Crie sua Skill de IA jurídica e envie para análise de Douglas Vilar OAB/PR 47.278. Advocacia 4.0 na prática.">
+  <title>IA JurÃ­dica | Douglas Vilar | Advocacia 4.0</title>
+  <meta name="description" content="Crie sua Skill de IA jurÃ­dica e envie para anÃ¡lise de Douglas Vilar OAB/PR 47.278. Advocacia 4.0 na prÃ¡tica.">
   <link rel="canonical" href="https://douglasvilar.com.br/ia">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -222,7 +222,89 @@
       .metrics { grid-template-columns: repeat(3, 1fr); }
       .metric-num { font-size: 22px; }
     }
-  </style>
+  
+
+    /* ===== UPLOAD AREA STYLES ===== */
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--bg-card);
+      margin-top: 8px;
+    }
+    .upload-area:hover, .upload-area.dragover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .upload-area .upload-icon { font-size: 36px; margin-bottom: 8px; }
+    .upload-area .upload-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+    .upload-area .upload-sub { font-size: 13px; color: var(--text-muted); }
+    .upload-area input[type=file] { display: none; }
+    .file-list { margin-top: 12px; }
+    .file-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; background: var(--bg-elevated); border-radius: 8px;
+      margin-bottom: 6px; border: 1px solid var(--border-soft);
+    }
+    .file-item .file-info { display: flex; align-items: center; gap: 10px; }
+    .file-item .file-icon { font-size: 20px; }
+    .file-item .file-name { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+    .file-item .file-size { font-size: 11px; color: var(--text-muted); }
+    .file-item .file-remove {
+      background: none; border: none; color: var(--danger); cursor: pointer;
+      font-size: 16px; padding: 4px 8px; border-radius: 4px; transition: background 0.2s;
+    }
+    .file-item .file-remove:hover { background: rgba(224,82,82,0.15); }
+
+    /* ===== ENHANCED TOOLTIP STYLES ===== */
+    .tip {
+      position: relative; display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gold-dim); color: var(--gold);
+      font-size: 11px; font-weight: 700; cursor: help;
+      transition: all 0.3s ease; vertical-align: middle; margin-left: 4px;
+    }
+    .tip:hover { background: var(--gold); color: var(--bg-primary); transform: scale(1.1); }
+    .tip::before, .tip::after { display: none !important; }
+    .tip-popup {
+      display: none; position: absolute; top: calc(100% + 12px); left: 0;
+      width: 360px; padding: 16px 18px;
+      background: var(--bg-elevated); border: 1px solid var(--gold); border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px var(--gold-dim);
+      z-index: 1000; text-align: left; pointer-events: none;
+    }
+    .tip:hover .tip-popup { display: block; animation: tipFadeIn 0.2s ease; }
+    @keyframes tipFadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: none; }
+    }
+    .tip-popup::after {
+      content: ''; position: absolute; bottom: 100%; left: 10px;
+      border: 8px solid transparent; border-bottom-color: var(--gold);
+    }
+    .tip-popup .tip-title { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .tip-popup .tip-desc { font-size: 12px; color: var(--text-primary); line-height: 1.6; margin-bottom: 8px; }
+    .tip-popup .tip-example {
+      font-size: 11px; color: var(--text-muted); background: var(--bg-card);
+      padding: 8px 10px; border-radius: 6px; border-left: 3px solid var(--gold);
+      font-family: 'DM Sans', monospace; line-height: 1.5;
+    }
+    .tip-popup .tip-warn { font-size: 11px; color: var(--danger); margin-top: 6px; font-style: italic; }
+
+    /* ===== PRE-FILL INDICATOR ===== */
+    .prefilled-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 11px; color: var(--success); background: rgba(78,207,125,0.1);
+      padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .tip-popup { width: 280px; }
+    }
+</style>
 </head>
 <body>
   <!-- HEADER -->
@@ -237,7 +319,7 @@
       </a>
       <nav class="header-nav">
         <a href="https://douglasvilar.com.br/sobre" class="nav-link">Sobre</a>
-        <a href="https://douglasvilar.com.br/areas" class="nav-link">Áreas</a>
+        <a href="https://douglasvilar.com.br/areas" class="nav-link">Ãreas</a>
         <a href="https://douglasvilar.com.br/contato" class="nav-link">Contato</a>
         <a href="ia" class="nav-link active">IA</a>
       </nav>
@@ -246,9 +328,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">✨ Advocacia 4.0 na Prática</div>
-    <h1>Crie sua <span class="gold">Skill</span> de IA Jurídica</h1>
-    <p>Monte sua skill personalizada passo a passo e envie para análise. Douglas Vilar vai avaliar e dar feedback para otimizar sua produção jurídica com IA.</p>
+    <div class="hero-badge">â¨ Advocacia 4.0 na PrÃ¡tica</div>
+    <h1>Crie sua <span class="gold">Skill</span> de IA JurÃ­dica</h1>
+    <p>Monte sua skill personalizada passo a passo e envie para anÃ¡lise. Douglas Vilar vai avaliar e dar feedback para otimizar sua produÃ§Ã£o jurÃ­dica com IA.</p>
   </section>
 
   <!-- STEPS BAR -->
@@ -260,7 +342,7 @@
       <li class="step-item"><div class="step-line" id="line-3"></div><div class="step-dot" id="dot-4">4</div></li>
       <li class="step-item"><div class="step-line" id="line-4"></div><div class="step-dot" id="dot-5">5</div></li>
       <li class="step-item"><div class="step-line" id="line-5"></div><div class="step-dot" id="dot-6">6</div></li>
-      <li class="step-item"><div class="step-line" id="line-6"></div><div class="step-dot" id="dot-7">✔</div></li>
+      <li class="step-item"><div class="step-line" id="line-6"></div><div class="step-dot" id="dot-7">â</div></li>
     </ul>
   </div>
 
@@ -271,77 +353,77 @@
       <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
     </div>
 
-    <!-- PASSO 1: O QUE É UMA SKILL -->
+    <!-- PASSO 1: O QUE Ã UMA SKILL -->
     <div class="step-panel active" id="step-1">
       <div class="card">
-        <div class="card-title"><span class="icon">🧠</span> O que é uma Skill de IA?</div>
+        <div class="card-title"><span class="icon">ð§ </span> O que Ã© uma Skill de IA?</div>
         <div class="card-subtitle">Entenda o conceito antes de criar a sua</div>
         <div class="concept-grid">
           <div class="concept-card">
-            <div class="emoji">📌</div>
-            <h4>O que é?</h4>
-            <p>Uma skill é um arquivo <code>SKILL.md</code> que ensina o Claude a executar uma tarefa específica do seu modo. Ela é ativada automaticamente quando você faz um pedido compatível.</p>
+            <div class="emoji">ð</div>
+            <h4>O que Ã©?</h4>
+            <p>Uma skill Ã© um arquivo <code>SKILL.md</code> que ensina o Claude a executar uma tarefa especÃ­fica do seu modo. Ela Ã© ativada automaticamente quando vocÃª faz um pedido compatÃ­vel.</p>
           </div>
           <div class="concept-card">
-            <div class="emoji">⚙️</div>
+            <div class="emoji">âï¸</div>
             <h4>Como funciona?</h4>
-            <p>O Claude lê a <strong style="color:var(--gold)">description</strong> da skill e decide se deve ativá-la. Se sim, segue todas as instruções contidas no arquivo.</p>
+            <p>O Claude lÃª a <strong style="color:var(--gold)">description</strong> da skill e decide se deve ativÃ¡-la. Se sim, segue todas as instruÃ§Ãµes contidas no arquivo.</p>
           </div>
           <div class="concept-card">
-            <div class="emoji">📂</div>
+            <div class="emoji">ð</div>
             <h4>Estrutura</h4>
-            <p>Uma pasta com <code>SKILL.md</code> (obrigatório), mais <code>assets/</code> para templates e logos, e <code>references/</code> para documentos extras.</p>
+            <p>Uma pasta com <code>SKILL.md</code> (obrigatÃ³rio), mais <code>assets/</code> para templates e logos, e <code>references/</code> para documentos extras.</p>
           </div>
           <div class="concept-card">
-            <div class="emoji">💡</div>
+            <div class="emoji">ð¡</div>
             <h4>Exemplo Real</h4>
-            <p>A skill <strong style="color:var(--gold-light)">instrucoes-douglas-vilar</strong> é ativada sempre que você pede um contrato, petição ou parecer — aplicando papel timbrado e formatação automaticamente.</p>
+            <p>A skill <strong style="color:var(--gold-light)">instrucoes-douglas-vilar</strong> Ã© ativada sempre que vocÃª pede um contrato, petiÃ§Ã£o ou parecer â aplicando papel timbrado e formataÃ§Ã£o automaticamente.</p>
           </div>
         </div>
         <div class="code-block"><span class="code-cmmt">--- frontmatter YAML</span>
-<span class="code-key">name:</span> <span class="code-str">minha-skill</span> <span class="code-cmmt"># identificador único</span>
+<span class="code-key">name:</span> <span class="code-str">minha-skill</span> <span class="code-cmmt"># identificador Ãºnico</span>
 <span class="code-key">description:</span> <span class="code-str"></span> <span class="code-cmmt"># MAIS IMPORTANTE</span>
   <span class="code-str">O que faz. Usar SEMPRE para</span>
-  <span class="code-str">contratos, petições...</span>
+  <span class="code-str">contratos, petiÃ§Ãµes...</span>
 <span class="code-cmmt">---</span>
-<span class="code-cmmt"># Título da Skill</span>
-<span class="code-cmmt">## Visão Geral</span>
+<span class="code-cmmt"># TÃ­tulo da Skill</span>
+<span class="code-cmmt">## VisÃ£o Geral</span>
 <span class="code-cmmt">## Regras Fundamentais</span>
-<span class="code-cmmt">## Comandos Rápidos</span></div>
+<span class="code-cmmt">## Comandos RÃ¡pidos</span></div>
         <div class="alert alert-gold" style="margin-top:20px;margin-bottom:0">
-          <span class="alert-icon">💡</span>
-          <div><strong>Dica do Douglas Vilar:</strong> A <em>description</em> é o campo mais crítico. Use "SEMPRE" para torná-la obrigatória em determinados contextos. Seja específico — o Claude tende a subutilizar skills com descrições vagas.</div>
+          <span class="alert-icon">ð¡</span>
+          <div><strong>Dica do Douglas Vilar:</strong> A <em>description</em> Ã© o campo mais crÃ­tico. Use "SEMPRE" para tornÃ¡-la obrigatÃ³ria em determinados contextos. Seja especÃ­fico â o Claude tende a subutilizar skills com descriÃ§Ãµes vagas.</div>
         </div>
         <div class="nav-btns">
           <span></span>
-          <button class="btn btn-gold" onclick="goTo(2)">Começar <span>→</span></button>
+          <button class="btn btn-gold" onclick="goTo(2)">ComeÃ§ar <span>â</span></button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 2: IDENTIFICAÇÃO -->
+    <!-- PASSO 2: IDENTIFICAÃÃO -->
     <div class="step-panel" id="step-2">
       <div class="card">
-        <div class="card-title"><span class="icon">🏷️</span> Identificação</div>
-        <div class="card-subtitle">Nome, autor e propósito da skill</div>
+        <div class="card-title"><span class="icon">ð·ï¸</span> IdentificaÃ§Ã£o</div>
+        <div class="card-subtitle">Nome, autor e propÃ³sito da skill</div>
         <div class="field">
-          <label>Nome da skill <span class="required">*</span> <span class="tip" data-tip="Use kebab-case (palavras-com-hífen). Ex: meu-escritorio-adv, contratos-imobiliarios">?</span></label>
+          <label>Nome da skill <span class="required">*</span> <span class="tip" data-tip="Use kebab-case (palavras-com-hÃ­fen). Ex: meu-escritorio-adv, contratos-imobiliarios">?</span></label>
           <input type="text" id="f-name" placeholder="ex: meu-escritorio-adv" oninput="sanitizeName(this)">
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">instrucoes-douglas-vilar</span></div>
         </div>
         <div class="field">
-          <label>Autor / Responsável <span class="tip" data-tip="Quem criou ou é dono desta skill?">?</span></label>
-          <input type="text" id="f-author" placeholder="ex: João Silva | OAB/SP 12.345">
+          <label>Autor / ResponsÃ¡vel <span class="tip" data-tip="Quem criou ou Ã© dono desta skill?">?</span></label>
+          <input type="text" id="f-author" placeholder="ex: JoÃ£o Silva | OAB/SP 12.345">
           <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Douglas Vilar | OAB/PR 47.278 | Douglas Vilar Sociedade de Advogados</span></div>
         </div>
         <div class="field">
-          <label>Propósito / Visão Geral <span class="tip" data-tip="Em 1-3 frases: qual problema esta skill resolve?">?</span></label>
-          <textarea id="f-purpose" placeholder="Esta skill padroniza a produção de documentos do meu escritório..."></textarea>
-          <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Padronizar toda a produção documental com papel timbrado, formatação CLÁUSULA/PARÁGRAFO/ALÍNEA, fonte Anek Latin 13pt e fundamentação jurídica completa.</span></div>
+          <label>PropÃ³sito / VisÃ£o Geral <span class="tip">?<div class="tip-popup"><div class="tip-title">🎯 Propósito / Visão Geral</div><div class="tip-desc">Descreva em poucas frases o OBJETIVO PRINCIPAL da sua skill. O que ela faz? Qual problema resolve? Isso vai para a seção “Visão Geral” do SKILL.md e ajuda qualquer pessoa a entender o propósito rapidamente.</div><div class="tip-example">Padronizar toda a produção documental do escritório com papel timbrado, formatação CLÁUSULA/PARÁGRAFO/ALÍNEA, fonte Anek Latin 13pt e fundamentação jurídica completa.</div><div class="tip-warn">Não confunda com a “Descrição geral” (gatilho) — aqui é o propósito, lá é QUANDO ativar.</div></div></span></label>
+          <textarea id="f-purpose" placeholder="Esta skill padroniza a produÃ§Ã£o de documentos do meu escritÃ³rio..."></textarea>
+          <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Padronizar toda a produÃ§Ã£o documental com papel timbrado, formataÃ§Ã£o CLÃUSULA/PARÃGRAFO/ALÃNEA, fonte Anek Latin 13pt e fundamentaÃ§Ã£o jurÃ­dica completa.</span></div>
         </div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(1)">← Anterior</button>
-          <button class="btn btn-gold" onclick="if(validStep2())goTo(3)">Próximo →</button>
+          <button class="btn btn-ghost" onclick="goTo(1)">â Anterior</button>
+          <button class="btn btn-gold" onclick="if(validStep2())goTo(3)">PrÃ³ximo â</button>
         </div>
       </div>
     </div>
@@ -349,72 +431,86 @@
     <!-- PASSO 3: GATILHOS -->
     <div class="step-panel" id="step-3">
       <div class="card">
-        <div class="card-title"><span class="icon">⚡</span> Gatilhos de Ativação</div>
-        <div class="card-subtitle">Quando e por quê o Claude deve ativar esta skill?</div>
+        <div class="card-title"><span class="icon">â¡</span> Gatilhos de AtivaÃ§Ã£o</div>
+        <div class="card-subtitle">Quando e por quÃª o Claude deve ativar esta skill?</div>
         <div class="alert alert-gold">
-          <span class="alert-icon">⚠️</span>
-          <div><strong>Campo mais importante!</strong> O Claude lê apenas a <em>description</em> para decidir se usa a skill. Seja específico, use termos que você realmente escreve, e inclua "SEMPRE" para contextos obrigatórios.</div>
+          <span class="alert-icon">â ï¸</span>
+          <div><strong>Campo mais importante!</strong> O Claude lÃª apenas a <em>description</em> para decidir se usa a skill. Seja especÃ­fico, use termos que vocÃª realmente escreve, e inclua "SEMPRE" para contextos obrigatÃ³rios.</div>
         </div>
         <div class="field">
-          <label>Descrição geral <span class="required">*</span> <span class="tip" data-tip="Escreva como se fosse instruir um estagiário: quando exatamente ele deve usar esta skill?">?</span></label>
-          <textarea id="f-description" rows="4" placeholder="Ex: Instruções completas do escritório X. Usar SEMPRE para petições, contratos e pareceres..."></textarea>
-          <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">Instruções do escritório Douglas Vilar. Usar SEMPRE para contratos (compra e venda, locação), petições iniciais, contestações, recursos, pareceres, notificações extrajudiciais.</span></div>
+          <label>DescriÃ§Ã£o geral <span class="required">*</span> <span class="tip" data-tip="Escreva como se fosse instruir um estagiÃ¡rio: quando exatamente ele deve usar esta skill?">?</span></label>
+          <textarea id="f-description" rows="4" placeholder="Ex: InstruÃ§Ãµes completas do escritÃ³rio X. Usar SEMPRE para petiÃ§Ãµes, contratos e pareceres..."></textarea>
+          <div class="example"><span class="example-label">Ex. DV</span><span class="example-text">InstruÃ§Ãµes do escritÃ³rio Douglas Vilar. Usar SEMPRE para contratos (compra e venda, locaÃ§Ã£o), petiÃ§Ãµes iniciais, contestaÃ§Ãµes, recursos, pareceres, notificaÃ§Ãµes extrajudiciais.</span></div>
         </div>
         <div class="field">
-          <label>Situações específicas de ativação <span class="tip" data-tip="Liste situações concretas onde a skill DEVE ser usada">?</span></label>
+          <label>SituaÃ§Ãµes especÃ­ficas de ativaÃ§Ã£o <span class="tip" data-tip="Liste situaÃ§Ãµes concretas onde a skill DEVE ser usada">?</span></label>
           <div class="tag-input-row">
-            <input type="text" id="f-trigger-input" placeholder="Digite uma situação e pressione Enter...">
+            <input type="text" id="f-trigger-input" placeholder="Digite uma situaÃ§Ã£o e pressione Enter...">
             <button class="btn-add" onclick="addTag('triggers','f-trigger-input')">+</button>
           </div>
           <div class="tag-list" id="tags-triggers"></div>
           <div class="tag-suggestions">
-            <span class="example-label" style="font-size:11px;margin-right:4px;color:var(--text-dim)">Sugestões:</span>
-            <span class="tag-sug" onclick="suggestTag('triggers','contratos imobiliários')">contratos imobiliários</span>
-            <span class="tag-sug" onclick="suggestTag('triggers','petições processuais')">petições processuais</span>
-            <span class="tag-sug" onclick="suggestTag('triggers','pareceres jurídicos')">pareceres jurídicos</span>
-            <span class="tag-sug" onclick="suggestTag('triggers','notificações extrajudiciais')">notificações extrajudiciais</span>
-            <span class="tag-sug" onclick="suggestTag('triggers','conteúdo para redes sociais')">conteúdo para redes sociais</span>
+            <span class="example-label" style="font-size:11px;margin-right:4px;color:var(--text-dim)">SugestÃµes:</span>
+            <span class="tag-sug" onclick="suggestTag('triggers','contratos imobiliÃ¡rios')">contratos imobiliÃ¡rios</span>
+            <span class="tag-sug" onclick="suggestTag('triggers','petiÃ§Ãµes processuais')">petiÃ§Ãµes processuais</span>
+            <span class="tag-sug" onclick="suggestTag('triggers','pareceres jurÃ­dicos')">pareceres jurÃ­dicos</span>
+            <span class="tag-sug" onclick="suggestTag('triggers','notificaÃ§Ãµes extrajudiciais')">notificaÃ§Ãµes extrajudiciais</span>
+            <span class="tag-sug" onclick="suggestTag('triggers','conteÃºdo para redes sociais')">conteÃºdo para redes sociais</span>
             <span class="tag-sug" onclick="suggestTag('triggers','comandos /contrato /parecer /peticao')">comandos /contrato /parecer</span>
           </div>
         </div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(2)">← Anterior</button>
-          <button class="btn btn-gold" onclick="if(validStep3())goTo(4)">Próximo →</button>
+          <button class="btn btn-ghost" onclick="goTo(2)">â Anterior</button>
+          <button class="btn btn-gold" onclick="if(validStep3())goTo(4)">PrÃ³ximo â</button>
         </div>
       </div>
     </div>
 
-    <!-- PASSO 4: CONTEÚDO -->
+    <!-- PASSO 4: CONTEÃDO -->
     <div class="step-panel" id="step-4">
       <div class="card">
-        <div class="card-title"><span class="icon">📝</span> Conteúdo &amp; Comandos</div>
-        <div class="card-subtitle">Comandos rápidos, assets e referências</div>
+        <div class="card-title"><span class="icon">ð</span> ConteÃºdo &amp; Comandos</div>
+        <div class="card-subtitle">Comandos rÃ¡pidos, assets e referÃªncias</div>
         <div class="field">
-          <label>Comandos rápidos <span class="tip" data-tip="Formato: /comando = descrição. Ex: /peticao = gera peça processual com papel timbrado">?</span></label>
+          <label>Comandos rÃ¡pidos <span class="tip" data-tip="Formato: /comando = descriÃ§Ã£o. Ex: /peticao = gera peÃ§a processual com papel timbrado">?</span></label>
           <div class="tag-input-row">
-            <input type="text" id="f-cmd-input" placeholder="/comando = descrição da ação" style="font-family:monospace">
+            <input type="text" id="f-cmd-input" placeholder="/comando = descriÃ§Ã£o da aÃ§Ã£o" style="font-family:monospace">
             <button class="btn-add" onclick="addTag('commands','f-cmd-input')">+</button>
           </div>
           <div class="tag-list" id="tags-commands"></div>
           <div class="tag-suggestions">
-            <span class="tag-sug" onclick="suggestTag('commands','/contrato = gera minuta CLÁUSULA/PARÁGRAFO')">/contrato</span>
-            <span class="tag-sug" onclick="suggestTag('commands','/parecer = parecer jurídico completo')">/parecer</span>
-            <span class="tag-sug" onclick="suggestTag('commands','/peticao = peça processual com papel timbrado')">/peticao</span>
-            <span class="tag-sug" onclick="suggestTag('commands','/post = conteúdo para redes sociais')">/post</span>
-            <span class="tag-sug" onclick="suggestTag('commands','/checklist = checklist prático do tema')">/checklist</span>
+            <span class="tag-sug" onclick="suggestTag('commands','/contrato = gera minuta CLÃUSULA/PARÃGRAFO')">/contrato</span>
+            <span class="tag-sug" onclick="suggestTag('commands','/parecer = parecer jurÃ­dico completo')">/parecer</span>
+            <span class="tag-sug" onclick="suggestTag('commands','/peticao = peÃ§a processual com papel timbrado')">/peticao</span>
+            <span class="tag-sug" onclick="suggestTag('commands','/post = conteÃºdo para redes sociais')">/post</span>
+            <span class="tag-sug" onclick="suggestTag('commands','/checklist = checklist prÃ¡tico do tema')">/checklist</span>
           </div>
         </div>
         <div class="field">
-          <label>Assets e templates <span class="tip" data-tip="Arquivos de template, logos ou outros recursos que a skill usa. Ex: assets/template-peticao.docx">?</span></label>
+          <label>Assets e templates <span class="tip">?<div class="tip-popup"><div class="tip-title">📁 Assets e Templates (Seus Arquivos)</div><div class="tip-desc">Aqui você lista e faz upload dos arquivos que a skill deve usar como modelo/referência. Podem ser templates de petição (.docx), logotipos do escritório (.png/.svg), modelos de contrato, papéis timbrados e qualquer outro recurso. Esses arquivos ficam na pasta assets/ da skill.</div><div class="tip-example">assets/template-peticao.docx (modelo oficial)<br>assets/logo-escritorio.png (logotipo para papel timbrado)<br>assets/papel-timbrado.docx (cabeçalho padrão)<br>assets/modelo-contrato.docx (estrutura base)</div><div class="tip-warn">Faça upload dos arquivos reais abaixo — eles serão enviados junto com sua skill.</div></div></span></label>
           <textarea id="f-assets" rows="3" style="font-family:monospace;font-size:12px" placeholder="- assets/template-peticao.docx (modelo oficial)&#10;- assets/logo-escritorio.png (logotipo)"></textarea>
+          <div class="upload-area" id="upload-assets-area" onclick="document.getElementById('file-assets').click()">
+            <input type="file" id="file-assets" multiple accept=".docx,.doc,.pdf,.png,.jpg,.jpeg,.svg,.md,.txt,.xlsx,.pptx" onchange="handleFileUpload(this, 'assets')">
+            <div class="upload-icon">📤</div>
+            <div class="upload-title">Arraste seus templates e logos aqui</div>
+            <div class="upload-sub">ou clique para selecionar arquivos<br><small style="color:var(--text-dim)">.docx, .doc, .pdf, .png, .jpg, .svg, .md, .txt, .xlsx</small></div>
+          </div>
+          <div class="file-list" id="file-list-assets"></div>
         </div>
         <div class="field" style="margin-bottom:0">
-          <label>Referências externas <span class="tip" data-tip="Arquivos de referência com detalhes extras. Ex: references/instrucoes-completas.md">?</span></label>
-          <textarea id="f-references" rows="2" style="font-family:monospace;font-size:12px" placeholder="- references/instrucoes-completas.md (regras e biblioteca doutrinária)"></textarea>
+          <label>ReferÃªncias externas <span class="tip" data-tip="Arquivos de referÃªncia com detalhes extras. Ex: references/instrucoes-completas.md">?</span></label>
+          <textarea id="f-references" rows="2" style="font-family:monospace;font-size:12px" placeholder="- references/instrucoes-completas.md (regras e biblioteca doutrinÃ¡ria)"></textarea>
+          <div class="upload-area" id="upload-refs-area" onclick="document.getElementById('file-refs').click()">
+            <input type="file" id="file-refs" multiple accept=".md,.txt,.pdf,.docx,.doc,.xlsx,.csv" onchange="handleFileUpload(this, 'refs')">
+            <div class="upload-icon">📚</div>
+            <div class="upload-title">Arraste seus documentos de referência aqui</div>
+            <div class="upload-sub">ou clique para selecionar arquivos<br><small style="color:var(--text-dim)">.md, .txt, .pdf, .docx, .xlsx, .csv</small></div>
+          </div>
+          <div class="file-list" id="file-list-refs"></div>
         </div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(3)">← Anterior</button>
-          <button class="btn btn-gold" onclick="goTo(5)">Próximo →</button>
+          <button class="btn btn-ghost" onclick="goTo(3)">â Anterior</button>
+          <button class="btn btn-gold" onclick="goTo(5)">PrÃ³ximo â</button>
         </div>
       </div>
     </div>
@@ -422,30 +518,30 @@
     <!-- PASSO 5: REGRAS -->
     <div class="step-panel" id="step-5">
       <div class="card">
-        <div class="card-title"><span class="icon">🛡️</span> Regras Fundamentais</div>
-        <div class="card-subtitle">Regras inegociáveis que o Claude SEMPRE deve seguir</div>
+        <div class="card-title"><span class="icon">ð¡ï¸</span> Regras Fundamentais</div>
+        <div class="card-subtitle">Regras inegociÃ¡veis que o Claude SEMPRE deve seguir</div>
         <div class="alert alert-info">
-          <span class="alert-icon">ℹ️</span>
-          <div>Boas regras são <strong>específicas</strong> (Fonte Anek Latin 13pt), <strong>proibitivas</strong> (NUNCA usar 6.1/6.2) ou <strong>obrigatórias</strong> (SEMPRE incluir fundamentação legal).</div>
+          <span class="alert-icon">â¹ï¸</span>
+          <div>Boas regras sÃ£o <strong>especÃ­ficas</strong> (Fonte Anek Latin 13pt), <strong>proibitivas</strong> (NUNCA usar 6.1/6.2) ou <strong>obrigatÃ³rias</strong> (SEMPRE incluir fundamentaÃ§Ã£o legal).</div>
         </div>
         <div class="field">
           <div class="tag-input-row">
-            <input type="text" id="f-rule-input" placeholder="Ex: NUNCA inventar jurisprudência ou doutrina">
+            <input type="text" id="f-rule-input" placeholder="Ex: NUNCA inventar jurisprudÃªncia ou doutrina">
             <button class="btn-add" onclick="addTag('rules','f-rule-input')">+</button>
           </div>
           <div id="tags-rules" style="margin-top:12px;display:flex;flex-direction:column;gap:8px"></div>
           <div class="tag-suggestions" style="margin-top:14px">
-            <span class="example-label" style="font-size:11px;color:var(--text-dim)">Sugestões:</span>
-            <span class="tag-sug" onclick="suggestRule('Formato CLÁUSULA/PARÁGRAFO/ALÍNEA — NUNCA 6.1/6.2')">Formato contratual</span>
-            <span class="tag-sug" onclick="suggestRule('Fundamentação obrigatória: lei + jurisprudência + doutrina')">Fundamentação</span>
-            <span class="tag-sug" onclick="suggestRule('NUNCA inventar jurisprudência ou doutrina')">Nunca inventar</span>
-            <span class="tag-sug" onclick="suggestRule('Fonte Anek Latin 13pt, espaçamento 1.5')">Formatação</span>
-            <span class="tag-sug" onclick="suggestRule('Apresentar SEMPRE vantagens E desvantagens de qualquer operação')">Equilíbrio</span>
+            <span class="example-label" style="font-size:11px;color:var(--text-dim)">SugestÃµes:</span>
+            <span class="tag-sug" onclick="suggestRule('Formato CLÃUSULA/PARÃGRAFO/ALÃNEA â NUNCA 6.1/6.2')">Formato contratual</span>
+            <span class="tag-sug" onclick="suggestRule('FundamentaÃ§Ã£o obrigatÃ³ria: lei + jurisprudÃªncia + doutrina')">FundamentaÃ§Ã£o</span>
+            <span class="tag-sug" onclick="suggestRule('NUNCA inventar jurisprudÃªncia ou doutrina')">Nunca inventar</span>
+            <span class="tag-sug" onclick="suggestRule('Fonte Anek Latin 13pt, espaÃ§amento 1.5')">FormataÃ§Ã£o</span>
+            <span class="tag-sug" onclick="suggestRule('Apresentar SEMPRE vantagens E desvantagens de qualquer operaÃ§Ã£o')">EquilÃ­brio</span>
           </div>
         </div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(4)">← Anterior</button>
-          <button class="btn btn-gold" onclick="goTo(6)">Próximo →</button>
+          <button class="btn btn-ghost" onclick="goTo(4)">â Anterior</button>
+          <button class="btn btn-gold" onclick="goTo(6)">PrÃ³ximo â</button>
         </div>
       </div>
     </div>
@@ -453,7 +549,7 @@
     <!-- PASSO 6: PREVIEW -->
     <div class="step-panel" id="step-6">
       <div class="card">
-        <div class="card-title"><span class="icon">🔍</span> Preview da Skill</div>
+        <div class="card-title"><span class="icon">ð</span> Preview da Skill</div>
         <div class="card-subtitle">Confira o SKILL.md gerado antes de enviar</div>
         <div class="metrics" id="metricsRow">
           <div class="metric"><div class="metric-num" id="m-triggers">0</div><div class="metric-label">Gatilhos</div></div>
@@ -466,12 +562,12 @@
           <div class="dot dot-y"></div>
           <div class="dot dot-g"></div>
           <span class="preview-filename" id="preview-filename">minha-skill/SKILL.md</span>
-          <button onclick="copySkill()" style="margin-left:auto;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer" id="copyBtn">📋 Copiar</button>
+          <button onclick="copySkill()" style="margin-left:auto;background:var(--gold-dim);border:1px solid var(--border);color:var(--gold);font-size:11px;padding:4px 10px;border-radius:6px;cursor:pointer" id="copyBtn">ð Copiar</button>
         </div>
         <div class="preview-body" id="previewBody"></div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(5)">← Anterior</button>
-          <button class="btn btn-gold" onclick="goTo(7)">Enviar para Douglas →</button>
+          <button class="btn btn-ghost" onclick="goTo(5)">â Anterior</button>
+          <button class="btn btn-gold" onclick="goTo(7)">Enviar para Douglas â</button>
         </div>
       </div>
     </div>
@@ -479,11 +575,11 @@
     <!-- PASSO 7: ENVIO -->
     <div class="step-panel" id="step-7">
       <div class="card">
-        <div class="card-title"><span class="icon">📨</span> Enviar para Análise</div>
+        <div class="card-title"><span class="icon">ð¨</span> Enviar para AnÃ¡lise</div>
         <div class="card-subtitle">Douglas Vilar vai revisar sua skill e dar feedback personalizado</div>
         <div class="field">
           <label>Seu nome <span class="required">*</span></label>
-          <input type="text" id="f-sender-name" placeholder="Dr. João Silva">
+          <input type="text" id="f-sender-name" placeholder="Dr. JoÃ£o Silva">
         </div>
         <div class="field">
           <label>E-mail <span class="required">*</span></label>
@@ -494,16 +590,16 @@
           <input type="text" id="f-sender-oab" placeholder="OAB/SP 12.345">
         </div>
         <div class="field" style="margin-bottom:0">
-          <label>Observações para Douglas (opcional)</label>
-          <textarea id="f-obs" rows="3" placeholder="Contexto, dúvidas específicas, onde travou..."></textarea>
+          <label>ObservaÃ§Ãµes para Douglas (opcional)</label>
+          <textarea id="f-obs" rows="3" placeholder="Contexto, dÃºvidas especÃ­ficas, onde travou..."></textarea>
         </div>
         <div class="alert alert-gold" style="margin-top:20px;margin-bottom:0">
-          <span class="alert-icon">🔒</span>
-          <div>Suas informações são tratadas com <strong>total confidencialidade</strong>. Douglas responde pessoalmente por e-mail ou WhatsApp.</div>
+          <span class="alert-icon">ð</span>
+          <div>Suas informaÃ§Ãµes sÃ£o tratadas com <strong>total confidencialidade</strong>. Douglas responde pessoalmente por e-mail ou WhatsApp.</div>
         </div>
         <div class="nav-btns">
-          <button class="btn btn-ghost" onclick="goTo(6)">← Voltar</button>
-          <button class="btn btn-success" id="btnSend" onclick="submitForm()">🚀 Enviar para Douglas</button>
+          <button class="btn btn-ghost" onclick="goTo(6)">â Voltar</button>
+          <button class="btn btn-success" id="btnSend" onclick="submitForm()">ð Enviar para Douglas</button>
         </div>
       </div>
     </div>
@@ -511,12 +607,12 @@
     <!-- STEP 8: SUCESSO -->
     <div class="step-panel" id="step-8">
       <div class="card" style="text-align:center;padding:48px 36px">
-        <div class="success-icon">✅</div>
+        <div class="success-icon">â</div>
         <h2 style="font-family:Syne,sans-serif;font-size:26px;font-weight:800;color:var(--white);margin-bottom:8px">Skill enviada!</h2>
         <p style="color:var(--text-muted);font-size:15px;max-width:440px;margin:0 auto 32px">Douglas Vilar recebeu sua skill e vai analisar em breve. Fique atento ao seu e-mail e WhatsApp.</p>
         <div style="display:flex;flex-direction:column;gap:10px;max-width:300px;margin:0 auto">
-          <a href="https://wa.me/5541984216639?text=Olá Douglas, acabei de enviar minha skill pelo site!" class="btn btn-success" style="justify-content:center">💬 Falar no WhatsApp</a>
-          <a href="https://douglasvilar.com.br" class="btn btn-ghost" style="justify-content:center">← Voltar ao site</a>
+          <a href="https://wa.me/5541984216639?text=OlÃ¡ Douglas, acabei de enviar minha skill pelo site!" class="btn btn-success" style="justify-content:center">ð¬ Falar no WhatsApp</a>
+          <a href="https://douglasvilar.com.br" class="btn btn-ghost" style="justify-content:center">â Voltar ao site</a>
         </div>
       </div>
     </div>
@@ -533,7 +629,7 @@
         <a href="https://www.youtube.com/@douglasvilaradv" target="blank">YouTube</a>
         <a href="https://douglasvilar.com.br/contato">Contato</a>
       </div>
-      <p style="font-size:11px;color:var(--text-dim)">© 2026 Douglas Vilar. Todos os direitos reservados.</p>
+      <p style="font-size:11px;color:var(--text-dim)">Â© 2026 Douglas Vilar. Todos os direitos reservados.</p>
     </div>
   </footer>
 
@@ -611,7 +707,7 @@
       if (!container) return;
       container.innerHTML = state.rules.map((r, i) =>
         `<div style="display:flex;align-items:flex-start;gap:10px;background:var(--bg-elevated);border:1px solid var(--border-soft);border-radius:8px;padding:10px 14px">
-          <span style="color:var(--gold);margin-top:2px">⚠️</span>
+          <span style="color:var(--gold);margin-top:2px">â ï¸</span>
           <span style="flex:1;font-size:13px;color:var(--text-primary)">${r}</span>
           <button style="background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;line-height:1" onclick="removeRule(${i})">&times;</button>
         </div>`
@@ -751,6 +847,224 @@
 
     // Init
     updateProgress();
+  
+
+    // ===== FILE UPLOAD HANDLERS =====
+    var uploadedFiles = { assets: [], refs: [] };
+
+    function handleFileUpload(input, type) {
+      var files = input.files;
+      for (var i = 0; i < files.length; i++) {
+        uploadedFiles[type].push({ name: files[i].name, size: files[i].size, type: files[i].type, file: files[i] });
+      }
+      renderFileList(type);
+      updateAssetTextFromFiles(type);
+      input.value = '';
+    }
+
+    function renderFileList(type) {
+      var container = document.getElementById('file-list-' + type);
+      container.innerHTML = '';
+      uploadedFiles[type].forEach(function(f, idx) {
+        var icon = getFileIcon(f.name);
+        var size = formatFileSize(f.size);
+        var item = document.createElement('div');
+        item.className = 'file-item';
+        item.innerHTML = '<div class="file-info"><span class="file-icon">' + icon + '</span><div><div class="file-name">' + f.name + '</div><div class="file-size">' + size + '</div></div></div><button class="file-remove" onclick="removeUploadedFile(\'' + type + '\',' + idx + ')">\u2715</button>';
+        container.appendChild(item);
+      });
+    }
+
+    function removeUploadedFile(type, idx) {
+      uploadedFiles[type].splice(idx, 1);
+      renderFileList(type);
+      updateAssetTextFromFiles(type);
+    }
+
+    function getFileIcon(name) {
+      var ext = name.split('.').pop().toLowerCase();
+      var icons = {'docx':'\uD83D\uDCC4','doc':'\uD83D\uDCC4','pdf':'\uD83D\uDCD5','png':'\uD83D\uDDBC\uFE0F','jpg':'\uD83D\uDDBC\uFE0F','jpeg':'\uD83D\uDDBC\uFE0F','svg':'\uD83C\uDFA8','md':'\uD83D\uDCDD','txt':'\uD83D\uDCDD','xlsx':'\uD83D\uDCCA','csv':'\uD83D\uDCCA','pptx':'\uD83D\uDCCE'};
+      return icons[ext] || '\uD83D\uDCCE';
+    }
+
+    function formatFileSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+      return (bytes/(1024*1024)).toFixed(1) + ' MB';
+    }
+
+    function updateAssetTextFromFiles(type) {
+      var textarea = type === 'assets' ? document.getElementById('f-assets') : document.getElementById('f-references');
+      var prefix = type === 'assets' ? 'assets/' : 'references/';
+      var lines = uploadedFiles[type].map(function(f) { return '- ' + prefix + f.name; });
+      var existing = textarea.value.split('\n').filter(function(line) {
+        return line.trim() && !uploadedFiles[type].some(function(f) { return line.includes(f.name); });
+      });
+      textarea.value = existing.concat(lines).join('\n');
+    }
+
+  
+
+    // Drag & drop support
+    document.addEventListener('DOMContentLoaded', function() {
+      ['upload-assets-area', 'upload-refs-area'].forEach(function(id) {
+        var area = document.getElementById(id);
+        if (!area) return;
+        var type = id.includes('assets') ? 'assets' : 'refs';
+        area.addEventListener('dragover', function(e) { e.preventDefault(); area.classList.add('dragover'); });
+        area.addEventListener('dragleave', function() { area.classList.remove('dragover'); });
+        area.addEventListener('drop', function(e) {
+          e.preventDefault(); area.classList.remove('dragover');
+          var files = e.dataTransfer.files;
+          for (var i = 0; i < files.length; i++) {
+            uploadedFiles[type].push({ name: files[i].name, size: files[i].size, type: files[i].type, file: files[i] });
+          }
+          renderFileList(type);
+          updateAssetTextFromFiles(type);
+        });
+      });
+    });
+
+    // ===== WHATSAPP MESSAGE BUILDER =====
+    function buildWhatsAppMessage() {
+      var name = (document.getElementById('f-name') || {}).value || '';
+      var author = (document.getElementById('f-author') || {}).value || '';
+      var purpose = (document.getElementById('f-purpose') || {}).value || '';
+      var desc = (document.getElementById('f-description') || {}).value || '';
+      var senderName = (document.getElementById('f-sender-name') || {}).value || '';
+      var senderEmail = (document.getElementById('f-sender-email') || {}).value || '';
+      var senderOab = (document.getElementById('f-sender-oab') || {}).value || '';
+      var observations = (document.getElementById('f-obs') || {}).value || '';
+
+      var triggers = [];
+      document.querySelectorAll('#tags-triggers > *').forEach(function(t) {
+        var text = t.textContent.replace(/\u00D7/g, '').trim();
+        if (text) triggers.push(text);
+      });
+
+      var rules = [];
+      document.querySelectorAll('#tags-rules > *').forEach(function(t) {
+        var text = t.textContent.replace(/\u26A0\uFE0F/g, '').replace(/\u00D7/g, '').trim();
+        if (text) rules.push(text);
+      });
+
+      var commands = [];
+      document.querySelectorAll('#tags-commands > *').forEach(function(t) {
+        var text = t.textContent.replace(/\u00D7/g, '').trim();
+        if (text) commands.push(text);
+      });
+
+      var assets = (document.getElementById('f-assets') || {}).value || '';
+      var refs = (document.getElementById('f-references') || {}).value || '';
+      var assetFiles = uploadedFiles.assets.map(function(f) { return f.name; });
+      var refFiles = uploadedFiles.refs.map(function(f) { return f.name; });
+
+      var msg = 'Ol\u00E1 Douglas! Acabei de criar minha skill pelo site.\n\n';
+      msg += '\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83D\uDCCB *DADOS DO ENVIO*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+      if (senderName) msg += '\uD83D\uDC64 Nome: ' + senderName + '\n';
+      if (senderEmail) msg += '\uD83D\uDCE7 Email: ' + senderEmail + '\n';
+      if (senderOab) msg += '\u2696\uFE0F OAB: ' + senderOab + '\n';
+
+      msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83C\uDFF7\uFE0F *IDENTIFICA\u00C7\u00C3O DA SKILL*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+      if (name) msg += '\uD83D\uDCDB Nome: ' + name + '\n';
+      if (author) msg += '\uD83D\uDC64 Autor: ' + author + '\n';
+      if (purpose) msg += '\uD83C\uDFAF Prop\u00F3sito: ' + purpose + '\n';
+
+      msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u26A1 *GATILHOS DE ATIVA\u00C7\u00C3O*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+      if (desc) msg += '\uD83D\uDCDD Descri\u00E7\u00E3o: ' + desc + '\n';
+      if (triggers.length > 0) msg += '\uD83C\uDFAF Situa\u00E7\u00F5es: ' + triggers.join(', ') + '\n';
+
+      if (commands.length > 0) {
+        msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2328\uFE0F *COMANDOS R\u00C1PIDOS*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+        commands.forEach(function(c) { msg += '\u2022 ' + c + '\n'; });
+      }
+
+      if (rules.length > 0) {
+        msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83D\uDEE1\uFE0F *REGRAS FUNDAMENTAIS*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+        rules.forEach(function(r) { msg += '\u2022 ' + r + '\n'; });
+      }
+
+      if (assets || assetFiles.length > 0) {
+        msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83D\uDCC1 *ASSETS E TEMPLATES*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+        if (assets) msg += assets + '\n';
+        if (assetFiles.length > 0) msg += '\uD83D\uDCE4 Arquivos enviados: ' + assetFiles.join(', ') + '\n';
+      }
+
+      if (refs || refFiles.length > 0) {
+        msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83D\uDCDA *REFER\u00CANCIAS*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+        if (refs) msg += refs + '\n';
+        if (refFiles.length > 0) msg += '\uD83D\uDCE4 Arquivos enviados: ' + refFiles.join(', ') + '\n';
+      }
+
+      if (observations) {
+        msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\uD83D\uDCAC *OBSERVA\u00C7\u00D5ES*\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n';
+        msg += observations + '\n';
+      }
+
+      msg += '\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\u2705 Enviado pelo Skill Builder - douglasvilar.com.br/ia';
+      return msg;
+    }
+
+    function updateWhatsAppLink() {
+      var waLink = document.querySelector('a[href*="wa.me"]');
+      if (waLink) {
+        waLink.href = 'https://wa.me/5541984216639?text=' + encodeURIComponent(buildWhatsAppMessage());
+      }
+    }
+
+  
+
+    // ===== PRE-FILL LOGIC =====
+    var _origGoTo = goTo;
+    goTo = function(step) {
+      if (step === 7) {
+        var senderName = document.getElementById('f-sender-name');
+        var author = document.getElementById('f-author');
+        if (senderName && author && !senderName.value && author.value) {
+          senderName.value = author.value.split('|')[0].trim();
+          highlightPrefilled(senderName);
+        }
+        var senderOab = document.getElementById('f-sender-oab');
+        if (senderOab && author && !senderOab.value && author.value) {
+          var parts = author.value.split('|');
+          for (var i = 0; i < parts.length; i++) {
+            if (parts[i].trim().match(/OAB/i)) {
+              senderOab.value = parts[i].trim();
+              highlightPrefilled(senderOab);
+              break;
+            }
+          }
+        }
+        updateWhatsAppLink();
+      }
+      if (step === 6) { setTimeout(updateWhatsAppLink, 100); }
+      _origGoTo(step);
+    };
+
+    function highlightPrefilled(input) {
+      input.style.borderColor = 'var(--gold)';
+      input.style.transition = 'border-color 0.3s';
+      var field = input.closest('.field');
+      if (field) {
+        var label = field.querySelector('label');
+        if (label && !label.querySelector('.prefilled-badge')) {
+          var badge = document.createElement('span');
+          badge.className = 'prefilled-badge';
+          badge.innerHTML = '\u2728 pr\u00E9-preenchido';
+          label.appendChild(badge);
+        }
+      }
+      setTimeout(function() { input.style.borderColor = ''; }, 3000);
+    }
+
+    // Update WhatsApp on link click
+    document.addEventListener('DOMContentLoaded', function() {
+      var waLink = document.querySelector('a[href*="wa.me"]');
+      if (waLink) {
+        waLink.addEventListener('click', function() { updateWhatsAppLink(); });
+      }
+    });
+
   </script>
 </body>
 </html>
